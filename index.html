@@ -66,7 +66,7 @@
       <section id="properties" class="properties-section" aria-labelledby="properties-title">
         <div class="wrap">
           <h2 id="properties-title" data-es="Propiedades Disponibles" data-en="Available Properties">Propiedades Disponibles</h2>
-          <!-- ========== DYNAMIC PROPERTIES SECTION (AUTO-GENERATES FROM SUBMISSIONS) ========== -->
+          <!-- ========== PROPERTIES SECTION (HYBRID: HARDCODED + DYNAMIC) ========== -->
 <section class="properties-section" id="properties">
   <div class="wrap">
     <h2 data-es="Propiedades Disponibles" data-en="Available Properties">Available Properties</h2>
@@ -74,22 +74,51 @@
       Find your ideal home in Eastern Antioquia
     </p>
 
-    <!-- Dynamic grid — starts empty, JS fills it -->
     <div class="properties-grid" id="properties-grid">
-      <!-- Loading state -->
-      <div class="property-card loading">
-        <div class="thumb-wrap"><div class="thumbnail loading-bg"></div></div>
+      <!-- YOUR 4 ORIGINAL HARDCODED PROPERTIES (ALWAYS SHOW) -->
+      <!-- Sample Property 1 -->
+      <article id="prop-sa" class="property-card" tabindex="0" data-lat="6.1477" data-lng="-75.3766" aria-labelledby="prop-sa-title" data-photos='[ "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1350&q=80" ]'>
+        <figure class="thumb-wrap"><img class="thumbnail" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=60" alt="Casa campestre Rionegro" loading="lazy"></figure>
         <div class="card-body">
-          <h3 class="property-title loading-text"></h3>
-          <p class="property-meta loading-text"></p>
-          <p class="property-price loading-text"></p>
+          <h3 id="prop-sa-title" class="property-title" data-es="Casa en San Antonio de Pereira — Rionegro" data-en="House in San Antonio de Pereira — Rionegro">Casa en San Antonio de Pereira — Rionegro</h3>
+          <p class="property-meta" data-es="3 hab • 3 baños • 180 m²" data-en="3 bed • 3 bath • 180 m²">3 hab • 3 baños • 180 m²</p>
+          <p class="property-price">$780.000.000 COP</p>
+          <div class="card-actions"><button class="btn" data-action="open-gallery">Ver fotos</button><a class="btn outline" href="https://wa.me/573217637996" target="_blank" rel="noopener">Contactar</a></div>
         </div>
-      </div>
-    </div>
+      </article>
+      <!-- Sample Property 2 -->
+      <article id="prop-guarne" class="property-card" tabindex="0" data-lat="6.2825" data-lng="-75.4430" aria-labelledby="prop-guarne-title" data-photos='[ "https://images.unsplash.com/photo-1560185127-6ed189bf02be?auto=format&fit=crop&w=1350&q=80" ]'>
+        <figure class="thumb-wrap"><img class="thumbnail" src="https://images.unsplash.com/photo-1560185127-6ed189bf02be?auto=format&fit=crop&w=800&q=60" alt="Casa campestre en Guarne" loading="lazy"></figure>
+        <div class="card-body">
+          <h3 id="prop-guarne-title" class="property-title" data-es="Casa Campestre — Vereda La Hondita, Guarne" data-en="Country House — La Hondita, Guarne">Casa Campestre — Vereda La Hondita, Guarne</h3>
+          <p class="property-meta" data-es="4 hab • 4 baños • 350 m² • Lote 3.000 m²" data-en="4 bed • 4 bath • 350 m² • 3,000 m² lot">4 hab • 4 baños • 350 m² • Lote 3.000 m²</p>
+          <p class="property-price">$1.150.000.000 COP</p>
+          <div class="card-actions"><button class="btn" data-action="open-gallery">Ver fotos</button><a class="btn outline" href="https://wa.me/573217637996" target="_blank" rel="noopener">Contactar</a></div>
+        </div>
+      </article>
+      <!-- Sample Property 3 -->
+      <article id="prop-llano" class="property-card" tabindex="0" data-lat="6.1702" data-lng="-75.4256" aria-labelledby="prop-llano-title" data-photos='[ "https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1350&q=80" ]'>
+        <figure class="thumb-wrap"><img class="thumbnail" src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=800&q=60" alt="Casa moderna en Llanogrande" loading="lazy"></figure>
+        <div class="card-body">
+          <h3 id="prop-llano-title" class="property-title" data-es="Casa Moderna — Llanogrande, Rionegro" data-en="Modern House — Llanogrande, Rionegro">Casa Moderna — Llanogrande, Rionegro</h3>
+          <p class="property-meta" data-es="5 hab • 6 baños • 520 m² • Lote 1.800 m²" data-en="5 bed • 6 bath • 520 m² • 1,800 m² lot">5 hab • 6 baños • 520 m² • Lote 1.800 m²</p>
+          <p class="property-price">$2.450.000.000 COP</p>
+          <div class="card-actions"><button class="btn" data-action="open-gallery">Ver fotos</button><a class="btn outline" href="https://wa.me/573217637996" target="_blank" rel="noopener">Contactar</a></div>
+        </div>
+      </article>
+      <!-- Sample Property 4 -->
+      <article id="prop-example" class="property-card" tabindex="0" aria-labelledby="prop1-title" data-photos='[ "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1350&q=80","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1350&q=80" ]'>
+        <figure class="thumb-wrap"><img class="thumbnail" loading="lazy" width="800" height="533" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=60" alt="Casa campestre — vista exterior"></figure>
+        <div class="card-body">
+          <h3 id="prop1-title" class="property-title" data-es="Casa Campestre Vereda La Honda – Rionegro" data-en="Country House Vereda La Honda – Rionegro">Casa Campestre Vereda La Honda – Rionegro</h3>
+          <p class="property-meta" data-es="4 hab • 4 baños • 420 m² • Lote 2.200 m²" data-en="4 bed • 4 bath • 420 m² • 2,200 m² lot">4 hab • 4 baños • 420 m² • Lote 2.200 m²</p>
+          <p class="property-price" aria-label="Precio">$1.250.000.000 COP</p>
+          <div class="card-actions"><button class="btn" data-action="open-gallery">Ver fotos</button><a class="btn outline" href="https://wa.me/573217637996" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">Contactar</a></div>
+        </div>
+      </article>
 
-    <p id="no-properties" style="display:none; text-align:center; color:var(--muted); grid-column:1/-1; margin-top:3rem;">
-      No hay propiedades disponibles en este momento.
-    </p>
+      <!-- Dynamic auto-generated properties will append here -->
+    </div>
   </div>
 </section>
 

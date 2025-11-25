@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Propiedades Altura | Inmobiliaria en Guarne y Rionegro</title>
+  <meta name="description" content="Casas, fincas, apartamentos y lotes en Guarne, Rionegro y alrededores — Propiedades Altura" />
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Inline additions to complement styles.css */
+    .hero-search { margin-top: 1.2rem; display:flex; justify-content:center; gap:0.6rem; }
+    .hero-search input { width: clamp(200px,50vw,420px); padding:0.7rem 1rem; border-radius:10px; border:1px solid rgba(15,23,36,0.10); font-size:1rem; }
+    .hero-search button { padding:0.7rem 1.1rem; background:var(--accent); color:#fff; border:none; border-radius:10px; font-weight:600; cursor:pointer; }
+    .footer-financing { display:flex; justify-content:center; align-items:center; gap:14px; margin-bottom:1rem; }
+    .banco-logo { width:180px; height:auto; display:block; }
+    .banco-text { font-size:1rem; color:var(--muted); font-weight:600; }
+    .properties-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; margin-top:1rem; }
+    .property-card { background:var(--card); border-radius:14px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; cursor:pointer; transition:transform .18s ease,box-shadow .18s ease; padding:0; }
+    .property-card.hidden { display:none; }
+    .property-card.highlight { transform:translateY(-4px) scale(1.01); box-shadow:0 12px 28px rgba(12,16,27,0.12); border:1px solid rgba(29,78,216,0.08); }
+    .property-card .card-body { padding:0.9rem 1rem 1.2rem; display:flex; flex-direction:column; gap:0.6rem; }
+    @media (max-width:900px){ .properties-grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:560px){ .properties-grid{grid-template-columns:1fr} .hero-search{flex-direction:column;padding:0 1rem} .banco-logo{width:160px} }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header" role="banner">
+  <div class="wrap header-inner">
+    <a class="logo" href="#" aria-label="Propiedades Altura — inicio">
+      <svg class="logo-icon" ...></svg>
+      <span class="brand">Propiedades Altura</span>
+    </a>
+
+    <nav class="header-nav">
+      <a class="cta ghost" href="sell.html">Vender tu propiedad</a>
+      <div class="lang" id="lang-switch" aria-label="Language switcher">
+        <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+        <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="cta mobile-main-cta" href="#properties">Ver Propiedades</a>
+    </nav>
+  </div>
+
+  <p class="tagline" ...>ORIENTE ANTIOQUEÑO</p>
+</header>
+    <main id="main" class="site-main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="wrap hero-inner">
+          <h1 id="hero-title" data-es="Tu próximo hogar en el Oriente Antioqueño" data-en="Your next home in Eastern Antioquia">Tu próximo hogar en el Oriente Antioqueño</h1>
+          <p class="lead" data-es="Casas, fincas, apartamentos y lotes en Guarne, Rionegro y alrededores" data-en="Houses, country homes, apartments and lots in Guarne, Rionegro and surroundings">Casas, fincas, apartamentos y lotes en Guarne, Rionegro y alrededores</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#properties" id="cta-hero" data-es="Ver Propiedades" data-en="View Properties">Ver Propiedades</a>
+            <a class="btn ghost" href="tel:+573217671593" aria-label="Llamar al número de contacto">Llámanos</a>
+          </div>
+          <div class="hero-search">
+            <input type="text" id="search-input" placeholder="Ciudad, vecindario, dirección" aria-label="Buscar propiedades" data-es-placeholder="Ciudad, vecindario, dirección" data-en-placeholder="City, neighborhood, address">
+            <button id="search-btn" data-es="Buscar" data-en="Search">Buscar</button>
+          </div>
+        </div>
+        <div id="map-search-wrap" class="wrap" style="max-width:1100px; margin:1.2rem auto 0;">
+          <div id="map" style="height:420px; width:100%; border-radius:12px; overflow:hidden;"></div>
+        </div>
+      </section>
+      <section id="properties" class="properties-section" aria-labelledby="properties-title">
+        <div class="wrap">
+          <h2 id="properties-title" data-es="Propiedades Disponibles" data-en="Available Properties">Propiedades Disponibles</h2>
+          <div class="properties-grid" id="properties-grid">
+            <!-- Sample Property 1 -->
+            <article id="prop-sa" class="property-card" tabindex="0" data-lat="6.1477" data-lng="-75.3766" aria-labelledby="prop-sa-title" data-photos='[ "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1350&q=80" ]'>
+              <figure class="thumb-wrap"><img class="thumbnail" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=60" alt="Casa campestre Rionegro" loading="lazy"></figure>
+              <div class="card-body">
+                <h3 id="prop-sa-title" class="property-title" data-es="Casa en San Antonio de Pereira — Rionegro" data-en="House in San Antonio de Pereira — Rionegro">Casa en San Antonio de Pereira — Rionegro</h3>
+                <p class="property-meta" data-es="3 hab • 3 baños • 180 m²" data-en="3 bed • 3 bath • 180 m²">3 hab • 3 baños • 180 m²</p>
+                <p class="property-price">$780.000.000 COP</p>
+                <div class="card-actions"><button class="btn" data-action="open-gallery">Ver fotos</button><a class="btn outline" href="https://wa.me/573217637996" target="_blank" rel="noopener">Contactar</a></div>
+              </div>
+            </article>
+            <!-- Sample Property 2 -->
+            <article id="prop-guarne" class="property-card" tabindex="0" data-lat="6.2825" data-lng="-75.4430" aria-labelledby="prop-guarne-title" data-photos='[ "https://images.unsplash.com/photo-1560185127-6ed189bf02be?auto=format&fit=crop&w=1350&q=80" ]'>
+              <figure class="thumb-wrap"><img class="thumbnail" src="https://images.unsplash.com/photo-1560185127-6ed189bf02be?auto=format&fit=crop&w=800&q=60" alt="Casa campestre en Guarne" loading="lazy"></figure>
+              <div class="card-body">
+                <h3 id="prop-guarne-title" class="property-title" data-es="Casa Campestre — Vereda La Hondita, Guarne" data-en="Country House — La Hondita, Guarne">Casa Campestre — Vereda La Hondita, Guarne</h3>
+                <p class="property-meta" data-es="4 hab • 4 baños • 350 m² • Lote 3.000 m²" data-en="4 bed • 4 bath • 350 m² • 3,000 m² lot">4 hab • 4 baños • 350 m² • Lote 3.000 m²</p>
+                <p class="property-price">$1.150.000.000 COP</p>
+                <div class="card-actions"><button class="btn" data-action="open-gallery">Ver fotos</button><a class="btn outline" href="https://wa.me/573217637996" target="_blank" rel="noopener">Contactar</a></div>
+              </div>
+            </article>
+            <!-- Sample Property 3 -->
+            <article id="prop-llano" class="property-card" tabindex="0" data-lat="6.1702" data-lng="-75.4256" aria-labelledby="prop-llano-title" data-photos='[ "https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1350&q=80" ]'>
+              <figure class="thumb-wrap"><img class="thumbnail" src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=800&q=60" alt="Casa moderna en Llanogrande" loading="lazy"></figure>
+              <div class="card-body">
+                <h3 id="prop-llano-title" class="property-title" data-es="Casa Moderna — Llanogrande, Rionegro" data-en="Modern House — Llanogrande, Rionegro">Casa Moderna — Llanogrande, Rionegro</h3>
+                <p class="property-meta" data-es="5 hab • 6 baños • 520 m² • Lote 1.800 m²" data-en="5 bed • 6 bath • 520 m² • 1,800 m² lot">5 hab • 6 baños • 520 m² • Lote 1.800 m²</p>
+                <p class="property-price">$2.450.000.000 COP</p>
+                <div class="card-actions"><button class="btn" data-action="open-gallery">Ver fotos</button><a class="btn outline" href="https://wa.me/573217637996" target="_blank" rel="noopener">Contactar</a></div>
+              </div>
+            </article>
+            <!-- Existing example property (keeps your original example) -->
+            <article id="prop-example" class="property-card" tabindex="0" aria-labelledby="prop1-title" data-photos='[ "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1350&q=80","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1350&q=80" ]'>
+              <figure class="thumb-wrap"><img class="thumbnail" loading="lazy" width="800" height="533" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=60" alt="Casa campestre — vista exterior"></figure>
+              <div class="card-body">
+                <h3 id="prop1-title" class="property-title" data-es="Casa Campestre Vereda La Honda – Rionegro" data-en="Country House Vereda La Honda – Rionegro">Casa Campestre Vereda La Honda – Rionegro</h3>
+                <p class="property-meta" data-es="4 hab • 4 baños • 420 m² • Lote 2.200 m²" data-en="4 bed • 4 bath • 420 m² • 2,200 m² lot">4 hab • 4 baños • 420 m² • Lote 2.200 m²</p>
+                <p class="property-price" aria-label="Precio"> $1.250.000.000 COP </p>
+                <div class="card-actions"><button class="btn" data-action="open-gallery">Ver fotos</button><a class="btn outline" href="https://wa.me/573217637996" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">Contactar</a></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-financing">
+        <a class="banco-link" href="https://www.bancolombia.com/personas/creditos/vivienda/simulador-credito-vivienda" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/bancolombia2021.png" alt="Bancolombia logo" class="banco-logo">
+        </a>
+        <span class="banco-text" data-es="Simulador Crédito Vivienda" data-en="Mortgage Credit Simulator">Simulador Crédito Vivienda</span>
+      </div>
+      <div class="wrap">
+        <p>© <span id="year"></span> Propiedades Altura — Hecho con ❤️ en Oriente Antioqueño</p>
+      </div>
+    </footer>
+    <!-- Accessible Lightbox (hidden until opened) -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-hidden="true" aria-modal="true" aria-label="Galería de imágenes">
+      <button class="lb-close" id="lb-close" aria-label="Cerrar galería">×</button>
+      <button class="lb-prev" id="lb-prev" aria-label="Imagen anterior">‹</button>
+      <div class="lb-content">
+        <img id="lb-image" alt="" src="" loading="lazy">
+        <div id="lb-counter" class="lb-counter" aria-live="polite"></div>
+      </div>
+      <button class="lb-next" id="lb-next" aria-label="Siguiente imagen">›</button>
+    </div>
+    <!-- Floating WhatsApp button -->
+    <a class="whatsapp-float" href="https://wa.me/573217637996" target="_blank" rel="noopener" aria-label="Chatea con nosotros en WhatsApp">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="white" d="M17.472 14.382..."/></svg>
+    </a>
+  </div>
+  <!-- Core script (your app.js with language toggle, lightbox, year, etc.) -->
+   <script src="app.js" defer></script>
+
+  <!-- MarkerClusterer – this gives you the beautiful clusters -->
+  <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+
+  <!-- Google Maps – only this one line -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&libraries=places&callback=initMap">
+  </script>
+  <!-- Netlify Identity required -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</body>
+</html>
+

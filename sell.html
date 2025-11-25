@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sell Your Property - Propiedades Altura</title>
+  <meta name="description" content="Free property valuation in Guarne, Rionegro and Eastern Antioquia">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .form-grid { display:grid; gap:1.5rem; margin-top:2rem; }
+    @media (min-width:768px){ .form-grid{ grid-template-columns:1fr 1fr; } }
+    .full-width{ grid-column:1/-1; }
+    input, select, textarea, #map {
+      width:100%; padding:0.9rem 1rem; border-radius:10px;
+      border:1px solid #ddd; font-size:1rem; box-sizing:border-box;
+    }
+    #map { height:320px; cursor:crosshair; margin-top:0.5rem; }
+    textarea { height:130px; resize:vertical; }
+    button {
+      background:var(--accent,#0066ff); color:white; padding:1rem 2.5rem;
+      border:none; border-radius:10px; font-size:1.1rem; cursor:pointer; font-weight:600;
+    }
+    .success {
+      background:#d4edda; color:#155724; padding:1.5rem; border-radius:10px;
+      margin-top:2rem; text-align:center; font-weight:600; display:none;
+    }
+    .lang-switch { text-align:right; margin-bottom:1.5rem; }
+    .lang-btn {
+      padding:0.5rem 1rem; margin-left:0.5rem; border-radius:8px;
+      border:1px solid #ccc; background:white; cursor:pointer;
+    }
+    .lang-btn[aria-pressed="true"] { background:#0066ff; color:white; border-color:#0066ff; }
+
+    .photo-upload {
+      border:2px dashed #ccc; border-radius:12px; padding:1.5rem; text-align:center;
+      background:#f9f9f9; cursor:pointer; transition:all .2s;
+    }
+    .photo-upload:hover { border-color:#0066ff; background:#f0f7ff; }
+    .photo-preview { display:flex; flex-wrap:wrap; gap:12px; margin-top:15px; }
+    .photo-preview img { width:100px; height:100px; object-fit:cover; border-radius:8px; border:2px solid #ddd; }
+  </style>
+</head>
+<body>
+
+  <div class="page" style="max-width:960px; margin:4rem auto; padding:0 1rem;">
+
+    <!-- Language Switcher -->
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+    </div>
+
+    <h1 data-es="Vende tu propiedad" data-en="Sell Your Property">Sell Your Property</h1>
+    <p class="lead" style="font-size:1.1rem; color:#555;"
+       data-es="Enter your property details and photos so we can evaluate it quickly."
+       data-en="Enter your property details and photos so we can evaluate it quickly.">
+      Enter your property details and photos so we can evaluate it quickly.
+    </p>
+
+
+<form class="form-grid" action="https://formspree.io/f/xqakbqaw" method="POST" enctype="multipart/form-data">
+
+        <div>
+          <label data-es="Full Name *" data-en="Full Name *">Full Name *</label>
+          <input type="text" name="name" required placeholder="John Doe">
+        </div>
+
+        <div>
+          <label data-es="Email *" data-en="Email *">Email *</label>
+          <input type="email" name="_replyto" required placeholder="john@example.com">
+        </div>
+
+        <div>
+          <label data-es="Phone / WhatsApp *" data-en="Phone / WhatsApp *">Phone / WhatsApp *</label>
+          <input type="tel" name="phone" required placeholder="+57 300 123 4567">
+        </div>
+
+        <div>
+          <label data-es="City / Town" data-en="City / Town">City / Town</label>
+          <input type="text" name="city" placeholder="Guarne, Rionegro, El Retiro...">
+        </div>
+
+        <!-- INTERACTIVE MAP + automatic Google Maps link -->
+<div class="full-width">
+  <label data-es="Click on the map to select the exact location"
+         data-en="Click on the map to select the exact location">
+    Click on the map to select the exact location
+  </label>
+  <div id="map"></div>
+
+  <!-- Hidden fields that will be sent -->
+  <input type="hidden" name="latitude"  id="lat" value="">
+  <input type="hidden" name="longitude" id="lng" value="">
+  <input type="hidden" name="google_maps_link" id="maps-link" value="">
+
+  <div style="margin-top:0.8rem;">
+    <small id="coords" style="color:#0066ff; font-weight:600;"></small><br>
+    <a id="open-map" href="#" target="_blank" style="display:none; color:#0066ff; font-size:0.9rem; text-decoration:underline;">
+      → Open exact location in Google Maps
+    </a>
+  </div>
+</div>
+        <div>
+          <label data-es="Property Type" data-en="Property Type">Property Type</label>
+          <select name="property_type">
+            <option>House</option>
+            <option>Apartment</option>
+            <option>Country House / Finca</option>
+            <option>Lot / Land</option>
+            <option>Commercial Premises</option>
+            <option>Warehouse</option>
+          </select>
+        </div>
+
+        <div>
+          <label data-es="Area (m²)" data-en="Area (m²)">Area (m²)</label>
+          <input type="number" name="area_m2" placeholder="250">
+        </div>
+
+        <!-- Photo Upload (up to 5) -->
+        <div class="full-width">
+          <label data-es="Upload photos of your property (up to 5)"
+                 data-en="Upload photos of your property (up to 5)">
+            Upload photos of your property (up to 5)
+          </label>
+          <div class="photo-upload">
+            <input type="file" name="photos" id="photos" accept="image/*" multiple style="display:none;">
+            <p style="margin:0; color:#666;">
+              <strong>Click here or drag photos</strong><br>
+              <small>Maximum 5 photos (JPG, PNG)</small>
+            </p>
+            <div class="photo-preview" id="preview"></div>
+          </div>
+        </div>
+
+        <div class="full-width">
+          <label data-es="Additional message" data-en="Additional message">Additional message</label>
+          <textarea name="message" placeholder="Expected price, urgency, special conditions..."></textarea>
+        </div>
+
+        <div class="full-width">
+          <button type="submit" data-es="Send Information" data-en="Send Information">
+            Send Information
+          </button>
+        </div>
+
+      </div>
+
+      <div class="success" id="success"
+           data-es="Thank you! We received your information and photos."
+           data-en="Thank you! We received your information and photos.">
+        Thank you! We received your information and photos.
+      </div>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js" defer></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // Language Switcher
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const lang = btn.dataset.lang;
+          document.documentElement.lang = lang;
+          document.querySelectorAll("[data-es],[data-en]").forEach(el => {
+            el.textContent = lang === "es" ? el.dataset.es : el.dataset.en;
+          });
+          document.querySelectorAll(".lang-btn").forEach(b =>
+            b.setAttribute("aria-pressed", b.dataset.lang === lang)
+          );
+        });
+      });
+
+      // Success message
+      document.querySelector('form').addEventListener('submit', () => {
+        setTimeout(() => {
+          document.getElementById('success').style.display = 'block';
+          document.getElementById('success').scrollIntoView({ behavior: 'smooth' });
+        }, 900);
+      });
+
+// Photo upload preview
+      const input = document.getElementById('photos');
+      const preview = document.getElementById('preview');
+      const uploadBox = document.querySelector('.photo-upload');
+
+      uploadBox.addEventListener('click', () => input.click());
+      ['dragover', 'dragenter'].forEach(e => uploadBox.addEventListener(e, ev => { ev.preventDefault(); uploadBox.style.borderColor = '#0066ff'; }));
+      ['dragleave', 'drop'].forEach(e => uploadBox.addEventListener(e, ev => { ev.preventDefault(); uploadBox.style.borderColor = '#ccc'; }));
+      uploadBox.addEventListener('drop', e => { if (e.dataTransfer.files) input.files = e.dataTransfer.files; handleFiles(e.dataTransfer.files); });
+      input.addEventListener('change', () => handleFiles(input.files));
+
+      function handleFiles(files) {
+        preview.innerHTML = '';
+        const max = 5;
+        for (let i = 0; i < Math.min(files.length, max); i++) {
+          if (files[i].type.startsWith('image/')) {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(files[i]);
+            preview.appendChild(img);
+          }
+        }
+        if (files.length > max) preview.innerHTML += `<small style="color:red;">Only the first 5 photos will be sent.</small>`;
+      }
+    });
+  </script>
+  ```html
+  <!-- MAP FUNCTION – THIS WAS MISSING! Add it back -->
+  <script>
+    window.initSellMap = function() {
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 6.2442, lng: -75.5812 },
+        zoom: 10,
+      });
+      let marker = null;
+
+      map.addListener("click", e => {
+        const lat = e.latLng.lat();
+        const lng = e.latLng.lng();
+
+        if (marker) marker.setPosition(e.latLng);
+        else marker = new google.maps.Marker({ position: e.latLng, map });
+
+        document.getElementById("lat").value = lat.toFixed(6);
+        document.getElementById("lng").value = lng.toFixed(6);
+
+        const mapsUrl = `https://www.google.com/maps?q=${lat},${lng}&z=18`;
+        document.getElementById("maps-link").value = mapsUrl;
+
+        document.getElementById("coords").textContent = 
+          `Location saved: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+
+        const linkEl = document.getElementById("open-map");
+        linkEl.href = mapsUrl;
+        linkEl.style.display = "inline";
+      });
+    };
+  </script>
+
+  <!-- Google Maps Script -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&libraries=places&callback=initSellMap">
+  </script>
+</body>
+</html>
+
+  

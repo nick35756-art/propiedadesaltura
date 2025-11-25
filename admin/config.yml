@@ -1,0 +1,24 @@
+backend:
+  name: github
+  repo: nick3576-art/propiedadesaltura
+  branch: main
+
+media_folder: "assets/uploads"
+
+collections:
+  - name: "properties"
+    label: "Properties"
+    folder: "properties"
+    create: true
+    fields:
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Phone", name: "phone", widget: "string"}
+      - {label: "Email", name: "email", widget: "string"}
+      - {label: "City", name: "city", widget: "string"}
+      - {label: "Latitude", name: "lat", widget: "string"}
+      - {label: "Longitude", name: "lng", widget: "string"}
+      - {label: "Property Type", name: "type", widget: "string"}
+      - {label: "Area m²", name: "area", widget: "number"}
+      - {label: "Message", name: "message", widget: "text"}
+      - {label: "Photos", name: "photos", widget: "list", max: 5}
+

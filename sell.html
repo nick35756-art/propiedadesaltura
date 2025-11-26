@@ -176,11 +176,26 @@
     });
 
     // Green button → show form + open Wompi
-    document.getElementById('paid-listing-trigger').addEventListener('click', () => {
-      document.getElementById('form-container').style.display = 'block';
-      document.getElementById('wompi-modal').style.display = 'flex';
-      document.getElementById('form-container').scrollIntoView({behavior: 'smooth', block: 'start'});
-    });
+    // NEW: Form ONLY appears after SUCCESSFUL payment — never if they close the modal
+document.getElementById('paid-listing-trigger').addEventListener('click', () => {
+  document.getElementById('form-container').style.display = 'none'; // safety
+  document.getElementById('wompi-modal').style.display = 'flex';
+});
+
+// Only show form when Wompi confirms payment was approved
+window.addEventListener('wompi-success', () => {
+  document.getElementById('wompi-modal').style.display = 'none';
+  document.getElementById('form-container').style.display = 'block';
+  document.getElementById('form-container').scrollIntoView({behavior: 'smooth'});
+});
+
+// Close modal with X or Esc → form stays hidden forever
+document.querySelector('#wompi-modal [onclick*="wompi-modal"]').addEventListener('click', () => {
+  document.getElementById('wompi-modal').style.display = 'none';
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('wompi-modal').style.display = 'none';
+});
 
     // Photo preview
     const input = document.getElementById('photos');

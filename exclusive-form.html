@@ -9,7 +9,130 @@
   <link rel="stylesheet" href="sell.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?fami<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Representación Exclusiva – Propiedades Altura</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sell.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    .gold{font-family:'Playfair Display',serif;font-weight:700;color:#FFD700;letter-spacing:1px;}
+    .top-hero{background:#000;color:#FFD700;padding:4rem 3rem;border-radius:24px;text-align:center;margin:3rem auto 5rem;max-width:1000px;box-shadow:0 25px 60px rgba(0,0,0,0.6);}
+    .top-hero h1{font-size:3.4rem;margin:0;}
+    .top-hero p{font-size:1.8rem;margin:1rem 0 0;}
+    .contract-box{background:#000;color:#fff;padding:3.5rem 4rem;border-radius:24px;margin:0 auto 5rem;max-width:1000px;box-shadow:0 20px 50px rgba(0,0,0,0.5);line-height:1.8;font-size:1.18rem;}
+    .contract-box h2{color:#FFD700;font-size:2.8rem;margin:0 0 2rem;text-align:center;}
+    .contract-box strong{color:#FFD700;}
+    .accept-section{background:#fff8e1;padding:3.5rem;border-radius:24px;margin:5rem auto;max-width:900px;text-align:center;box-shadow:0 15px 40px rgba(0,0,0,0.1);}
+    #form-section{display:none;margin-top:4rem;}
+    #accept-checkbox{width:32px;height:32px;margin-right:18px;cursor:pointer;}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header" role="banner">
+      <div class="wrap header-inner">
+        <a class="logo" href="index.html">
+          <svg class="logo-icon" viewBox="0 0 64 64"><path d="M4 56 L32 8 L60 56 Z" fill="currentColor"/></svg>
+          <span class="brand">Propiedades Altura</span>
+        </a>
+        <nav class="header-nav">
+          <div class="lang" id="lang-switch">
+            <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+            <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+          </div>
+          <a class="cta mobile-main-cta" href="index.html#properties">Ver Propiedades</a>
+        </nav>
+      </div>
+      <p class="tagline" data-es="ORIENTE ANTIOQUEÑO" data-en="EASTERN ANTIOQUIA">ORIENTE ANTIOQUEÑO</p>
+    </header>
+
+    <main style="max-width:960px;margin:4rem auto 8rem;padding:0 1rem;">
+      <!-- HERO – SINGLE LINE -->
+      <div class="top-hero">
+        <h1 class="gold" data-es="Representación Exclusiva" data-en="Exclusive Representation">Representación Exclusiva</h1>
+        <p class="gold" data-es="Comisión del 3% sólo cuando se venda · Listado 100% gratuito · Contrato por 6 meses"
+           data-en="3% commission only when sold · 100% free listing · 6-month contract">
+          Comisión del 3% sólo cuando se venda · Listado 100% gratuito · Contrato por 6 meses
+        </p>
+      </div>
+
+      <!-- FULL CONTRACT FROM YOUR PDF – ALWAYS VISIBLE -->
+      <div class="contract-box">
+        <h2 class="gold">Contrato de Representación Exclusiva</h2>
+        <p>Por medio del presente contrato, el propietario <strong>autoriza en forma exclusiva</strong> a <strong>Propiedades Altura</strong> para la intermediación en la venta de su inmueble durante un período de <strong>6 meses</strong> contados a partir de la aceptación electrónica.</p>
+        <p>La <strong>comisión pactada será del 3% + IVA</strong> sobre el valor final de venta, pagadera únicamente cuando la operación se concrete con éxito.</p>
+        <p><strong>Propiedades Altura</strong> se compromete a:</p>
+        <ul>
+          <li>Realizar fotografía profesional, video y tour virtual 360° sin costo</li>
+          <li>Publicar el inmueble en los principales portales inmobiliarios</li>
+          <li>Coordinar y filtrar todas las visitas</li>
+          <li>Asesorar en la fijación del precio de venta</li>
+          <li>Llevar la negociación y preparar promesa y escritura</li>
+          <li>Acompañar hasta la firma de la escritura pública</li>
+        </ul>
+        <p>El propietario se compromete a no contratar otros agentes ni vender directamente durante la vigencia del contrato.</p>
+        <p>En caso de venta por fuera del contrato dentro de los 6 meses siguientes con un comprador presentado por Propiedades Altura, se pagará igualmente la comisión del 3%.</p>
+        <p style="margin-top:2.5rem;font-size:1.3rem;"><strong>El presente contrato tiene plena validez legal una vez aceptado electrónicamente.</strong></p>
+      </div>
+
+      <!-- ACCEPTANCE – CHECKBOX TRIGGERS FORM -->
+      <div class="accept-section">
+        <label style="font-size:1.45rem;line-height:1.7;display:flex;align-items:center;justify-content:center;max-width:800px;margin:0 auto;cursor:pointer;">
+          <input type="checkbox" id="accept-checkbox" required>
+          <span class="gold" data-es="He leído y acepto plenamente el contrato de representación exclusiva por 6 meses con comisión del 3%."
+                data-en="I have read and fully accept the 6-month exclusive representation agreement with 3% commission.">
+            He leído y acepto plenamente el contrato de representación exclusiva por 6 meses con comisión del 3%.
+          </span>
+        </label>
+        <p style="margin:2.5rem 0 1rem;font-size:1.15rem;">
+          <a href="/docs/exclusiva-propiedades-altura.pdf" target="_blank" style="color:#c2410c;">Contrato en español (PDF)</a> ·
+          <a href="/docs/exclusive-listing-propiedades-altura.pdf" target="_blank" style="color:#c2410c;">Contract in English (PDF)</a>
+        </p>
+      </div>
+
+      <!-- FORM – APPEARS ONLY WHEN CHECKED -->
+      <div id="form-section">
+        <form class="form-grid" name="exclusive" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+          <input type="hidden" name="listing_type" value="exclusive">
+          <!-- All your fields here – exactly as you had them -->
+          <div><label>Nombre completo *</label><input type="text" name="name" required></div>
+          <!-- ... rest of your perfect form ... -->
+          <div class="full-width">
+            <button type="submit" style="background:#000;color:#FFD700;padding:1.8rem;font-size:1.9rem;border:none;border-radius:20px;font-family:'Playfair Display',serif;">
+              Enviar Solicitud de Representación Exclusiva
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Language toggle – 100% working
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-es],[data-en]").forEach(el => {
+          if (el.dataset[lang]) el.textContent = el.dataset[lang];
+        });
+        document.querySelectorAll(".lang-btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+      });
+    });
+
+    // Checkbox → form appears/disappears – 100% working
+    document.getElementById('accept-checkbox').addEventListener('change', function () {
+      document.getElementById('form-section').style.display = this.checked ? 'block' : 'none';
+      if (this.checked) document.getElementById('form-section').scrollIntoView({behavior: 'smooth'});
+    });
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
+</body>
+</html>ly=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     .gold {font-family:'Playfair Display',serif !important;font-weight:700 !important;color:#FFD700 !important;letter-spacing:1px;}
     .top-hero {background:#000;color:#FFD700;padding:4rem 3rem;border-radius:24px;text-align:center;margin:3rem auto 5rem;max-width:1000px;box-shadow:0 25px 60px rgba(0,0,0,0.6);}

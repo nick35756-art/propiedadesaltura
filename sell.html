@@ -9,154 +9,119 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="sell.css">
 
-  <!-- Wompi Widget -->
+  <!-- Wompi -->
   <script src="https://checkout.wompi.co/widget.js"></script>
 
   <style>
-    .wompi-pay-button {
-      background:#10b981;
-      color:white;
-      padding:1rem 2rem;
-      border-radius:12px;
-      font-weight:700;
-      font-size:1.2rem;
-      border:none;
-      cursor:pointer;
-      box-shadow:0 4px 15px rgba(16,185,129,0.4);
-      width:100%;
-      margin-top:1rem;
-    }
-    .wompi-pay-button:hover {background:#059669;}
+    .wompi-pay-button{background:#10b981;color:white;padding:1.2rem 2rem;border-radius:12px;font-weight:700;font-size:1.3rem;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(16,185,129,0.4);width:100%;margin-top:1rem;}
+    .wompi-pay-button:hover{background:#059669;}
   </style>
-</head>
+head>
+
 <body>
   <div class="page">
-    <!-- HEADER (unchanged) -->
+    <!-- HEADER -->
     <header class="site-header" role="banner">
       <div class="wrap header-inner">
         <a class="logo" href="index.html" aria-label="Propiedades Altura — inicio">
           <svg class="logo-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
             <path d="M4 56 L32 8 L60 56 Z" fill="currentColor"/>
-          </svg>
-          <span class="brand">Propiedades Altura</span>
-        </a>
+          svg>
+          <span class="brand">Propiedades Alturaspan>
+        a>
         <nav class="header-nav">
-          <div class="lang" id="lang-switch" aria-label="Language switcher">
-            <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
-            <button class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
-          </div>
-          <a class="cta mobile-main-cta" href="index.html#properties">Ver Propiedades</a>
-        </nav>
-      </div>
-      <p class="tagline" data-es="ORIENTE ANTIOQUEÑO" data-en="EASTERN ANTIOQUIA">EASTERN ANTIOQUIA</p>
-    </header>
+          <div class="lang" id="lang-switch">
+            <button class="lang-btn" data-lang="es" aria-pressed="false">ESbutton>
+            <button class="lang-btn" data-lang="en" aria-pressed="true">ENbutton>
+          div>
+          <a class="cta mobile-main-cta" href="index.html#properties">Ver Propiedadesa>
+        nav>
+      div>
+      <p class="tagline" data-es="ORIENTE ANTIOQUEÑO" data-en="EASTERN ANTIOQUIA">EASTERN ANTIOQUIAp>
+    header>
 
-    <main style="max-width:960px; margin:4rem auto 6rem; padding:0 1rem;">
-      <h1 data-es="Vende tu propiedad" data-en="Sell Your Property">Sell Your Property</h1>
-      <p class="lead" style="font-size:1.1rem; color:#555; max-width:720px;">
-        <span data-es="Ingresa los datos y fotos de tu propiedad para que la valoremos rápidamente."
-              data-en="Enter your property details and photos so we can evaluate it quickly.">
-          Enter your property details and photos so we can evaluate it quickly.
-        </span>
-      </p>
+    <main style="max-width:960px;margin:4rem auto 6rem;padding:0 1rem;">
+      <h1 data-es="Vende tu propiedad" data-en="Sell Your Property">Sell Your Propertyh1>
 
-      <form class="form-grid" name="sell" method="POST" data-netlify="true" netlify-honeypot="bot-field"
-            enctype="multipart/form-data">
+      <!-- STEP 1: CHOOSE PLAN -->
+      <div class="full-width" style="text-align:center;margin-bottom:4rem;">
+        <h2 style="font-size:1.9rem;margin-bottom:2rem;">¿Cómo quieres publicar tu propiedad?h2>
 
-        <!-- LISTING TYPE CHOICE -->
-        <div class="full-width" style="margin-bottom:2.5rem;text-align:center;">
-          <label style="font-weight:600;font-size:1.1rem;margin-bottom:1rem;display:block;color:#222;">
-            ¿Cómo desea publicar su propiedad?
-          </label>
+        <div style="display:flex;flex-wrap:wrap;gap:3rem;justify-content:center;">
+          <!-- EXCLUSIVE LISTING -->
+          <a href="exclusive-form.html"
+             style="background:#000;color:#FFD700;padding:2rem 3.5rem;border-radius:16px;font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;letter-spacing:2px;box-shadow:0 12px 35px rgba(0,0,0,0.6);border:4px solid #FFD700;text-decoration:none;">
+            Representación Exclusiva<br>
+            <small style="font-size:400 1.1rem/1.4 sans-serif;">Comisión 3% al vender · Gratis publicarsmall>
+          a>
 
-          <input type="radio" name="listing_type" value="exclusive" id="exclusive" required style="display:none;">
-          <input type="radio" name="listing_type" value="paid-self" id="paid-self" required style="display:none;">
+          <!-- PAID SELF-LISTING -->
+          <button type="button" id="paid-listing-trigger"
+                  style="background:#10b981;color:white;padding:2rem 3rem;border-radius:16px;font-weight:700;font-size:1.6rem;border:none;cursor:pointer;box-shadow:0 12px 35px rgba(16,185,129,0.5);">
+            Publicar Yo Mismo<br>
+            <strong>$30.000 COP · 30 díasstrong>
+          button>
+        div>
 
-          <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;align-items:center;margin-top:1rem;">
-            <!-- EXCLUSIVE -->
-            <div style="position:relative;display:inline-block;">
-              <a id="exclusive-btn" href="#" 
-                 onclick="document.getElementById('exclusive').checked=true;return true;"
-                 style="background:#000;color:#FFD700;padding:1rem 2.4rem;border-radius:12px;font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;letter-spacing:1.5px;box-shadow:0 6px 20px rgba(0,0,0,0.4);border:3px solid #FFD700;text-transform:uppercase;text-decoration:none;display:inline-block;transition:all .3s;">
-                Representación Exclusiva → 3%
-              </a>
-              <span id="tooltip-text" style="position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#000;color:#FFD700;padding:0.6rem 1rem;border-radius:8px;font-size:0.95rem;white-space:nowrap;opacity:0;transition:all .3s;z-index:10;border:1px solid #FFD700;"
-                    data-es="Ver detalles de representación exclusiva"
-                    data-en="See exclusive listing details">
-                Ver detalles de representación exclusiva
-              </span>
-            </div>
+        <p style="margin-top:2rem;color:#666;font-size:1.1rem;">Selecciona una opción para continuarp>
+      div>
 
-            <!-- PAID SELF-LISTING (Wompi) -->
-            <button type="button" id="paid-listing-trigger"
-                    style="background:#10b981;color:white;padding:1rem 2rem;border-radius:12px;font-weight:700;font-size:1.2rem;border:none;cursor:pointer;box-shadow:0 4px 15px rgba(16,185,129,0.4);">
-              Publicar Yo Mismo → $30.000 COP (30 días)
-            </button>
-          </div>
+      <!-- THE FORM IS HIDDEN UNTIL PLAN IS CHOSEN -->
+      <form class="form-grid" id="main-form" name="sell" method="POST" data-netlify="true"
+            netlify-honeypot="bot-field" enctype="multipart/form-data" style="display:none;">
 
-          <p style="font-size:0.9rem;color:#666;margin-top:1rem;">
-            La opción “Publicar Yo Mismo” tiene un costo único de $30.000 COP por 30 días de publicación destacada.
-          </p>
-        </div>
+        <input type="radio" name="listing_type" value="exclusive" id="exclusive" style="display:none;">
+        <input type="radio" name="listing_type" value="paid-self" id="paid-self" style="display:none;">
 
-        <!-- ALL THE REST OF YOUR FIELDS (unchanged) -->
-        <div><label data-es="Nombre completo *" data-en="Full Name *">Full Name *</label><input type="text" name="name" required placeholder="John Doe"></div>
-        <div><label data-es="Email *" data-en="Email *">Email *</label><input type="email" name="_replyto" required placeholder="john@example.com"></div>
-        <div><label data-es="Teléfono / WhatsApp *" data-en="Phone / WhatsApp *">Phone / WhatsApp *</label><input type="tel" name="phone" required placeholder="+57 300 123 4567"></div>
-        <div><label data-es="Ciudad / Municipio" data-en="City / Town">City / Town</label><input type="text" name="city" placeholder="Guarne, Rionegro, El Retiro..."></div>
+        <!-- ALL YOUR EXISTING FIELDS (copy-paste exactly as you had them) -->
+        <div><label data-es="Nombre completo *" data-en="Full Name *">Full Name *label><input type="text" name="name" required placeholder="John Doe">div>
+        <div><label data-es="Email *" data-en="Email *">Email *label><input type="email" name="_replyto" required placeholder="john@example.com">div>
+        <div><label data-es="Teléfono / WhatsApp *" data-en="Phone / WhatsApp *">Phone / WhatsApp *label><input type="tel" name="phone" required placeholder="+57 300 123 4567">div>
+        <div><label data-es="Ciudad / Municipio" data-en="City / Town">City / Townlabel><input type="text" name="city" placeholder="Guarne, Rionegro...">div>
 
-        <!-- Map, property type, area, price, photos, message... (exactly as you had) -->
-        <!-- ... keeping all your existing fields here ... -->
+        <!-- Map, property type, area, lot, price, photos, message, etc. -->
+        <!-- (just keep everything you already have here – everything works) -->
 
         <div class="full-width">
-          <button type="submit" data-es="Enviar Información" data-en="Send Information">Send Information</button>
-        </div>
-      </form>
+          <button type="submit" data-es="Enviar Información" data-en="Send Information">Send Informationbutton>
+        div>
+      form>
 
-      <div class="success" id="success">
-        <span data-es="¡Gracias! Hemos recibido tu información y fotos."
-              data-en="Thank you! We received your information and photos.">
-          Thank you! We received your information and photos.
-        </span>
-      </div>
-    </main>
-  </div>
+      <div class="success" id="success" style="display:none;text-align:center;margin-top:3rem;">
+        <span data-es="¡Gracias! Hemos recibido tu información." data-en="Thank you! We received your info.">
+          ¡Gracias! Hemos recibido tu información.
+        span>
+      div>
+    main>
+  div>
 
- <!-- WOMPI PAYMENT MODAL (fixed version) -->
-<div id="wompi-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:white;padding:2rem 1.5rem;border-radius:16px;max-width:420px;width:90%;position:relative;box-shadow:0 10px 30px rgba(0,0,0,0.3);">
-    <button onclick="document.getElementById('wompi-modal').style.display='none'" 
-            style="position:absolute;top:10px;right:15px;font-size:2rem;background:none;border:none;cursor:pointer;color:#666;">×</button>
-    
-    <h3 style="margin:0 0 1.5rem;text-align:center;font-size:1.4rem;">
-      Pagar $30.000 COP – Publicación 30 días
-    </h3>
+  <!-- WOMPI MODAL (only shows when user clicks green button) -->
+  <div id="wompi-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;">
+    <div style="background:white;padding:2.5rem 2rem;border-radius:16px;max-width:440px;width:90%;position:relative;">
+      <button onclick="document.getElementById('wompi-modal').style.display='none'"
+              style="position:absolute;top:12px;right:16px;font-size:2.2rem;background:none;border:none;background:none;cursor:pointer;">×button>
+      <h3 style="text-align:center;margin:0 0 1.8rem;font-size:1.5rem;">Pagar $30.000 COP – Publicación 30 díash3>
 
-    <!-- This is the correct Wompi widget button (works 100 % of the time) -->
-    <script src="https://checkout.wompi.co/widget.js"></script>
-    <button
-      data-wompi-public-key="pub_test_6KTcCmxE3u8QYLIlid6IpqGdx545iDnB"   <!-- << your real test key here -->
-      data-amount="30000"
-      data-currency="COP"
-      data-reference-prefix="LISTING-"
-      data-description="Publicación destacada 30 días - Propiedades Altura"
-      data-redirect-url="https://propiedadesaltura.com/gracias-pago.html"
-      class="wompi-pay-button">
-      <span data-es="Pagar con Wompi $30.000 COP" data-en="Pay with Wompi $30,000 COP">
+      <button data-wompi-public-key="pub_test_6KTcCmxE3u8QYLIlid6IpqGdx545iDnB"
+              data-amount="30000"
+              data-currency="COP"
+              data-reference-prefix="LISTING-"
+              data-description="Publicación destacada 30 días - Propiedades Altura"
+              data-redirect-url="https://propiedadesaltura.com/gracias-pago.html"
+              class="wompi-pay-button">
         Pagar con Wompi $30.000 COP
-      </span>
-    </button>
-  </div>
-</div>
+      button>
+    div>
+  div>
 
-  <!-- ALL YOUR SCRIPTS -->
-  <script src="app.js" defer></script>
+  <!-- SCRIPTS -->
+  <script src="app.js" defer>script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
   <script>
-    // Language toggle (your existing one)
+    // Language toggle
     document.querySelectorAll(".lang-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const lang = btn.dataset.lang;
@@ -165,65 +130,30 @@
           el.textContent = lang === "es" ? el.dataset.es : el.dataset.en;
         });
         document.querySelectorAll(".lang-btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
-        updateExclusiveLink();
       });
     });
 
-    // Exclusive PDF link + tooltip
-    const exclusiveBtn = document.getElementById('exclusive-btn');
-    const tooltip = document.getElementById('tooltip-text');
-    function updateExclusiveLink(){
-      const lang = document.documentElement.lang || 'es';
-      exclusiveBtn.href = lang==='es' ? '/docs/exclusiva-propiedades-altura.pdf' : '/docs/exclusive-listing-propiedades-altura.pdf';
-      tooltip.textContent = tooltip.dataset[lang] || tooltip.dataset.es;
-    }
-    updateExclusiveLink();
-
-    exclusiveBtn.parentElement.addEventListener('mouseenter',()=>{ tooltip.style.opacity='1'; tooltip.style.transform='translateX(-50%) translateY(-8px)'; });
-    exclusiveBtn.parentElement.addEventListener('mouseleave',()=>{ tooltip.style.opacity='0'; tooltip.style.transform='translateX(-50%) translateY(0)'; });
-
-    // PAID LISTING → OPEN WOMPI MODAL
+    // PAID LISTING → show form + open Wompi
     document.getElementById('paid-listing-trigger').addEventListener('click', () => {
       document.getElementById('paid-self').checked = true;
-      const email = document.querySelector('input[name="_replyto"]').value.trim();
-      const widget = document.querySelector('[data-wompi="widget"]');
-      if (email) widget.dataset.customerEmail = email;
+      document.getElementById('main-form').style.display = 'block';
       document.getElementById('wompi-modal').style.display = 'flex';
-      widget.click(); // auto-opens the Wompi checkout inside the modal
+      window.scrollTo({top: document.getElementById('main-form').offsetTop - 100, behavior: 'smooth'});
     });
 
     // Close modal with ESC
     document.addEventListener('keydown', e => {
       if (e.key === "Escape") document.getElementById('wompi-modal').style.display = 'none';
     });
+  script>
 
-    // Your existing photo preview, success message, map, etc.
-    // (kept exactly the same – no need to repeat here)
-  </script>
-
-  <!-- Google Maps (unchanged) -->
+  <!-- Google Maps script unchanged -->
   <script>
-    window.initSellMap = function() {
-      const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 6.1935, lng: -75.3832 }, zoom: 10,
-      });
-      let marker = null;
-      map.addListener("click", e => {
-        const lat = e.latLng.lat();
-        const lng = e.latLng.lng();
-        if (marker) marker.setPosition(e.latLng);
-        else marker = new google.maps.Marker({ position: e.latLng, map });
-        document.getElementById("lat").value = lat.toFixed(6);
-        document.getElementById("lng").value = lng.toFixed(6);
-        const url = `https://www.google.com/maps?q=${lat},${lng}&z=18`;
-        document.getElementById("maps-link").value = url;
-        document.getElementById("coords").textContent = `Location saved: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-        const link = document.getElementById("open-map");
-        link.href = url;
-        link.style.display = "inline";
-      });
-    };
-  </script>
+    window.initSellMap = function() { ... } // (your map code stays the same)
+  script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap">script>
+body>
+html>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
 </body>
 </html>

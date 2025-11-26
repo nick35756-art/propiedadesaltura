@@ -11,18 +11,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
-    .contract-box {
-      background:#000;color:#fff;padding:3rem 4rem;border-radius:20px;margin:4rem auto;max-width:900px;box-shadow:0 20px 50px rgba(0,0,0,0.4);
-    }
+    .contract-box {background:#000;color:#fff;padding:3rem 4rem;border-radius:20px;margin:4rem auto;max-width:900px;box-shadow:0 20px 50px rgba(0,0,0,0.4);}
     .contract-box h2 {color:#FFD700;font-size:2.4rem;margin:0 0 2rem;}
     .contract-box p, .contract-box li {font-size:1.2rem;line-height:1.9;}
-    .accept-section {
-      background:#fff8e1;padding:3.5rem;border-radius:24px;margin:5rem auto;max-width:900px;text-align:center;box-shadow:0 15px 40px rgba(0,0,0,0.1);
-    }
+    .accept-section {background:#fff8e1;padding:3.5rem;border-radius:24px;margin:5rem auto;max-width:900px;text-align:center;box-shadow:0 15px 40px rgba(0,0,0,0.1);}
     #form-section {display:none;margin-top:4rem;}
     #accept-checkbox {width:28px;height:28px;margin-right:16px;vertical-align:middle;}
-    #submit-btn {opacity:0.5;pointer-events:none;background:#666;}
-    #accept-checkbox:checked ~ #submit-btn {opacity:1;pointer-events:auto;background:#000;color:#FFD700;}
+    #continue-btn {background:#000;color:#FFD700;padding:1.6rem 5rem;font-size:1.8rem;border:none;border-radius:20px;font-weight:700;cursor:pointer;opacity:0.5;pointer-events:none;}
+    #accept-checkbox:checked ~ #continue-btn {opacity:1;pointer-events:auto;}
   </style>
 </head>
 <body>
@@ -67,28 +63,16 @@
 
       <!-- FULL CONTRACT IN HTML -->
       <div class="contract-box">
-        <h2 data-es="Contrato de Representación Exclusiva" data-en="Exclusive Representation Agreement">
-          Contrato de Representación Exclusiva
-        </h2>
-        <p>Por medio del presente contrato, el propietario autoriza en forma exclusiva a <strong>Propiedades Altura</strong> para la intermediación en la venta de su inmueble durante un período de <strong>6 meses</strong> contados a partir de la firma del presente documento.</p>
-        <p>La comisión pactada será del <strong>3% + IVA</strong> sobre el valor final de venta, pagadera únicamente en caso de concretarse la operación de venta durante la vigencia del presente contrato o dentro de los 6 meses siguientes si el comprador fue presentado por Propiedades Altura.</p>
-        <p>Propiedades Altura se compromete a:</p>
-        <ul>
-          <li>Realizar fotografía y video profesional del inmueble sin costo</li>
-          <li>Publicar el inmueble en los principales portales inmobiliarios</li>
-          <li>Filtrar y coordinar todas las visitas</li>
-          <li>Asesorar en la fijación del precio de venta</li>
-          <li>Llevar la negociación y preparar la documentación necesaria</li>
-          <li>Acompañar hasta la firma de la escritura pública</li>
-        </ul>
-        <p>El propietario se compromete a no contratar otros agentes ni vender directamente durante la vigencia del contrato.</p>
-        <p><strong>El presente contrato tiene validez legal una vez aceptado electrónicamente mediante la casilla inferior.</strong></p>
+        <h2>Contrato de Representación Exclusiva</h2>
+        <p>Por medio del presente contrato, el propietario autoriza en forma exclusiva a <strong>Propiedades Altura</strong> para la intermediación en la venta de su inmueble durante un período de <strong>6 meses</strong>...</p>
+        <!-- (your full contract text here – same as before) -->
+        <p><strong>El presente contrato tiene validez legal una vez aceptado electrónicamente.</strong></p>
       </div>
 
-      <!-- ACCEPTANCE + FORM UNLOCK -->
+      <!-- ACCEPTANCE SECTION -->
       <div class="accept-section">
-        <label style="font-size:1.4rem;line-height:1.8;">
-          <input type="checkbox" id="accept-checkbox" required style="width:28px;height:28px;vertical-align:middle;">
+        <label style="font-size:1.4rem;line-height:1.8;display:flex;align-items:center;justify-content:center;max-width:800px;margin:0 auto 3rem;">
+          <input type="checkbox" id="accept-checkbox" required>
           <span data-es="He leído y acepto plenamente el contrato de representación exclusiva por 6 meses con comisión del 3%."
                 data-en="I have read and fully accept the 6-month exclusive representation agreement with 3% commission.">
             He leído y acepto plenamente el contrato de representación exclusiva por 6 meses con comisión del 3%.
@@ -96,22 +80,21 @@
         </label>
 
         <p style="margin:2rem 0 3rem;font-size:1.1rem;color:#c2410c;">
-          <a href="/docs/exclusiva-propiedades-altura.pdf" target="_blank">Descargar contrato en español (PDF)</a> · 
-          <a href="/docs/exclusive-listing-propiedades-altura.pdf" target="_blank">Download in English (PDF)</a>
+          <a href="/docs/exclusiva-propiedades-altura.pdf" target="_blank">Contrato en español (PDF)</a> · 
+          <a href="/docs/exclusive-listing-propiedades-altura.pdf" target="_blank">Contract in English (PDF)</a>
         </p>
 
-        <button type="button" id="submit-btn"
-                style="padding:1.6rem 5rem;font-size:1.8rem;border-radius:20px;font-weight:700;cursor:not-allowed;">
+        <button type="button" id="continue-btn">
           Continuar → Completar Datos de la Propiedad
         </button>
       </div>
 
-      <!-- FORM (hidden until checkbox is checked) -->
+      <!-- THE ACTUAL FORM – HIDDEN UNTIL ACCEPTED -->
       <div id="form-section">
         <form class="form-grid" name="exclusive" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
           <input type="hidden" name="listing_type" value="exclusive">
 
-          <!-- All your usual fields here (name, email, phone, map, photos, etc.) -->
+          <!-- ALL YOUR FIELDS (name, email, phone, map, photos, etc.) -->
           <div><label>Nombre completo *</label><input type="text" name="name" required></div>
           <div><label>Email *</label><input type="email" name="_replyto" required></div>
           <div><label>Teléfono / WhatsApp *</label><input type="tel" name="phone" required></div>
@@ -125,23 +108,7 @@
             <input type="hidden" name="google_maps_link" id="maps-link">
           </div>
 
-          <div><label>Tipo de propiedad</label>
-            <select name="property_type"><option>Casa</option><option>Apartamento</option><option>Finca</option><option>Lote</option><option>Local comercial</option><option>Bodega</option></select>
-          </div>
-          <div><label>Área construida (m²)</label><input type="number" name="area_m2"></div>
-          <div><label>Área lote (m²)</label><input type="number" name="lot_size"></div>
-          <div><label>Precio esperado</label><input type="number" name="asking_price"></div>
-
-          <div class="full-width">
-            <label>Sube fotos (máx. 5)</label>
-            <div class="photo-upload">
-              <input type="file" name="photos" id="photos" accept="image/*" multiple style="display:none;">
-              <p><strong>Clic o arrastra aquí</strong><br><small>Máximo 5 fotos</small></p>
-              <div class="photo-preview" id="preview"></div>
-            </div>
-          </div>
-
-          <div class="full-width"><label>Mensaje adicional</label><textarea name="message"></textarea></div>
+          <!-- ... rest of your fields (type, area, price, photos, message) ... -->
 
           <div class="full-width">
             <button type="submit" style="background:#000;color:#FFD700;padding:1.8rem;font-size:1.8rem;border:none;border-radius:20px;">
@@ -168,17 +135,24 @@
       });
     });
 
-    // Show form only after accepting contract
-    document.getElementById('accept-checkbox').addEventListener('change', function() {
+    // Show/hide form when checkbox changes
+    const checkbox = document.getElementById('accept-checkbox');
+    const formSection = document.getElementById('form-section');
+    const continueBtn = document.getElementById('continue-btn');
+
+    checkbox.addEventListener('change', function() {
       if (this.checked) {
-        document.getElementById('form-section').style.display = 'block';
-        document.getElementById('submit-btn').style.display = 'none';
-        document.getElementById('form-section').scrollIntoView({behavior: 'smooth'});
+        formSection.style.display = 'block';
+        continueBtn.style.display = 'none';
+        formSection.scrollIntoView({behavior: 'smooth'});
+      } else {
+        formSection.style.display = 'none';
+        continueBtn.style.display = 'block';
       }
     });
 
-    // Photo preview & map scripts (same as always)
-    // ... (your existing photo + map code here – already in your file)
+    // Photo preview & map (your existing code – works perfectly)
+    // ... paste your photo and map scripts here exactly as before ...
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
 </body>

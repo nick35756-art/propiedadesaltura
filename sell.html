@@ -56,63 +56,72 @@
   netlify-honeypot="bot-field"
   data-netlify-action="/.netlify/functions/submit-lead"
   enctype="multipart/form-data">
-<!-- EXCLUSIVE vs SELF-LIST TOGGLE — LUXURY GOLD & BLACK -->
+<!-- BILINGUAL LUXURY EXCLUSIVE BUTTON + AUTO PDF (ES/EN) -->
 <div class="full-width" style="margin-bottom: 2.5rem; text-align: center;">
   <label style="font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem; display: block; color: #222;">
-    Tipo de publicación / Listing Type
+    ¿Desea vender con representación exclusiva?
   </label>
 
-  <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: center;">
+  <input type="radio" name="listing_type" value="exclusive" id="exclusive" required style="display:none;">
+  <input type="radio" name="listing_type" value="self-list" id="self-list" required style="display:none;">
 
-    <!-- EXCLUSIVE REPRESENTED LISTING — GOLD & BLACK LUXURY BADGE -->
-    <label style="cursor: pointer; display: flex; align-items: center; gap: 0.8rem; font-size: 1.1rem;">
-      <input type="radio" name="listing_type" value="exclusive" required 
-             style="width: 1.5rem; height: 1.5rem; accent-color: #FFD700;">
-      
-      <span style="
-        background: #000;
-        color: #FFD700;
-        padding: 0.7rem 1.4rem;
-        border-radius: 8px;
-        font-family: 'Playfair Display', Georgia, serif;
-        font-weight: 700;
-        font-size: 1.25rem;
-        letter-spacing: 1px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        border: 2px solid #FFD700;
-        text-transform: uppercase;
-      ">
-        Representación Exclusiva
-      </span>
-      
-      <br><small style="color: #555; margin-left: 2.5rem; margin-top: 0.4rem; display: block;">
-        (Contrato exclusivo – representación premium)
-      </small>
-    </label>
+  <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; align-items: center; margin-top: 1rem; position: relative;">
 
-    <!-- SELF LIST — CLEAN & MODERN -->
-    <label style="cursor: pointer; display: flex; align-items: center; gap: 0.8rem; font-size: 1.05rem;">
-      <input type="radio" name="listing_type" value="self-list" required 
-             style="width: 1.5rem; height: 1.5rem; accent-color: #10b981;">
-      
-      <span style="
-        font-weight: 600;
-        color: #111;
-        background: #f8f9fa;
-        padding: 0.7rem 1.4rem;
-        border-radius: 8px;
-        border: 2px solid #ddd;
-        font-size: 1.1rem;
-      ">
-        Publicar Yo Mismo
+    <div style="position: relative; display: inline-block;">
+      <a id="exclusive-btn" href="#" target="_blank"
+         onclick="document.getElementById('exclusive').checked = true; return true;"
+         style="background:#000;color:#FFD700;padding:1rem 2.4rem;border-radius:12px;font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:1.4rem;letter-spacing:1.5px;box-shadow:0 6px 20px rgba(0,0,0,0.4);border:3px solid #FFD700;text-transform:uppercase;text-decoration:none;display:inline-block;cursor:pointer;transition:all 0.3s;">
+        Representación Exclusiva → 3%
+      </a>
+
+      <span id="tooltip-text" 
+            style="position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#000;color:#FFD700;padding:0.6rem 1rem;border-radius:8px;font-size:0.95rem;white-space:nowrap;opacity:0;pointer-events:none;transition:all 0.3s;z-index:10;box-shadow:0 4px 12px rgba(0,0,0,0.5);border:1px solid #FFD700;"
+            data-es="Ver detalles de representación exclusiva"
+            data-en="See exclusive listing details">
+        Ver detalles de representación exclusiva
       </span>
-      
-      <br><small style="color: #555; margin-left: 2.5rem; margin-top: 0.4rem; display: block;">
-        (Sin exclusividad – solo publicación)
-      </small>
+    </div>
+
+    <label style="cursor:pointer;font-size:1.1rem;">
+      <input type="radio" name="listing_type" value="self-list" required style="margin-right:0.5rem;accent-color:#10b981;">
+      <strong>O simplemente publicar sin exclusividad (gratis)</strong>
     </label>
   </div>
+
+  <p style="font-size:0.9rem;color:#666;margin-top:1rem;">
+    Al hacer clic se abrirá nuestro dossier exclusivo (español o inglés según su idioma).
+  </p>
 </div>
+
+<script>
+  const btn = document.getElementById('exclusive-btn');
+  const tooltip = document.getElementById('tooltip-text');
+
+  function updateExclusiveLink() {
+    const lang = document.documentElement.lang || 'es';
+    const pdfUrl = lang === 'es' 
+      ? '/docs/exclusiva-propiedades-altura.pdf'
+      : '/docs/exclusive-listing-propiedades-altura.pdf';
+    btn.href = pdfUrl;
+    tooltip.textContent = tooltip.dataset[lang];
+  }
+
+  btn.parentElement.addEventListener('mouseenter', () => {
+    btn.style.background = '#1a1a1a';
+    btn.style.transform = 'translateY(-3px)';
+    tooltip.style.opacity = '1';
+    tooltip.style.transform = 'translateX(-50%) translateY(-8px)';
+  });
+  btn.parentElement.addEventListener('mouseleave', () => {
+    btn.style.background = '#000';
+    btn.style.transform = 'translateY(0)';
+    tooltip.style.opacity = '0';
+    tooltip.style.transform = 'translateX(-50%) translateY(0)';
+  });
+
+  updateExclusiveLink();
+  document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', updateExclusiveLink));
+</script>
 
 <!-- Load luxury font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">

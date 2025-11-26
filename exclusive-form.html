@@ -118,8 +118,19 @@
           <div><label>Baños</label><input type="number" name="bathrooms"></div>
           <div><label>Parqueaderos</label><input type="number" name="parking"></div>
           <div><label>Precio esperado de venta</label><input type="number" name="asking_price"></div>
-
-          <div class="full-width">
+<div class="full-width" style="margin:2rem 0;">
+  <label style="font-size:1.35rem;display:flex;align-items:flex-start;cursor:pointer;">
+    <input type="checkbox" name="open_to_financing" id="financing-checkbox" 
+           style="width:26px;height:26px;margin-right:16px;margin-top:6px;flex-shrink:0;">
+    <span style="color:#000;line-height:1.6;">
+      Estoy abierto a considerar <strong>financiación directa</strong> con el comprador<br>
+      <small style="color:#16a34a;font-weight:600;">
+        (pago en cuotas – puede atraer más ofertas y mejor precio final)
+      </small>
+    </span>
+  </label>
+</div>
+          
             <label>Sube fotos (máx. 10)</label>
             <div class="photo-upload">
               <input type="file" name="photos" id="photos" accept="image/*" multiple style="display:none;">

@@ -56,35 +56,68 @@
   netlify-honeypot="bot-field"
   data-netlify-action="/.netlify/functions/submit-lead"
   enctype="multipart/form-data">
-  <!-- EXCLUSIVE vs SELF-LIST TOGGLE -->
-<div class="full-width" style="margin-bottom: 2rem;">
-  <label style="font-weight: 600; font-size: 1.1rem; margin-bottom: 0.8rem; display: block;">
+<!-- EXCLUSIVE vs SELF-LIST TOGGLE — LUXURY GOLD & BLACK -->
+<div class="full-width" style="margin-bottom: 2.5rem; text-align: center;">
+  <label style="font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem; display: block; color: #222;">
     Tipo de publicación / Listing Type
   </label>
 
-  <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; justify-content: center;">
-    
-    <!-- EXCLUSIVE REPRESENTED LISTING -->
-    <label style="cursor: pointer; display: flex; align-items: center; gap: 0.6rem; font-size: 1.05rem;">
+  <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: center;">
+
+    <!-- EXCLUSIVE REPRESENTED LISTING — GOLD & BLACK LUXURY BADGE -->
+    <label style="cursor: pointer; display: flex; align-items: center; gap: 0.8rem; font-size: 1.1rem;">
       <input type="radio" name="listing_type" value="exclusive" required 
-             style="width: 1.4rem; height: 1.4rem; accent-color: #1d4ed8;">
-      <span style="font-weight: 600; color: #1d4ed8;">
+             style="width: 1.5rem; height: 1.5rem; accent-color: #FFD700;">
+      
+      <span style="
+        background: #000;
+        color: #FFD700;
+        padding: 0.7rem 1.4rem;
+        border-radius: 8px;
+        font-family: 'Playfair Display', Georgia, serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        border: 2px solid #FFD700;
+        text-transform: uppercase;
+      ">
         Representación Exclusiva
       </span>
-      <br><small style="color: #555; margin-left: 2rem;">(Tú representas la propiedad con contrato)</small>
+      
+      <br><small style="color: #555; margin-left: 2.5rem; margin-top: 0.4rem; display: block;">
+        (Contrato exclusivo – representación premium)
+      </small>
     </label>
 
-    <!-- SELF LIST -->
-    <label style="cursor: pointer; display: flex; align-items: center; gap: 0.6rem; font-size: 1.05rem;">
+    <!-- SELF LIST — CLEAN & MODERN -->
+    <label style="cursor: pointer; display: flex; align-items: center; gap: 0.8rem; font-size: 1.05rem;">
       <input type="radio" name="listing_type" value="self-list" required 
-             style="width: 1.4rem; height: 1.4rem; accent-color: #10b981;">
-      <span style="font-weight: 600; color: #10b981;">
+             style="width: 1.5rem; height: 1.5rem; accent-color: #10b981;">
+      
+      <span style="
+        font-weight: 600;
+        color: #111;
+        background: #f8f9fa;
+        padding: 0.7rem 1.4rem;
+        border-radius: 8px;
+        border: 2px solid #ddd;
+        font-size: 1.1rem;
+      ">
         Publicar Yo Mismo
       </span>
-      <br><small style="color: #555; margin-left: 2rem;">(Solo quiero que aparezca en la página, sin exclusividad)</small>
+      
+      <br><small style="color: #555; margin-left: 2.5rem; margin-top: 0.4rem; display: block;">
+        (Sin exclusividad – solo publicación)
+      </small>
     </label>
   </div>
 </div>
+
+<!-- Load luxury font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   
         <div>
           <label data-es="Nombre completo *" data-en="Full Name *">Full Name *</label>

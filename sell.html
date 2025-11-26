@@ -56,71 +56,66 @@
   netlify-honeypot="bot-field"
   data-netlify-action="/.netlify/functions/submit-lead"
   enctype="multipart/form-data">
-<!-- BILINGUAL LUXURY EXCLUSIVE BUTTON + AUTO PDF (ES/EN) -->
+<!-- EXCLUSIVE + PAID SELF-LIST (30.000 COP / 30 days) -->
 <div class="full-width" style="margin-bottom: 2.5rem; text-align: center;">
-  <label style="font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem; display: block; color: #222;">
-    ¿Desea vender con representación exclusiva?
+  <label style="font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem; display: block; color:#222;">
+    ¿Cómo desea publicar su propiedad?
   </label>
 
   <input type="radio" name="listing_type" value="exclusive" id="exclusive" required style="display:none;">
-  <input type="radio" name="listing_type" value="self-list" id="self-list" required style="display:none;">
+  <input type="radio" name="listing_type" value="paid-self" id="paid-self" required style="display:none;">
 
-  <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; align-items: center; margin-top: 1rem; position: relative;">
+  <div style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; align-items:center; margin-top:1rem;">
 
-    <div style="position: relative; display: inline-block;">
+    <!-- EXCLUSIVE (free info, 3% commission) -->
+    <div style="position:relative; display:inline-block;">
       <a id="exclusive-btn" href="#" target="_blank"
-         onclick="document.getElementById('exclusive').checked = true; return true;"
-         style="background:#000;color:#FFD700;padding:1rem 2.4rem;border-radius:12px;font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:1.4rem;letter-spacing:1.5px;box-shadow:0 6px 20px rgba(0,0,0,0.4);border:3px solid #FFD700;text-transform:uppercase;text-decoration:none;display:inline-block;cursor:pointer;transition:all 0.3s;">
+         onclick="document.getElementById('exclusive').checked=true; return true;"
+         style="background:#000;color:#FFD700;padding:1rem 2.4rem;border-radius:12px;font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;letter-spacing:1.5px;box-shadow:0 6px 20px rgba(0,0,0,0.4);border:3px solid #FFD700;text-transform:uppercase;text-decoration:none;display:inline-block;cursor:pointer;transition:all .3s;">
         Representación Exclusiva → 3%
       </a>
-
-      <span id="tooltip-text" 
-            style="position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#000;color:#FFD700;padding:0.6rem 1rem;border-radius:8px;font-size:0.95rem;white-space:nowrap;opacity:0;pointer-events:none;transition:all 0.3s;z-index:10;box-shadow:0 4px 12px rgba(0,0,0,0.5);border:1px solid #FFD700;"
+      <span id="tooltip-text" style="position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:#000;color:#FFD700;padding:0.6rem 1rem;border-radius:8px;font-size:0.95rem;white-space:nowrap;opacity:0;transition:all .3s;z-index:10;border:1px solid #FFD700;"
             data-es="Ver detalles de representación exclusiva"
             data-en="See exclusive listing details">
         Ver detalles de representación exclusiva
       </span>
     </div>
 
-    <label style="cursor:pointer;font-size:1.1rem;">
-      <input type="radio" name="listing_type" value="self-list" required style="margin-right:0.5rem;accent-color:#10b981;">
-      <strong>O simplemente publicar sin exclusividad (gratis)</strong>
-    </label>
+    <!-- PAID SELF-LISTING: 30.000 COP / 30 days -->
+    <button type="button" onclick="startPaidListing()"
+            style="background:#10b981;color:white;padding:1rem 2rem;border-radius:12px;font-weight:700;font-size:1.2rem;border:none;cursor:pointer;box-shadow:0 4px 15px rgba(16,185,129,0.4);">
+      Publicar Yo Mismo → $30.000 COP (30 días)
+    </button>
   </div>
 
   <p style="font-size:0.9rem;color:#666;margin-top:1rem;">
-    Al hacer clic se abrirá nuestro dossier exclusivo (español o inglés según su idioma).
+    La opción “Publicar Yo Mismo” tiene un costo único de $30.000 COP por 30 días de publicación destacada.
   </p>
 </div>
 
 <script>
+  // Bilingual PDF logic (same as before)
   const btn = document.getElementById('exclusive-btn');
   const tooltip = document.getElementById('tooltip-text');
-
-  function updateExclusiveLink() {
+  function updateExclusiveLink(){
     const lang = document.documentElement.lang || 'es';
-    const pdfUrl = lang === 'es' 
-      ? '/docs/exclusiva-propiedades-altura.pdf'
-      : '/docs/exclusive-listing-propiedades-altura.pdf';
-    btn.href = pdfUrl;
+    btn.href = lang==='es' ? '/docs/exclusiva-propiedades-altura.pdf' : '/docs/exclusive-listing-propiedades-altura.pdf';
     tooltip.textContent = tooltip.dataset[lang];
   }
-
-  btn.parentElement.addEventListener('mouseenter', () => {
-    btn.style.background = '#1a1a1a';
-    btn.style.transform = 'translateY(-3px)';
-    tooltip.style.opacity = '1';
-    tooltip.style.transform = 'translateX(-50%) translateY(-8px)';
-  });
-  btn.parentElement.addEventListener('mouseleave', () => {
-    btn.style.background = '#000';
-    btn.style.transform = 'translateY(0)';
-    tooltip.style.opacity = '0';
-    tooltip.style.transform = 'translateX(-50%) translateY(0)';
-  });
-
   updateExclusiveLink();
-  document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', updateExclusiveLink));
+  document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',updateExclusiveLink));
+
+  // Hover for exclusive button
+  btn.parentElement.addEventListener('mouseenter',()=>{ btn.style.background='#1a1a1a'; btn.style.transform='translateY(-3px)'; tooltip.style.opacity='1'; tooltip.style.transform='translateX(-50%) translateY(-8px)'; });
+  btn.parentElement.addEventListener('mouseleave',()=>{ btn.style.background='#000'; btn.style.transform='translateY(0)'; tooltip.style.opacity='0'; tooltip.style.transform='translateX(-50%) translateY(0)'; });
+
+  // PAYWALL FUNCTION – change the link to your payment gateway
+  function startPaidListing(){
+    document.getElementById('paid-self').checked = true;   // selects the paid option
+    // Replace with your real payment link (Wompi, PayU, Mercado Pago, etc.)
+    window.open('https://checkout.wompi.co/l/YOUR_LINK_HERE', '_blank');
+    // Or use PayU, Mercado Pago, etc.
+  }
 </script>
 
 <!-- Load luxury font -->

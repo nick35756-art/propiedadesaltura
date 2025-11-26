@@ -2,54 +2,111 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Representación Exclusiva - Propiedades Altura</title>
-  <meta name="description" content="Listado gratuito con agente exclusivo - 3% comisión al vender">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Representación Exclusiva – Propiedades Altura</title>
+  <meta name="description" content="Listado gratuito con agente exclusivo – Comisión 3% sólo al vender">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="sell.css">
-  <script src="https://checkout.wompi.co/widget.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="page">
-    <!-- Same header as everywhere else -->
+    <!-- HEADER -->
     <header class="site-header" role="banner">
       <div class="wrap header-inner">
-        <a class="logo" href="index.html">…(your logo code)…</a>
-        <nav class="header-nav">…(same lang buttons and Ver Propiedades)…</nav>
+        <a class="logo" href="index.html">
+          <svg class="logo-icon" viewBox="0 0 64 64"><path d="M4 56 L32 8 L60 56 Z" fill="currentColor"/></svg>
+          <span class="brand">Propiedades Altura</span>
+        </a>
+        <nav class="header-nav">
+          <div class="lang" id="lang-switch">
+            <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+            <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+          </div>
+          <a class="cta mobile-main-cta" href="index.html#properties">Ver Propiedades</a>
+        </nav>
       </div>
-      <p class="tagline">EASTERN ANTIOQUIA</p>
+      <p class="tagline" data-es="ORIENTE ANTIOQUEÑO" data-en="EASTERN ANTIOQUIA">ORIENTE ANTIOQUEÑO</p>
     </header>
 
     <main style="max-width:960px;margin:4rem auto 6rem;padding:0 1rem;">
-      <h1>Representación Exclusiva - Comisión 3%</h1>
-      <p class="lead">Listado gratuito • Máxima exposición • Asesoría profesional • Contrato exclusivo por 6 meses</p>
+      <h1 data-es="Representación Exclusiva" data-en="Exclusive Representation">Representación Exclusiva</h1>
+      <p class="lead" style="font-size:1.25rem;text-align:center;max-width:800px;margin:0 auto 3rem;">
+        Listado 100% gratuito · Comisión del 3% sólo cuando se venda · Contrato exclusivo por 6 meses
+      </p>
 
-      <div style="background:#f8f9fa;padding:2rem;border-radius:12px;margin:2rem 0;">
-        <h2>Beneficios incluidos</h2>
-        <ul style="font-size:1.1rem;line-height:1.7;">
-          <li>Publicación destacada y permanente en el sitio</li>
-          <li>Fotos profesionales + video + tour virtual (sin costo)</li>
+      <div style="background:#000;color:#FFD700;padding:2.5rem;border-radius:16px;margin-bottom:3rem;text-align:center;">
+        <h2 style="margin:0 0 1rem;font-size:2rem;">Beneficios incluidos</h2>
+        <ul style="text-align:left;display:inline-block;font-size:1.15rem;line-height:1.8;">
+          <li>Publicación destacada y permanente</li>
+          <li>Fotos profesionales + video + tour virtual 360° (gratis)</li>
           <li>Marketing en portales nacionales e internacionales</li>
-          <li>Asesoría legal y de precios</li>
+          <li>Asesoría de precios y estrategia</li>
           <li>Filtrado de visitas y negociación</li>
-          <li>Solo pagas 3% cuando la propiedad se venda</li>
+          <li>Asesoría legal hasta la escritura</li>
+          <li>Sólo pagas 3% cuando se vende</li>
         </ul>
       </div>
 
-      <!-- Same exact form you already have, just copied here -->
-      <form class="form-grid" name="sell-exclusive" method="POST" data-netlify="true" …>
+      <form class="form-grid" name="sell-exclusive" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
         <input type="hidden" name="listing_type" value="exclusive">
-        <!-- all your fields exactly the same (name, phone, map, photos, etc.) -->
-        …(copy the entire form from sell.html here)…
+
+        <div><label data-es="Nombre completo *" data-en="Full Name *">Nombre completo *</label><input type="text" name="name" required placeholder="John Doe"></div>
+        <div><label data-es="Email *" data-en="Email *">Email *</label><input type="email" name="_replyto" required placeholder="john@example.com"></div>
+        <div><label data-es="Teléfono / WhatsApp *" data-en="Phone / WhatsApp *">Teléfono / WhatsApp *</label><input type="tel" name="phone" required placeholder="+57 300 123 4567"></div>
+        <div><label data-es="Ciudad / Municipio" data-en="City / Town">Ciudad / Municipio</label><input type="text" name="city" placeholder="Guarne, Rionegro, El Retiro..."></div>
+
+        <!-- Interactive Map -->
         <div class="full-width">
-          <label><input type="checkbox" required> Acepto el contrato de representación exclusiva por 6 meses con comisión del 3% al momento de la venta.</label>
+          <label data-es="Haz clic en el mapa para seleccionar la ubicación exacta" data-en="Click on the map to select the exact location">
+            Haz clic en el mapa para seleccionar la ubicación exacta
+          </label>
+          <div id="map" style="height:400px;width:100%;border-radius:12px;"></div>
+          <input type="hidden" name="latitude" id="lat">
+          <input type="hidden" name="longitude" id="lng">
+          <input type="hidden" name="google_maps_link" id="maps-link">
+          <div style="margin-top:0.8rem;">
+            <small id="coords" style="color:#1d4ed8;font-weight:600;"></small><br>
+            <a id="open-map" href="#" target="_blank" style="display:none;color:#1d4ed8;text-decoration:underline;">→ Abrir ubicación exacta en Google Maps</a>
+          </div>
         </div>
+
+        <div><label data-es="Tipo de propiedad" data-en="Property Type">Tipo de propiedad</label>
+          <select name="property_type">
+            <option>Casa</option><option>Apartamento</option><option>Finca</option><option>Lote</option><option>Local comercial</option><option>Bodega</option>
+          </select>
+        </div>
+        <div><label data-es="Área construida (m²)" data-en="Built Area (m²)">Área construida (m²)</label><input type="number" name="area_m2" placeholder="250"></div>
+        <div><label data-es="Área del lote (m²)" data-en="Lot Size (m²)">Área del lote (m²)</label><input type="number" name="lot_size" placeholder="1000"></div>
+        <div><label data-es="Precio esperado de venta" data-en="Expected Sale Price">Precio esperado de venta</label><input type="number" name="asking_price" placeholder="500000000" step="100000"></div>
+
+        <!-- Photo Upload -->
         <div class="full-width">
-          <button type="submit">Enviar y Acepto → Enviar Información</button>
+          <label data-es="Sube fotos de tu propiedad (máx. 5)" data-en="Upload property photos (max 5)">
+            Sube fotos de tu propiedad (máx. 5)
+          </label>
+          <div class="photo-upload">
+            <input type="file" name="photos" id="photos" accept="image/*" multiple style="display:none;">
+            <p style="margin:0;color:#666;"><strong>Haz clic o arrastra fotos aquí</strong><br><small>Máximo 5 fotos (JPG, PNG)</small>p>
+            <div class="photo-preview" id="preview">div>
+          div>
+        div>
+
+        <div class="full-width">
+          <label data-es="Mensaje adicional" data-en="Additional message">Mensaje adicional</label>
+          <textarea name="message" placeholder="Precio esperado, urgencia, condiciones especiales…">textarea>
         </div>
-      </form>
-    </main>
-  </div>
-  <script src="app.js" defer></script>
-  <!-- your language + map + photo scripts -->
-</body>
-</html>
+
+        <!-- MANDATORY CONTRACT CHECKBOX -->
+        <div class="full-width" style="margin:3rem 0;padding:2rem;background:#fff9e6;border-radius:12px;">
+          <label style="font-size:1.18rem;display:flex;align-items:flex-start;cursor:pointer;">
+            <input type="checkbox" name="accept_contract" required style="margin-right:14px;margin-top:6px;flex-shrink:0;">
+            <span data-es="Acepto el contrato de representación exclusiva por <strong>6 meses</strong> con comisión del <strong>3%</strong> únicamente al momento de la venta."
+                  data-en="I accept the exclusive representation contract for <strong>6 months</strong> with a <strong>3%</strong> commission only upon sale.">
+              Acepto el contrato de representación exclusiva por <strong>6 meses</strong> con comisión del <strong>3%</strong> únicamente al momento de la venta.
+            span>
+          </label>
+          <div style="margin-top:1rem;">
+            <a href="/docs/exclusiva-propiedades-altura.pdf" target="_blank" style="color:#c2410c;">Contrato en español

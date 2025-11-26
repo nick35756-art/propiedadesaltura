@@ -1,32 +1,177 @@
-<!-- MANDATORY 6-MONTH / 3% AGREEMENT + SUBMIT BUTTON -->
-<div class="full-width" style="margin:5rem auto 4rem;max-width:900px;">
-  <div style="background:#fff8e1;padding:3rem 3.5rem;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,0.08);text-align:center;">
-    
-    <label style="display:flex;align-items:flex-start;justify-content:center;font-size:1.35rem;line-height:1.7;max-width:780px;margin:0 auto;cursor:pointer;">
-      <input type="checkbox" name="accept_contract" required 
-             style="margin-right:18px;margin-top:8px;flex-shrink:0;width:26px;height:26px;">
-      <span data-es="Acepto el contrato de representación exclusiva por <strong>6 meses</strong> con comisión del <strong>3%</strong> únicamente al momento de la venta."
-            data-en="I accept the exclusive representation agreement for <strong>6 months</strong> with a <strong>3%</strong> commission only upon successful sale.">
-        Acepto el contrato de representación exclusiva por <strong>6 meses</strong> con comisión del <strong>3%</strong> únicamente al momento de la venta.
-      </span>
-    </label>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Representación Exclusiva – Propiedades Altura</title>
+  <meta name="description" content="Listado gratuito con agente exclusivo – Comisión 3% sólo al vender">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sell.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header class="site-header" role="banner">
+      <div class="wrap header-inner">
+        <a class="logo" href="index.html">
+          <svg class="logo-icon" viewBox="0 0 64 64"><path d="M4 56 L32 8 L60 56 Z" fill="currentColor"/></svg>
+          <span class="brand">Propiedades Altura</span>
+        </a>
+        <nav class="header-nav">
+          <div class="lang" id="lang-switch">
+            <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+            <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+          </div>
+          <a class="cta mobile-main-cta" href="index.html#properties">Ver Propiedades</a>
+        </nav>
+      </div>
+      <p class="tagline" data-es="ORIENTE ANTIOQUEÑO" data-en="EASTERN ANTIOQUIA">ORIENTE ANTIOQUEÑO</p>
+    </header>
 
-    <div style="margin-top:2rem;font-size:1.1rem;">
-      <a href="/docs/exclusiva-propiedades-altura.pdf" target="_blank" 
-         style="color:#c2410c;text-decoration:underline;margin:0 0.8rem;">
-        Contrato en español (PDF)
-      </a>
-      <span style="color:#999;">·</span>
-      <a href="/docs/exclusive-listing-propiedades-altura.pdf" target="_blank" 
-         style="color:#c2410c;text-decoration:underline;margin:0 0.8rem;">
-        Contract in English (PDF)
-      </a>
-    </div>
+    <main style="max-width:960px;margin:4rem auto 8rem;padding:0 1rem;">
+      <h1 data-es="Representación Exclusiva" data-en="Exclusive Representation">Representación Exclusiva</h1>
+      <p class="lead" style="font-size:1.4rem;text-align:center;max-width:800px;margin:2rem auto 4rem;color:#444;">
+        Listado 100% gratuito · Comisión del 3% sólo cuando se venda · Contrato exclusivo por 6 meses
+      </p>
 
-    <button type="submit" 
-            style="margin-top:3rem;background:#000;color:#FFD700;padding:1.6rem 4rem;font-size:1.7rem;font-weight:700;border:none;border-radius:20px;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.4);min-width:380px;">
-      Acepto el Contrato → Enviar Información
-    </button>
+      <!-- BENEFITS BOX -->
+      <div style="background:#000;color:#FFD700;padding:3.5rem;border-radius:24px;margin-bottom:4rem;text-align:center;">
+        <h2 style="margin:0 0 2rem;font-size:2.4rem;">Beneficios de la Representación Exclusiva</h2>
+        <ul style="text-align:left;display:inline-block;font-size:1.25rem;line-height:2;">
+          <li>Publicación destacada y permanente</li>
+          <li>Fotos profesionales + video + tour virtual 360° (gratis)</li>
+          <li>Marketing en portales nacionales e internacionales</li>
+          <li>Asesoría profesional de precios y estrategia</li>
+          <li>Filtrado de visitas serias y negociación</li>
+          <li>Asesoría legal completa hasta la escritura</li>
+          <li>Sólo pagas 3% cuando la propiedad se venda con éxito</li>
+        </ul>
+      </div>
 
+      <!-- FULL FORM -->
+      <form class="form-grid" name="exclusive" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+        <input type="hidden" name="listing_type" value="exclusive">
+
+        <div><label data-es="Nombre completo *" data-en="Full Name *">Nombre completo *</label><input type="text" name="name" required></div>
+        <div><label data-es="Email *" data-en="Email *">Email *</label><input type="email" name="_replyto" required></div>
+        <div><label data-es="Teléfono / WhatsApp *" data-en="Phone / WhatsApp *">Teléfono / WhatsApp *</label><input type="tel" name="phone" required></div>
+        <div><label data-es="Ciudad / Municipio" data-en="City / Town">Ciudad / Municipio</label><input type="text" name="city"></div>
+
+        <!-- MAP -->
+        <div class="full-width">
+          <label data-es="Haz clic en el mapa para seleccionar ubicación" data-en="Click on map to select location">
+            Haz clic en el mapa para seleccionar ubicación
+          </label>
+          <div id="map" style="height:420px;margin:1rem 0;border-radius:16px;"></div>
+          <input type="hidden" name="latitude" id="lat">
+          <input type="hidden" name="longitude" id="lng">
+          <input type="hidden" name="google_maps_link" id="maps-link">
+        </div>
+
+        <div><label data-es="Tipo de propiedad" data-en="Property Type">Tipo de propiedad</label>
+          <select name="property_type">
+            <option>Casa</option><option>Apartamento</option><option>Finca</option><option>Lote</option><option>Local comercial</option><option>Bodega</option>
+          </select>
+        </div>
+        <div><label data-es="Área construida (m²)" data-en="Built Area (m²)">Área construida (m²)</label><input type="number" name="area_m2"></div>
+        <div><label data-es="Área lote (m²)" data-en="Lot Size (m²)">Área lote (m²)</label><input type="number" name="lot_size"></div>
+        <div><label data-es="Precio esperado" data-en="Expected Price">Precio esperado</label><input type="number" name="asking_price"></div>
+
+        <!-- PHOTOS -->
+        <div class="full-width">
+          <label data-es="Sube fotos (máx. 5)" data-en="Upload photos (max 5)">Sube fotos (máx. 5)</label>
+          <div class="photo-upload">
+            <input type="file" name="photos" id="photos" accept="image/*" multiple style="display:none;">
+            <p><strong>Clic o arrastra aquí</strong><br><small>Máximo 5 fotos</small></p>
+            <div class="photo-preview" id="preview"></div>
+          </div>
+        </div>
+
+        <div class="full-width"><label data-es="Mensaje adicional" data-en="Additional message">Mensaje adicional</label><textarea name="message"></textarea></div>
+
+        <!-- FINAL SECTION WITH CHECKBOX + WORKING BUTTON (everything inside the form) -->
+        <div class="full-width" style="margin:5rem auto 4rem;max-width:900px;">
+          <div style="background:#fff8e1;padding:3rem 3.5rem;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,0.08);text-align:center;">
+            <label style="display:flex;align-items:flex-start;justify-content:center;font-size:1.35rem;line-height:1.7;max-width:780px;margin:0 auto 2rem;cursor:pointer;">
+              <input type="checkbox" name="accept_contract" required style="margin-right:18px;margin-top:8px;flex-shrink:0;width:26px;height:26px;">
+              <span data-es="Acepto el contrato de representación exclusiva por <strong>6 meses</strong> con comisión del <strong>3%</strong> únicamente al momento de la venta."
+                    data-en="I accept the exclusive representation agreement for <strong>6 months</strong> with a <strong>3%</strong> commission only upon successful sale.">
+                Acepto el contrato de representación exclusiva por <strong>6 meses</strong> con comisión del <strong>3%</strong> únicamente al momento de la venta.
+              </span>
+            </label>
+
+            <div style="margin:1.5rem 0 3rem;font-size:1.1rem;">
+              <a href="/docs/exclusiva-propiedades-altura.pdf" target="_blank" style="color:#c2410c;text-decoration:underline;margin:0 0.8rem;">Contrato en español (PDF)</a>
+              <span style="color:#999;">·</span>
+              <a href="/docs/exclusive-listing-propiedades-altura.pdf" target="_blank" style="color:#c2410c;text-decoration:underline;margin:0 0.8rem;">Contract in English (PDF)</a>
+            </div>
+
+            <button type="submit"
+                    style="background:#000;color:#FFD700;padding:1.6rem 4rem;font-size:1.7rem;font-weight:700;border:none;border-radius:20px;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.4);min-width:380px;">
+              Acepto el Contrato → Enviar Información
+            </button>
+          </div>
+        </div>
+      </form>
+    </main>
   </div>
-</div>
+
+  <!-- SCRIPTS -->
+  <script src="app.js" defer></script>
+  <script>
+    // Language toggle
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-es],[data-en]").forEach(el => {
+          el.textContent = lang === "es" ? el.dataset.es : el.dataset.en;
+        });
+        document.querySelectorAll(".lang-btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+      });
+    });
+
+    // Photo preview
+    const input = document.getElementById('photos');
+    const preview = document.getElementById('preview');
+    const uploadBox = document.querySelector('.photo-upload');
+    uploadBox.addEventListener('click', () => input.click());
+    ['dragover','dragenter'].forEach(e => uploadBox.addEventListener(e, ev => {ev.preventDefault(); uploadBox.style.borderColor='#1d4ed8';}));
+    ['dragleave','drop'].forEach(e => uploadBox.addEventListener(e, ev => {ev.preventDefault(); uploadBox.style.borderColor='#ccc';}));
+    uploadBox.addEventListener('drop', e => { input.files = e.dataTransfer.files; handleFiles(e.dataTransfer.files); });
+    input.addEventListener('change', () => handleFiles(input.files));
+    function handleFiles(files) {
+      preview.innerHTML = '';
+      for (let i = 0; i < Math.min(files.length, 5); i++) {
+        if (files[i].type.startsWith('image/')) {
+          const img = document.createElement('img');
+          img.src = URL.createObjectURL(files[i]);
+          img.style.height='130px'; img.style.margin='6px'; img.style.borderRadius='10px';
+          preview.appendChild(img);
+        }
+      }
+      if (files.length > 5) preview.innerHTML += `<small style="color:red;">Solo las primeras 5 fotos se enviarán.</small>`;
+    }
+
+    // Map
+    window.initSellMap = function() {
+      const map = new google.maps.Map(document.getElementById("map"), {center: { lat: 6.1935, lng: -75.3832 }, zoom: 10});
+      let marker = null;
+      map.addListener("click", e => {
+        const lat = e.latLng.lat(), lng = e.latLng.lng();
+        if (marker) marker.setPosition(e.latLng); else marker = new google.maps.Marker({position: e.latLng, map});
+        document.getElementById("lat").value = lat.toFixed(6);
+        document.getElementById("lng").value = lng.toFixed(6);
+        const url = `https://www.google.com/maps?q=${lat},${lng}&z=18`;
+        document.getElementById("maps-link").value = url;
+        document.getElementById("coords").textContent = `Guardado: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+        document.getElementById("open-map").href = url; document.getElementById("open-map").style.display = "inline";
+      });
+    };
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
+</body>
+</html>

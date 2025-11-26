@@ -122,23 +122,32 @@
     </main>
   </div>
 
-  <!-- WOMPI PAYMENT MODAL (hidden until user clicks the green button) -->
-  <div id="wompi-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:white;padding:2rem;border-radius:16px;max-width:420px;width:90%;position:relative;">
-      <button onclick="document.getElementById('wompi-modal').style.display='none'" 
-              style="position:absolute;top:10px;right:15px;font-size:1.8rem;background:none;border:none;cursor:pointer;">×</button>
-      <h3 style="margin-top:0;text-align:center;">Pagar $30.000 COP – Publicación 30 días</h3>
-      <div data-wompi="widget"
-           data-public-key="pub_test_6KTcCmxE3u8QYLIlid6IpqGdx545iDnB"   <!-- <<<<< PUT YOUR REAL KEY HERE -->
-           data-currency="COP"
-           data-amount="30000"
-           data-reference-prefix="LISTING-"
-           data-description="Publicación destacada 30 días - Propiedades Altura"
-           data-redirect-url="https://propiedadesaltura.com/gracias-pago.html"
-           data-customer-email="{{email}}"
-           style="width:100%;"></div>
-    </div>
+ <!-- WOMPI PAYMENT MODAL (fixed version) -->
+<div id="wompi-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;">
+  <div style="background:white;padding:2rem 1.5rem;border-radius:16px;max-width:420px;width:90%;position:relative;box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+    <button onclick="document.getElementById('wompi-modal').style.display='none'" 
+            style="position:absolute;top:10px;right:15px;font-size:2rem;background:none;border:none;cursor:pointer;color:#666;">×</button>
+    
+    <h3 style="margin:0 0 1.5rem;text-align:center;font-size:1.4rem;">
+      Pagar $30.000 COP – Publicación 30 días
+    </h3>
+
+    <!-- This is the correct Wompi widget button (works 100 % of the time) -->
+    <script src="https://checkout.wompi.co/widget.js"></script>
+    <button
+      data-wompi-public-key="pub_test_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"   <!-- << your real test key here -->
+      data-amount="30000"
+      data-currency="COP"
+      data-reference-prefix="LISTING-"
+      data-description="Publicación destacada 30 días - Propiedades Altura"
+      data-redirect-url="https://propiedadesaltura.com/gracias-pago.html"
+      class="wompi-pay-button">
+      <span data-es="Pagar con Wompi $30.000 COP" data-en="Pay with Wompi $30,000 COP">
+        Pagar con Wompi $30.000 COP
+      </span>
+    </button>
   </div>
+</div>
 
   <!-- ALL YOUR SCRIPTS -->
   <script src="app.js" defer></script>

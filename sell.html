@@ -38,6 +38,7 @@
     }
     .exclusive-btn:hover { transform: translateY(-10px); }
 
+    /* BLACK TEXT BUTTON – NO BACKGROUND, NO BORDER */
     .paid-btn {
       background: none;
       color: #000;
@@ -47,10 +48,10 @@
       font-size: 2.4rem;
       border: none;
       cursor: pointer;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+      box-shadow: none;
       transition: transform 0.3s ease;
     }
-    .paid-btn:hover { transform: translateY(-10px); }
+    .paid-btn:hover { transform: translateY(-10px); opacity: 0.85; }
 
     .wompi-pay-button {
       background:#10b981;color:white;padding:1.8rem;font-size:1.7rem;border:none;border-radius:16px;width:100%;font-weight:700;margin-top:1rem;cursor:pointer;
@@ -83,7 +84,7 @@
         Selecciona cómo quieres publicar tu propiedad
       </p>
 
-      <!-- TWO BEAUTIFUL BUTTONS -->
+      <!-- TWO BUTTONS -->
       <div class="choose-buttons">
         <a href="exclusive-form.html" class="exclusive-btn">
           Representación<br>Exclusiva<br>
@@ -98,17 +99,16 @@
     </main>
   </div>
 
-  <!-- HIDDEN FORM (appears only after clicking green button) -->
+  <!-- HIDDEN FORM – ONLY AFTER SUCCESSFUL PAYMENT -->
   <div id="form-container" style="display:none;max-width:960px;margin:0 auto 6rem;padding:0 1rem;">
     <form class="form-grid" name="sell" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
       <input type="hidden" name="listing_type" value="paid-self">
+      <div><label>Nombre completo *</label><input type="text" name="name" required></div>
+      <div><label>Email *</label><input type="email" name="_replyto" required></div>
+      <div><label>Teléfono / WhatsApp *</label><input type="tel" name="phone" required></div>
+      <div><label>Ciudad / Municipio</label><input type="text" name="city"></div>
 
-      <div><label>Nombre completo *</label><input type="text" name="name" required placeholder="John Doe"></div>
-      <div><label>Email *</label><input type="email" name="_replyto" required placeholder="john@example.com"></div>
-      <div><label>Teléfono / WhatsApp *</label><input type="tel" name="phone" required placeholder="+57 300 123 4567"></div>
-      <div><label>Ciudad / Municipio</label><input type="text" name="city" placeholder="Guarne, Rionegro..."></div>
-
-      <!-- Interactive Map -->
+      <!-- Map -->
       <div class="full-width">
         <label>Haz clic en el mapa para seleccionar ubicación exacta</label>
         <div id="map" style="height:420px;margin:1rem 0;border-radius:12px;"></div>
@@ -116,17 +116,17 @@
         <input type="hidden" name="longitude" id="lng">
         <input type="hidden" name="google_maps_link" id="maps-link">
         <div><small id="coords" style="color:#1d4ed8;font-weight:600;"></small><br>
-        <a id="open-map" href="#" target="_blank" style="display:none;color:#1d4ed8;display:none;">→ Abrir en Google Maps</a></div>
+        <a id="open-map" href="#" target="_blank" style="display:none;color:#1d4ed8;">→ Abrir en Google Maps</a></div>
       </div>
 
       <div><label>Tipo de propiedad</label>
         <select name="property_type"><option>Casa</option><option>Apartamento</option><option>Finca</option><option>Lote</option><option>Local</option><option>Bodega</option></select>
       </div>
-      <div><label>Área construida (m²)</label><input type="number" name="area_m2" placeholder="250"></div>
-      <div><label>Área lote (m²)</label><input type="number" name="lot_size" placeholder="1000"></div>
-      <div><label>Precio esperado</label><input type="number" name="asking_price" placeholder="500000000"></div>
+      <div><label>Área construida (m²)</label><input type="number" name="area_m2"></div>
+      <div><label>Área lote (m²)</label><input type="number" name="lot_size"></div>
+      <div><label>Precio esperado</label><input type="number" name="asking_price"></div>
 
-      <!-- Photo Upload -->
+      <!-- Photos -->
       <div class="full-width">
         <label>Sube fotos (máx. 5)</label>
         <div class="photo-upload">
@@ -136,18 +136,16 @@
         </div>
       </div>
 
-      <div class="full-width"><label>Mensaje adicional</label><textarea name="message" placeholder="Urgencia, condiciones..."></textarea></div>
-
+      <div class="full-width"><label>Mensaje adicional</label><textarea name="message"></textarea></div>
       <div class="full-width"><button type="submit">Enviar Información</button></div>
     </form>
   </div>
 
-  <!-- WOMPI MODAL (hidden until clicked) -->
+  <!-- WOMPI MODAL -->
   <div id="wompi-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;">
     <div style="background:white;padding:3rem 2.5rem;border-radius:24px;max-width:480px;width:92%;position:relative;box-shadow:0 30px 60px rgba(0,0,0,0.4);">
       <button onclick="document.getElementById('wompi-modal').style.display='none'" style="position:absolute;top:12px;right:18px;font-size:3rem;background:none;border:none;cursor:pointer;">×</button>
       <h3 style="text-align:center;margin:0 0 2rem;font-size:1.9rem;">Pagar $30.000 COP<br><small style="font-weight:400;">Publicación destacada · 30 días</small></h3>
-
       <button data-wompi-public-key="pub_test_6KTcCmxE3u8QYLIlid6IpqGdx545iDnB"
               data-amount="30000"
               data-currency="COP"
@@ -160,7 +158,7 @@
     </div>
   </div>
 
-  <!-- ALL SCRIPTS -->
+  <!-- SCRIPTS -->
   <script src="app.js" defer></script>
   <script>
     // Language toggle
@@ -175,29 +173,28 @@
       });
     });
 
-    // Green button → show form + open Wompi
-    // NEW: Form ONLY appears after SUCCESSFUL payment — never if they close the modal
-document.getElementById('paid-listing-trigger').addEventListener('click', () => {
-  document.getElementById('form-container').style.display = 'none'; // safety
-  document.getElementById('wompi-modal').style.display = 'flex';
-});
+    // ONLY open modal — form stays hidden
+    document.getElementById('paid-listing-trigger').addEventListener('click', () => {
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('wompi-modal').style.display = 'flex';
+    });
 
-// Only show form when Wompi confirms payment was approved
-window.addEventListener('wompi-success', () => {
-  document.getElementById('wompi-modal').style.display = 'none';
-  document.getElementById('form-container').style.display = 'block';
-  document.getElementById('form-container').scrollIntoView({behavior: 'smooth'});
-});
+    // ONLY show form after real payment
+    window.addEventListener('wompi-success', () => {
+      document.getElementById('wompi-modal').style.display = 'none';
+      document.getElementById('form-container').style.display = 'block';
+      document.getElementById('form-container').scrollIntoView({behavior: 'smooth'});
+    });
 
-// Close modal with X or Esc → form stays hidden forever
-document.querySelector('#wompi-modal [onclick*="wompi-modal"]').addEventListener('click', () => {
-  document.getElementById('wompi-modal').style.display = 'none';
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.getElementById('wompi-modal').style.display = 'none';
-});
+    // Close modal → form stays hidden
+    document.querySelector('#wompi-modal button[onclick]').addEventListener('click', () => {
+      document.getElementById('wompi-modal').style.display = 'none';
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') document.getElementById('wompi-modal').style.display = 'none';
+    });
 
-    // Photo preview
+    // Photo preview & map (your working code)
     const input = document.getElementById('photos');
     const preview = document.getElementById('preview');
     const uploadBox = document.querySelector('.photo-upload');
@@ -219,7 +216,6 @@ document.addEventListener('keydown', e => {
       if (files.length > 5) preview.innerHTML += `<small style="color:red;">Solo las primeras 5 fotos se enviarán.</small>`;
     }
 
-    // Map
     window.initSellMap = function() {
       const map = new google.maps.Map(document.getElementById("map"), {center: { lat: 6.1935, lng: -75.3832 }, zoom: 10});
       let marker = null;
@@ -231,7 +227,8 @@ document.addEventListener('keydown', e => {
         const url = `https://www.google.com/maps?q=${lat},${lng}&z=18`;
         document.getElementById("maps-link").value = url;
         document.getElementById("coords").textContent = `Guardado: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-        document.getElementById("open-map").href = url; document.getElementById("open-map").style.display = "inline";
+        document.getElementById("open-map").href = url;
+        document.getElementById("open-map").style.display = "inline";
       });
     };
   </script>

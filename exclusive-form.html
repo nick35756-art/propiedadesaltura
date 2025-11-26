@@ -83,7 +83,7 @@
         <p style="margin-top:2.5rem;font-size:1.3rem;"><strong>El presente contrato tiene plena validez legal una vez aceptado electrónicamente.</strong></p>
       </div>
 
-      <!-- ACCEPTANCE -->
+      <!-- ACCEPTANCE (no continue button) -->
       <div class="accept-section">
         <label style="font-size:1.45rem;line-height:1.7;display:flex;align-items:center;justify-content:center;max-width:800px;margin:0 auto;cursor:pointer;">
           <input type="checkbox" id="accept-checkbox" required>
@@ -108,7 +108,6 @@
           <div><label>Teléfono / WhatsApp *</label><input type="tel" name="phone" required placeholder="+57 300 123 4567"></div>
           <div><label>Ciudad / Municipio</label><input type="text" name="city" placeholder="Guarne, Rionegro..."></div>
 
-          <!-- MAP -->
           <div class="full-width">
             <label>Haz clic en el mapa para seleccionar ubicación exacta</label>
             <div id="map" style="height:420px;margin:1rem 0;border-radius:16px;"></div>
@@ -131,7 +130,7 @@
           <div><label>Parqueaderos</label><input type="number" name="parking" placeholder="2"></div>
           <div><label>Precio esperado de venta</label><input type="number" name="asking_price" placeholder="500000000"></div>
 
-          <!-- OWNER FINANCING – PERFECTLY INTEGRATED -->
+          <!-- OWNER FINANCING QUESTION -->
           <div class="full-width" style="margin:2rem 0;">
             <label style="font-size:1.35rem;display:flex;align-items:flex-start;cursor:pointer;">
               <input type="checkbox" name="open_to_financing" id="financing-checkbox" 
@@ -182,7 +181,7 @@
       });
     });
 
-    // Form appears/disappears with checkbox — no button needed
+    // ONE LINE: Checkbox directly controls form visibility
     document.getElementById('accept-checkbox').addEventListener('change', function () {
       document.getElementById('form-section').style.display = this.checked ? 'block' : 'none';
       if (this.checked) document.getElementById('form-section').scrollIntoView({behavior: 'smooth'});
@@ -210,7 +209,7 @@
       if (files.length > 10) preview.innerHTML += `<small style="color:red;">Solo las primeras 10 fotos se enviarán.</small>`;
     }
 
-    // Map – 100% working
+    // Map
     window.initSellMap = function() {
       const map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 6.1935, lng: -75.3832 },

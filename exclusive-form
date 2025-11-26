@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Representación Exclusiva - Propiedades Altura</title>
+  <meta name="description" content="Listado gratuito con agente exclusivo - 3% comisión al vender">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sell.css">
+  <script src="https://checkout.wompi.co/widget.js"></script>
+</head>
+<body>
+  <div class="page">
+    <!-- Same header as everywhere else -->
+    <header class="site-header" role="banner">
+      <div class="wrap header-inner">
+        <a class="logo" href="index.html">…(your logo code)…</a>
+        <nav class="header-nav">…(same lang buttons and Ver Propiedades)…</nav>
+      </div>
+      <p class="tagline">EASTERN ANTIOQUIA</p>
+    </header>
+
+    <main style="max-width:960px;margin:4rem auto 6rem;padding:0 1rem;">
+      <h1>Representación Exclusiva - Comisión 3%</h1>
+      <p class="lead">Listado gratuito • Máxima exposición • Asesoría profesional • Contrato exclusivo por 6 meses</p>
+
+      <div style="background:#f8f9fa;padding:2rem;border-radius:12px;margin:2rem 0;">
+        <h2>Beneficios incluidos</h2>
+        <ul style="font-size:1.1rem;line-height:1.7;">
+          <li>Publicación destacada y permanente en el sitio</li>
+          <li>Fotos profesionales + video + tour virtual (sin costo)</li>
+          <li>Marketing en portales nacionales e internacionales</li>
+          <li>Asesoría legal y de precios</li>
+          <li>Filtrado de visitas y negociación</li>
+          <li>Solo pagas 3% cuando la propiedad se venda</li>
+        </ul>
+      </div>
+
+      <!-- Same exact form you already have, just copied here -->
+      <form class="form-grid" name="sell-exclusive" method="POST" data-netlify="true" …>
+        <input type="hidden" name="listing_type" value="exclusive">
+        <!-- all your fields exactly the same (name, phone, map, photos, etc.) -->
+        …(copy the entire form from sell.html here)…
+        <div class="full-width">
+          <label><input type="checkbox" required> Acepto el contrato de representación exclusiva por 6 meses con comisión del 3% al momento de la venta.</label>
+        </div>
+        <div class="full-width">
+          <button type="submit">Enviar y Acepto → Enviar Información</button>
+        </div>
+      </form>
+    </main>
+  </div>
+  <script src="app.js" defer></script>
+  <!-- your language + map + photo scripts -->
+</body>
+</html>

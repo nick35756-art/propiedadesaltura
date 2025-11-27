@@ -46,13 +46,11 @@
       </p>
 
       <div class="choose-buttons">
-        <!-- FREE EXCLUSIVE – goes straight to form -->
-        <button onclick="window.location.href='exclusive-form.html'" class="exclusive-btn" style="all:unset;cursor:pointer;">
-  Representación<br>Exclusiva<br>
-  <span style="font-size:1.4rem;">Comisión 3% al vender · Gratis</span>
-</button>
+        <a href="exclusive-form.html" class="exclusive-btn">
+          Representación<br>Exclusiva<br>
+          <span style="font-size:1.4rem;">Comisión 3% al vender · Gratis</span>
+        </a>
 
-        <!-- PAID SELF-LISTING – payment required -->
         <button id="paid-listing-trigger" type="button" class="paid-btn">
           Publicar Yo Mismo<br>
           <strong>$30.000 COP · 30 días</strong>
@@ -65,10 +63,10 @@
   <div id="form-container" style="display:none;max-width:960px;margin:0 auto 6rem;padding:0 1rem;">
     <form class="form-grid" name="sell" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
       <input type="hidden" name="listing_type" value="paid-self">
-      <div><label>Nombre completo *</label><input type="text" name="name" required></div>
-      <div><label>Email *</label><input type="email" name="_replyto" required></div>
-      <div><label>Teléfono / WhatsApp *</label><input type="tel" name="phone" required></div>
-      <div><label>Ciudad / Municipio</label><input type="text" name="city"></div>
+      <div><label>Nombre completo *</label><input type="text" name="name" required placeholder="John Doe"></div>
+      <div><label>Email *</label><input type="email" name="_replyto" required placeholder="john@example.com"></div>
+      <div><label>Teléfono / WhatsApp *</label><input type="tel" name="phone" required placeholder="+57 300 123 4567"></div>
+      <div><label>Ciudad / Municipio</label><input type="text" name="city" placeholder="Guarne, Rionegro..."></div>
 
       <div class="full-width">
         <label>Haz clic en el mapa para seleccionar ubicación</label>
@@ -76,14 +74,16 @@
         <input type="hidden" name="latitude" id="lat">
         <input type="hidden" name="longitude" id="lng">
         <input type="hidden" name="google_maps_link" id="maps-link">
+        <div><small id="coords" style="color:#1d4ed8;font-weight:600;"></small><br>
+        <a id="open-map" href="#" target="_blank" style="display:none;color:#1d4ed8;">→ Abrir en Google Maps</a></div>
       </div>
 
       <div><label>Tipo de propiedad</label>
-        <select name="property_type"><option>Casa</option><option>Apartamento</option><option>Finca</option><option>Lote</option><option>Local comercial</option><option>Bodega</option></select>
+        <select name="property_type"><option>Casa</option><option>Apartamento</option><option>Finca</option><option>Lote</option><option>Local</option><option>Bodega</option></select>
       </div>
-      <div><label>Área construida (m²)</label><input type="number" name="area_m2"></div>
-      <div><label>Área lote (m²)</label><input type="number" name="lot_size"></div>
-      <div><label>Precio esperado</label><input type="number" name="asking_price"></div>
+      <div><label>Área construida (m²)</label><input type="number" name="area_m2" placeholder="250"></div>
+      <div><label>Área lote (m²)</label><input type="number" name="lot_size" placeholder="1000"></div>
+      <div><label>Precio esperado</label><input type="number" name="asking_price" placeholder="500000000"></div>
 
       <div class="full-width">
         <label>Sube fotos (máx. 5)</label>
@@ -100,7 +100,7 @@
   </div>
 
   <!-- WOMPI MODAL – REQUIRED FOR PAID LISTING -->
-  <div id="wompi-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;display:flex;align-items:center;justify-content:center;">
+  <div id="wompi-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;">
     <div style="background:white;padding:3rem 2.5rem;border-radius:24px;max-width:480px;width:92%;position:relative;box-shadow:0 30px 60px rgba(0,0,0,0.4);">
       <button onclick="document.getElementById('wompi-modal').style.display='none'" style="position:absolute;top:12px;right:18px;font-size:3rem;background:none;border:none;cursor:pointer;">×</button>
       <h3 style="text-align:center;margin:0 0 2rem;font-size:1.9rem;">Pagar $30.000 COP<br><small>Publicación destacada · 30 días</small></h3>
@@ -109,7 +109,7 @@
               data-amount="30000"
               data-currency="COP"
               data-reference-prefix="LISTING-"
-              data-description="Publicación destacada 30 días"
+              data-description="Publicación destacada 30 días - Propiedades Altura"
               data-redirect-url="https://propiedadesaltura.com/gracias-pago.html"
               class="wompi-pay-button">
         Pagar con Wompi $30.000 COP
@@ -118,7 +118,18 @@
   </div>
 
   <script>
-    // Click "Publicar Yo Mismo" → open payment modal
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.dataset.lang;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-es],[data-en]").forEach(el => {
+          if (el.dataset[lang]) el.textContent = el.dataset[lang];
+        });
+        document.querySelectorAll(".lang-btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+      });
+    });
+
+    // Click "Publicar Yo Mismo" → open modal
     document.getElementById('paid-listing-trigger').addEventListener('click', () => {
       document.getElementById('wompi-modal').style.display = 'flex';
     });
@@ -138,14 +149,40 @@
       if (e.key === 'Escape') document.getElementById('wompi-modal').style.display = 'none';
     });
 
-    // Map & photo scripts (100% working)
+    // Photo preview
+    const input = document.getElementById('photos');
+    const preview = document.getElementById('preview');
+    const uploadBox = document.querySelector('.photo-upload');
+    uploadBox.addEventListener('click', () => input.click());
+    ['dragover','dragenter'].forEach(e => uploadBox.addEventListener(e, ev => {ev.preventDefault(); uploadBox.style.borderColor='#1d4ed8';}));
+    ['dragleave','drop'].forEach(e => uploadBox.addEventListener(e, ev => {ev.preventDefault(); uploadBox.style.borderColor='#ccc';}));
+    uploadBox.addEventListener('drop', e => { input.files = e.dataTransfer.files; handleFiles(e.dataTransfer.files); });
+    input.addEventListener('change', () => handleFiles(input.files));
+    function handleFiles(files) {
+      preview.innerHTML = '';
+      for (let i = 0; i < Math.min(files.length, 5); i++) {
+        if (files[i].type.startsWith('image/')) {
+          const img = document.createElement('img');
+          img.src = URL.createObjectURL(files[i]);
+          img.style.height='130px'; img.style.margin='6px'; img.style.borderRadius='10px';
+          preview.appendChild(img);
+        }
+      }
+      if (files.length > 5) preview.innerHTML += `<small style="color:red;">Solo las primeras 5 fotos se enviarán.</small>`;
+    }
+
+    // Map – 100% working
     window.initSellMap = function() {
-      const map = new google.maps.Map(document.getElementById("map"), {center: { lat: 6.1935, lng: -75.3832 }, zoom: 10});
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 6.1935, lng: -75.3832 },
+        zoom: 10,
+      });
       let marker = null;
       map.addListener("click", e => {
-        const lat = e.latLng.lat(), lng = e.latLng.lng();
+        const lat = e.latLng.lat();
+        const lng = e.latLng.lng();
         if (marker) marker.setPosition(e.latLng);
-        else marker = new google.maps.Marker({position: e.latLng, map});
+        else marker = new google.maps.Marker({ position: e.latLng, map });
         document.getElementById("lat").value = lat.toFixed(6);
         document.getElementById("lng").value = lng.toFixed(6);
         const url = `https://www.google.com/maps?q=${lat},${lng}&z=18`;

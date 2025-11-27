@@ -1,296 +1,440 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Representación Exclusiva – Propiedades Altura</title>
-  <meta name="description" content="Contrato de representación exclusiva – Comisión 3% sólo al vender">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-es="Representación Exclusiva – Propiedades Altura"
+         data-en="Exclusive Representation – Propiedades Altura">
+    Representación Exclusiva – Propiedades Altura
+  </title>
+  <meta name="description"
+        data-es="Contrato de representación exclusiva – Comisión 3% sólo al vender"
+        data-en="Exclusive representation contract – 3% commission only upon sale"
+        content="Contrato de representación exclusiva – Comisión 3% sólo al vender">
+
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="sell.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
   <style>
-    .contract-box {background:#000;color:#fff;padding:3rem 4rem;border-radius:20px;margin:4rem auto;max-width:900px;box-shadow:0 20px 50px rgba(0,0,0,0.4);}
-    .contract-box h2 {color:#FFD700;font-size:2.4rem;margin:0 0 2rem;}
-    .contract-box p, .contract-box li {font-size:1.2rem;line-height:1.9;}
-    .accept-section {background:#fff8e1;padding:3.5rem;border-radius:24px;margin:5rem auto;max-width:900px;text-align:center;box-shadow:0 15px 40px rgba(0,0,0,0.1);}
-    #form-section {display:none;margin-top:4rem;}
-    #accept-checkbox {width:28px;height:28px;margin-right:16px;vertical-align:middle;}
-    #continue-btn {background:#000;color:#FFD700;padding:1.6rem 5rem;font-size:1.8rem;border:none;border-radius:20px;font-weight:700;}
+    /* Minimal helper styles for steps and previews (keeps your existing CSS intact) */
+    .center { text-align:center; }
+    .card { display:inline-block; background:#000;color:#FFD700;border-radius:18px;padding:2.8rem 3.2rem;border:5px solid #FFD700; box-shadow:0 35px 60px rgba(0,0,0,0.25); cursor:pointer; }
+    .step { display:none; margin-top:2.5rem; }
+    .step.active { display:block; animation:fadeIn .28s ease; }
+    @keyframes fadeIn { from {opacity:0; transform:translateY(6px)} to {opacity:1; transform:translateY(0)} }
+    .small-row { display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+    .small-row > * { flex:1 1 220px; }
+    .inline-note { font-size:.95rem; color:#444 }
+    .muted { color:#666; font-size:0.98rem }
+    .btn { background:#000;color:#FFD700;padding:.85rem 1.4rem;border-radius:12px;border:3px solid #FFD700;font-weight:700; cursor:pointer }
+    .btn.ghost { background:transparent;color:#000;border-color:#ddd }
+    .photo-upload { border:2px dashed rgba(0,0,0,0.08); padding:1rem; border-radius:12px; text-align:center; cursor:pointer; }
+    .photo-preview img { width:120px; height:80px; object-fit:cover; border-radius:8px; margin:6px; }
+    .hidden { display:none !important; }
+    @media (max-width:640px){ .card{padding:1.8rem 2.2rem} }
   </style>
 </head>
 <body>
   <div class="page">
+
     <!-- HEADER -->
     <header class="site-header" role="banner">
       <div class="wrap header-inner">
         <a class="logo" href="index.html">
           <svg class="logo-icon" viewBox="0 0 64 64"><path d="M4 56 L32 8 L60 56 Z" fill="currentColor"/></svg>
-          <span class="brand">Propiedades Altura</span>
+          <span class="brand" data-es="Propiedades Altura" data-en="Propiedades Altura">Propiedades Altura</span>
         </a>
+
         <nav class="header-nav">
           <div class="lang" id="lang-switch">
             <button class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
             <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
           </div>
-          <a class="cta mobile-main-cta" href="index.html#properties">Ver Propiedades</a>
+          <a class="cta mobile-main-cta" href="index.html#properties"
+             data-es="Ver Propiedades" data-en="View Properties">Ver Propiedades</a>
         </nav>
       </div>
+
       <p class="tagline" data-es="ORIENTE ANTIOQUEÑO" data-en="EASTERN ANTIOQUIA">ORIENTE ANTIOQUEÑO</p>
     </header>
-<main style="max-width:960px;margin:4rem auto 8rem;padding:0 1rem;">
 
-  <!-- LUXURY TITLE BOX -->
-  <div style="
-    background:#000;
-    color:#FFD700;
-    padding:3.5rem 2rem;
-    border-radius:24px;
-    text-align:center;
-    margin-bottom:4rem;
-    box-shadow:0 25px 60px rgba(0,0,0,0.6);
-  ">
-    <h1 data-es="Representación Exclusiva" data-en="Exclusive Representation"
-        style="font-family:'Playfair Display',serif;
-               font-size:3.4rem;
-               font-weight:700;
-               margin:0;">
-      Representación Exclusiva
-    </h1>
+    <main style="max-width:960px;margin:3.5rem auto 6rem;padding:0 1rem;text-align:center;">
 
-    <p class="lead" style="
-      font-family:'Playfair Display',serif;
-      font-size:1.7rem;
-      margin:1.5rem auto 0;
-      max-width:800px;
-      color:#FFD700;
-      font-weight:600;
-      letter-spacing:0.5px;
-    ">
-      Comisión del 3% sólo cuando se venda · Listado 100% gratuito · Contrato por 6 meses
-    </p>
-  </div>
+      <!-- STEP 1 -->
+      <h1 data-es="Vende tu propiedad" data-en="Sell Your Property">Vende tu propiedad</h1>
+      <p class="muted" data-es="Selecciona cómo quieres publicar tu propiedad" data-en="Choose how you want to list your property">
+        Selecciona cómo quieres publicar tu propiedad
+      </p>
 
-  <!-- BENEFITS (already luxurious but enhanced spacing) -->
-  <div style="
-    background:#000;
-    color:#FFD700;
-    padding:3.5rem;
-    border-radius:24px;
-    text-align:center;
-    margin-bottom:5rem;
-    box-shadow:0 20px 50px rgba(0,0,0,0.5);
-  ">
-    <h2 style="
-      font-family:'Playfair Display',serif;
-      font-size:2.8rem;
-      font-weight:700;
-      margin-bottom:2rem;
-    ">
-      Beneficios Incluidos
-    </h2>
-
-    <ul style="
-      columns:2;
-      column-gap:4rem;
-      font-size:1.4rem;
-      line-height:2;
-      max-width:880px;
-      margin:0 auto;
-      text-align:left;
-      font-family:'Playfair Display',serif;
-    ">
-      <li>Publicación destacada permanente</li>
-      <li>Fotos y video profesional (gratis)</li>
-      <li>Marketing nacional e internacional</li>
-      <li>Asesoría de precios y estrategia</li>
-      <li>Filtrado de visitas serias</li>
-      <li>Negociación y acompañamiento legal</li>
-      <li>Sólo pagas 3% al vender con éxito</li>
-    </ul>
-  </div>
-
-  <!-- FULL CONTRACT TEXT (LUXURY STYLE) -->
-  <div style="
-    background:#000;
-    color:#FFD700;
-    padding:3.5rem 3rem;
-    border-radius:24px;
-    margin:0 auto 5rem;
-    max-width:1000px;
-    box-shadow:0 20px 50px rgba(0,0,0,0.5);
-    font-family:'Playfair Display',serif;
-    line-height:1.8;
-    font-size:1.25rem;
-  ">
-    <h2 style="
-      font-size:2.8rem;
-      margin-top:0;
-      margin-bottom:2rem;
-      font-weight:700;
-      text-align:center;
-    ">
-      Contrato de Representación Exclusiva
-    </h2>
-
-    <p>
-      Por medio del presente contrato, el propietario autoriza en forma exclusiva
-      a <strong style="color:#FFD700;">Propiedades Altura</strong> para la intermediación
-      en la venta de su inmueble durante un período de
-      <strong style="color:#FFD700;">6 meses</strong> contados a partir de la aceptación electrónica.
-    </p>
-
-    <p>
-      La comisión pactada será del
-      <strong style="color:#FFD700;">3% + IVA</strong> sobre el valor final de venta,
-      pagadera únicamente cuando la operación se concrete con éxito.
-    </p>
-
-    <p><strong style="color:#FFD700;">Propiedades Altura</strong> se compromete a:</p>
-
-    <ul style="margin:1rem 0 2rem 1.5rem;">
-      <li>Realizar fotografía profesional, video y tour virtual 360° sin costo</li>
-      <li>Publicar el inmueble en los principales portales inmobiliarios</li>
-      <li>Coordinar y filtrar todas las visitas</li>
-      <li>Asesorar en la fijación del precio de venta</li>
-      <li>Llevar la negociación y preparar promesa y escritura</li>
-      <li>Acompañar hasta la firma de la escritura pública</li>
-    </ul>
-
-    <p>
-      El propietario se compromete a no contratar otros agentes ni vender
-      directamente durante la vigencia del contrato.
-    </p>
-
-    <p>
-      En caso de venta por fuera del contrato dentro de los 6 meses siguientes
-      con un comprador presentado por Propiedades Altura, se pagará igualmente
-      la comisión del 3%.
-    </p>
-
-    <p style="
-      margin-top:2.5rem;
-      font-size:1.35rem;
-      font-weight:700;
-      text-align:center;
-    ">
-      El presente contrato tiene validez legal una vez aceptado electrónicamente.
-    </p>
-  </div>
-
-</main>
-
-
-      <!-- ACCEPTANCE -->
-      <div class="accept-section">
-        <label style="font-size:1.4rem;line-height:1.8;display:flex;align-items:center;justify-content:center;max-width:800px;margin:0 auto 3rem;cursor:pointer;">
-          <input type="checkbox" id="accept-checkbox">
-          <span data-es="He leído y acepto plenamente el contrato de representación exclusiva por 6 meses con comisión del 3%."
-                data-en="I have read and fully accept the 6-month exclusive representation agreement with 3% commission.">
-            He leído y acepto plenamente el contrato de representación exclusiva por 6 meses con comisión del 3%.
-          </span>
-        </label>
-
-        <p style="margin:2rem 0 3rem;font-size:1.1rem;color:#c2410c;">
-          <a href="/docs/exclusiva-propiedades-altura.pdf" target="_blank">Contrato en español (PDF)</a> · 
-          <a href="/docs/exclusive-listing-propiedades-altura.pdf" target="_blank">Contract in English (PDF)</a>
-        </p>
-
-       <button type="button" id="continue-btn" style="
-  background:#000;
-  color:#FFD700;
-  font-family:'Playfair Display', serif;
-  font-size:1.6rem;
-  font-weight:700;
-  padding:1.4rem 2.2rem;
-  border:none;
-  border-radius:18px;
-  cursor:pointer;
-  width:100%;
-  text-align:center;
-  letter-spacing:0.5px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.45);
-  transition:all 0.25s ease;
-">
-  Continuar → Completar Datos de la Propiedad
-</button>
-
-<script>
-  // Optional: hover effect for luxury feeling
-  const btn = document.getElementById('continue-btn');
-  btn.addEventListener('mouseover', () => {
-    btn.style.transform = "translateY(-3px)";
-    btn.style.boxShadow = "0 15px 40px rgba(0,0,0,0.65)";
-  });
-  btn.addEventListener('mouseout', () => {
-    btn.style.transform = "translateY(0)";
-    btn.style.boxShadow = "0 10px 30px rgba(0,0,0,0.45)";
-  });
-</script>
-
+      <div style="margin:3rem 0;">
+        <div id="exclusive-card" class="card" role="button" tabindex="0" aria-pressed="false">
+          <div style="font-size:2.2rem;line-height:1.05;"
+               data-es="Representación<br>Exclusiva" data-en="Exclusive<br>Representation">
+            Representación<br>Exclusiva
+          </div>
+          <div style="font-size:1rem;margin-top:1rem;"
+               data-es="Comisión 3% al vender · Gratis" data-en="3% commission on sale · Free">
+            Comisión 3% al vender · Gratis
+          </div>
+        </div>
       </div>
 
-      <!-- COMPLETE FORM – ONLY APPEARS AFTER ACCEPTING -->
-      <div id="form-section">
-        <form class="form-grid" name="exclusive" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
-          <input type="hidden" name="listing_type" value="exclusive">
+      <!-- STEP 2: quick pre-questions -->
+      <section id="step-2" class="step" aria-hidden="true">
+        <h2 data-es="Antes de continuar" data-en="Before you continue">Antes de continuar</h2>
+        <p class="muted" data-es="Contesta estas preguntas rápidas para ayudarnos a calificar tu propiedad."
+           data-en="Answer these quick questions to help us qualify your property.">
+          Contesta estas preguntas rápidas para ayudarnos a calificar tu propiedad.
+        </p>
 
-          <div><label>Nombre completo *</label><input type="text" name="name" required placeholder="John Doe"></div>
-          <div><label>Email *</label><input type="email" name="_replyto" required placeholder="john@example.com"></div>
-          <div><label>Teléfono / WhatsApp *</label><input type="tel" name="phone" required placeholder="+57 300 123 4567"></div>
-          <div><label>Ciudad / Municipio</label><input type="text" name="city" placeholder="Guarne, Rionegro..."></div>
-          <div><label>Tipo de propiedad</label>
-            <select name="property_type">
-              <option>Casa</option><option>Apartamento</option><option>Finca</option><option>Lote</option><option>Local comercial</option><option>Bodega</option>
+        <form id="pre-questions" class="form-grid" onsubmit="return false;" style="margin-top:1.5rem;text-align:left;max-width:760px;margin-left:auto;margin-right:auto;">
+          <div>
+            <label data-es="Tipo de propiedad" data-en="Property type">Tipo de propiedad</label>
+            <select name="pre_property_type" id="pre_property_type" required>
+              <option value="" data-es="Selecciona..." data-en="Select...">Selecciona...</option>
+              <option value="Casa" data-es="Casa" data-en="House">Casa</option>
+              <option value="Apartamento" data-es="Apartamento" data-en="Apartment">Apartamento</option>
+              <option value="Finca" data-es="Finca" data-en="Farm">Finca</option>
+              <option value="Lote" data-es="Lote" data-en="Lot">Lote</option>
+              <option value="Local comercial" data-es="Local comercial" data-en="Commercial space">Local comercial</option>
             </select>
           </div>
-          <div><label>Área construida (m²)</label><input type="number" name="area_m2" placeholder="250"></div>
-          <div><label>Área lote (m²)</label><input type="number" name="lot_size" placeholder="1000"></div>
-          <div><label>Habitaciones</label><input type="number" name="bedrooms" placeholder="3"></div>
-          <div><label>Baños</label><input type="number" name="bathrooms" placeholder="2"></div>
-          <div><label>Parqueaderos</label><input type="number" name="parking" placeholder="2"></div>
-          <div><label>Cuartos adicionales / Rooms</label><input type="number" name="extra_rooms" placeholder="1"></div>
-          <div><label>Precio esperado de venta</label><input type="number" name="asking_price" placeholder="500000000"></div>
-          <!-- OWNER FINANCING QUESTION -->
-<div class="full-width" style="margin:2rem 0;">
-  <label style="font-size:1.25rem;display:flex;align-items:flex-start;cursor:pointer;">
-    <input type="checkbox" name="owner_financing" id="owner-financing-checkbox"
-           style="width:26px;height:26px;margin-right:16px;margin-top:6px;flex-shrink:0;">
-    <span style="color:#000;line-height:1.5;">
-      ¿Estás dispuesto(a) a ofrecer <strong>financiación directa</strong> al comprador?<br>
-      <small style="color:#16a34a;font-weight:600;">
-        (Esto puede aumentar el número de ofertas y mejorar el precio final)
-      </small>
-    </span>
-  </label>
 
-  <!-- OPTIONAL: visible only if checkbox is checked -->
-  <div id="financing-details" style="display:none;margin-top:1rem;padding:1rem;border-left:4px solid #16a34a;background:#f0fdf4;border-radius:8px;">
-    <label>Monto mínimo de cuota inicial *</label>
-    <input type="number" name="down_payment_min" placeholder="Ej. 30,000,000">
+          <div>
+            <label data-es="Rango de precio" data-en="Price range">Rango de precio</label>
+            <select name="pre_price_range" id="pre_price_range" required>
+              <option value="" data-es="Selecciona..." data-en="Select...">Selecciona...</option>
+              <option value="0-100M" data-es="0 - 100.000.000 COP" data-en="0 - 100,000,000 COP">0 - 100.000.000 COP</option>
+              <option value="100-300M" data-es="100.000.000 - 300.000.000 COP" data-en="100,000,000 - 300,000,000 COP">100.000.000 - 300.000.000 COP</option>
+              <option value="300-600M" data-es="300.000.000 - 600.000.000 COP" data-en="300,000,000 - 600,000,000 COP">300.000.000 - 600.000.000 COP</option>
+              <option value="600M+" data-es="Más de 600.000.000 COP" data-en="More than 600,000,000 COP">Más de 600.000.000 COP</option>
+            </select>
+          </div>
 
-    <label style="display:block;margin-top:1rem;">Plazo máximo (meses) *</label>
-    <input type="number" name="max_months" placeholder="Ej. 36">
-  </div>
-</div>
+          <div>
+            <label data-es="¿La propiedad está lista para vender?" data-en="Is the property ready to sell?">¿La propiedad está lista para vender?</label>
+            <select id="pre_ready" required>
+              <option value="" data-es="Selecciona..." data-en="Select...">Selecciona...</option>
+              <option value="si" data-es="Sí" data-en="Yes">Sí</option>
+              <option value="no" data-es="No" data-en="No">No</option>
+            </select>
+          </div>
 
-<script>
-  // Show/hide additional financing fields
-  const finBox = document.getElementById("owner-financing-checkbox");
-  const finDetails = document.getElementById("financing-details");
-  if (finBox) {
-    finBox.addEventListener("change", () => {
-      finDetails.style.display = finBox.checked ? "block" : "none";
-    });
-  }
-</script>
+          <div>
+            <label data-es="Ciudad / Municipio" data-en="City / Municipality">Ciudad / Municipio</label>
+            <input type="text" id="pre_city" placeholder="Guarne, Rionegro..." required>
+          </div>
 
-   
-          <!-- MAP – NOW WORKING -->
-          <div class="full-width">
-            <label>Haz clic en el mapa para seleccionar ubicación</label>
-            <div id="map" style="height:420px;margin:1rem 0;border-radius:16px;"></div>
+          <div>
+            <label data-es="Método de contacto preferido" data-en="Preferred contact method">Método de contacto preferido</label>
+            <select id="pre_contact" required>
+              <option value="" data-es="Selecciona..." data-en="Select...">Selecciona...</option>
+              <option value="whatsapp" data-es="WhatsApp" data-en="WhatsApp">WhatsApp</option>
+              <option value="telefono" data-es="Teléfono" data-en="Phone">Teléfono</option>
+              <option value="email" data-es="Email" data-en="Email">Email</option>
+            </select>
+          </div>
+
+          <div style="text-align:center;margin-top:1.4rem;">
+            <button id="pre-continue" class="btn" type="button" disabled data-es="Continuar" data-en="Continue">Continuar</button>
+            <div style="margin-top:.5rem" class="inline-note" data-es="Necesitamos estas respuestas antes de continuar." data-en="We need these answers before continuing.">
+              Necesitamos estas respuestas antes de continuar.
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- STEP 3: Acceptance checkbox (contract excerpt + full contract appears below) -->
+      <section id="step-3" class="step" aria-hidden="true">
+        <h2 data-es="Contrato de Representación" data-en="Representation Agreement">Contrato de Representación</h2>
+
+        <div style="max-width:900px;margin:0 auto;text-align:left;">
+          <div class="contract-box" style="text-align:left; background:#fff8e1; padding:1.2rem 1.4rem; border-radius:12px;">
+            <p data-es="Por favor lee el contrato completo más abajo. Marca la casilla para aceptar y continuar con el formulario completo."
+               data-en="Please read the full contract below. Check the box to accept and continue to the full form.">
+              Por favor lee el contrato completo más abajo. Marca la casilla para aceptar y continuar con el formulario completo.
+            </p>
+          </div>
+
+          <div style="text-align:center;margin-top:1.4rem;">
+            <label style="cursor:pointer;font-size:1.05rem;">
+              <input type="checkbox" id="accept-checkbox">
+              <span style="margin-left:.6rem" data-es="He leído y acepto el contrato de representación exclusiva (6 meses, comisión 3%)."
+                                            data-en="I have read and accept the exclusive representation agreement (6 months, 3% commission).">
+                He leído y acepto el contrato de representación exclusiva (6 meses, comisión 3%).
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:1.2rem;">
+          <button id="accept-continue" class="btn" type="button" disabled data-es="Completar formulario" data-en="Complete form">Completar formulario</button>
+        </div>
+      </section>
+
+      <!-- STEP 4: Full bilingual contract text (from your PDF) -->
+      <section id="contract-full" class="step" aria-hidden="true" style="margin-top:2rem;">
+        <div class="contract-box" style="max-width:1000px;margin:0 auto;padding:2rem;border-radius:16px;background:#000;color:#FFD700;box-shadow:0 20px 50px rgba(0,0,0,0.5);font-family:'Playfair Display',serif;">
+          <h2 data-es="REPRESENTACIÓN EXCLUSIVA" data-en="EXCLUSIVE REPRESENTATION"
+              style="font-size:2rem;margin-top:0;text-align:center;">REPRESENTACIÓN EXCLUSIVA</h2>
+
+          <p style="margin-top:1rem;" data-es="Propiedades Altura – Rionegro & Oriente Antioqueño"
+                                     data-en="Propiedades Altura – Rionegro & Eastern Antioquia">
+            Propiedades Altura – Rionegro & Oriente Antioqueño
+          </p>
+
+          <p style="margin-top:1rem; font-weight:600;" data-es="La forma más rápida, segura y rentable de vender su propiedad"
+                                                           data-en="The fastest, safest and most profitable way to sell your property">
+            La forma más rápida, segura y rentable de vender su propiedad
+          </p>
+
+          <p style="margin-top:1.4rem;" data-es="Estimado propietario," data-en="Dear owner,">
+            Estimado propietario,
+          </p>
+
+          <p data-es="En Propiedades Altura ofrecemos dos opciones para publicar su inmueble:"
+             data-en="At Propiedades Altura we offer two options to list your property:">
+            En Propiedades Altura ofrecemos dos opciones para publicar su inmueble:
+          </p>
+
+          <ol style="margin-left:1.2rem;">
+            <li data-es="Publicación abierta (gratuita) — Su propiedad aparece en nuestra página web sin costo alguno, pero sin prioridad ni estrategia comercial activa."
+                data-en="Open listing (free) — Your property appears on our website at no cost, but without priority or active commercial strategy.">
+              Publicación abierta (gratuita) — Su propiedad aparece en nuestra página web sin costo alguno, pero sin prioridad ni estrategia comercial activa.
+            </li>
+            <li data-es="Representación Exclusiva – 3% + IVA del valor de venta (el estándar en Colombia y en todo el mundo para ventas profesionales)"
+                data-en="Exclusive Representation – 3% + VAT of the sale value (the standard in Colombia and worldwide for professional sales)">
+              Representación Exclusiva – 3% + IVA del valor de venta (el estándar en Colombia y en todo el mundo para ventas profesionales)
+            </li>
+          </ol>
+
+          <p style="margin-top:1rem;" data-es="¿Por qué el 97% de las propiedades que se venden rápido en el Oriente Antioqueño están bajo contrato exclusivo?"
+                                       data-en="Why are 97% of the properties that sell quickly in Eastern Antioquia under exclusive contract?">
+            ¿Por qué el 97% de las propiedades que se venden rápido en el Oriente Antioqueño están bajo contrato exclusivo?
+          </p>
+
+          <ul style="margin-left:1.2rem; line-height:1.7;">
+            <li data-es="Máxima exposición: Publicamos su propiedad en más de 12 portales nacionales e internacionales (FincaRaiz, Metrocuadrado, Properati, Habitamos, etc.) y en nuestras redes premium."
+                data-en="Maximum exposure: We publish your property on more than 12 national and international portals (FincaRaiz, Metrocuadrado, Properati, Habitamos, etc.) and on our premium networks.">
+              Máxima exposición: Publicamos su propiedad en más de 12 portales nacionales e internacionales (FincaRaiz, Metrocuadrado, Properati, Habitamos, etc.) y en nuestras redes premium.
+            </li>
+
+            <li data-es="Fotografía profesional + video + tour virtual 360° incluidos sin costo adicional."
+                data-en="Professional photography + video + 360° virtual tour included at no additional cost.">
+              Fotografía profesional + video + tour virtual 360° incluidos sin costo adicional.
+            </li>
+
+            <li data-es="Estrategia de precio realista basada en avalúo comercial gratuito."
+                data-en="Realistic pricing strategy based on a free commercial appraisal.">
+              Estrategia de precio realista basada en avalúo comercial gratuito.
+            </li>
+
+            <li data-es="Filtrado serio de clientes: Solo mostramos la propiedad a compradores calificados y con capacidad de pago."
+                data-en="Serious client filtering: We only show the property to qualified buyers with purchasing power.">
+              Filtrado serio de clientes: Solo mostramos la propiedad a compradores calificados y con capacidad de pago.
+            </li>
+
+            <li data-es="Asesoría jurídica y acompañamiento total hasta la escritura pública."
+                data-en="Legal advice and full accompaniment up to the public deed signing.">
+              Asesoría jurídica y acompañamiento total hasta la escritura pública.
+            </li>
+
+            <li data-es="Prioridad absoluta: su inmueble aparece primero en nuestra página y recibe el 100% de nuestra atención comercial."
+                data-en="Absolute priority: your property appears first on our page and receives 100% of our commercial attention.">
+              Prioridad absoluta: su inmueble aparece primero en nuestra página y recibe el 100% de nuestra atención comercial.
+            </li>
+
+            <li data-es="Reporte semanal de visitas, comentarios y ofertas."
+                data-en="Weekly reports of visits, comments and offers.">
+              Reporte semanal de visitas, comentarios y ofertas.
+            </li>
+
+            <li data-es="Garantía de confidencialidad y control total del proceso."
+                data-en="Confidentiality guarantee and total control of the process.">
+              Garantía de confidencialidad y control total del proceso.
+            </li>
+          </ul>
+
+          <p style="margin-top:1rem;" data-es="El 3% + IVA se paga únicamente al momento de la firma de la escritura y solo si la propiedad se vende. Si no se vende, usted no paga absolutamente nada."
+                                       data-en="The 3% + VAT is only paid at the time of the deed signing and only if the property is sold. If it is not sold, you pay absolutely nothing.">
+            El 3% + IVA se paga únicamente al momento de la firma de la escritura y solo si la propiedad se vende. Si no se vende, usted no paga absolutamente nada.
+          </p>
+
+          <p style="margin-top:1rem;" data-es="En promedio, las propiedades con representación exclusiva se venden: • 42% más rápido • 8-12% por encima del precio inicial esperado"
+                                       data-en="On average, properties with exclusive representation sell: • 42% faster • 8-12% above the expected initial price">
+            En promedio, las propiedades con representación exclusiva se venden:
+            • 42% más rápido
+            • 8-12% por encima del precio inicial esperado
+          </p>
+
+          <p style="margin-top:1rem;" data-es="Porque los compradores serios saben que detrás de un contrato exclusivo hay un profesional comprometido con cerrar la venta al mejor precio posible."
+                                       data-en="Because serious buyers know that behind an exclusive contract there is a professional committed to closing the sale at the best possible price.">
+            Porque los compradores serios saben que detrás de un contrato exclusivo hay un profesional comprometido con cerrar la venta al mejor precio posible.
+          </p>
+
+          <p style="margin-top:1.2rem;" data-es="¿Desea que su propiedad sea la próxima en venderse rápido y al mayor valor posible?"
+                                       data-en="Do you want your property to be the next to sell quickly and at the highest possible value?">
+            ¿Desea que su propiedad sea la próxima en venderse rápido y al mayor valor posible?
+          </p>
+
+          <p data-es="Contáctenos hoy mismo y con gusto le explicamos el contrato sin compromiso."
+             data-en="Contact us today and we will gladly explain the contract without obligation.">
+            Contáctenos hoy mismo y con gusto le explicamos el contrato sin compromiso.
+          </p>
+
+          <p style="margin-top:1.4rem;" data-es="Con gusto de servirle," data-en="Sincerely,">
+            Con gusto de servirle,
+          </p>
+
+          <p style="margin-top:1rem;font-weight:700;" data-es="Eliana Sepulveda Delgado — Director Comercial"
+                                                     data-en="Eliana Sepulveda Delgado — Commercial Director">
+            Eliana Sepulveda Delgado — Director Comercial
+          </p>
+
+          <p data-es="+57 321 767 1593 — hola@propiedadesaltura.com — www.propiedadesaltura.com"
+             data-en="+57 321 767 1593 — hola@propiedadesaltura.com — www.propiedadesaltura.com">
+            +57 321 767 1593 — hola@propiedadesaltura.com — www.propiedadesaltura.com
+          </p>
+        </div>
+      </section>
+
+      <!-- FULL FORM (hidden until acceptance + continue) -->
+      <section id="step-4" class="step" aria-hidden="true" style="margin-top:2rem;">
+        <h2 data-es="Completar datos de la propiedad" data-en="Complete property details">Completar datos de la propiedad</h2>
+
+        <form id="full-form" class="form-grid" name="exclusive" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" style="max-width:920px;margin:0 auto;text-align:left;">
+
+          <input type="hidden" name="listing_type" value="exclusive">
+
+          <!-- CONTACT -->
+          <div><label data-es="Nombre completo *" data-en="Full name *">Nombre completo *</label>
+            <input type="text" name="name" required placeholder="John Doe"></div>
+
+          <div><label data-es="Email *" data-en="Email *">Email *</label>
+            <input type="email" name="_replyto" required placeholder="john@example.com"></div>
+
+          <div><label data-es="Teléfono / WhatsApp *" data-en="Phone / WhatsApp *">Teléfono / WhatsApp *</label>
+            <input type="tel" name="phone" required placeholder="+57 300 123 4567"></div>
+
+          <!-- PROPERTY TYPE -->
+          <div>
+            <label data-es="Tipo de propiedad" data-en="Property type">Tipo de propiedad</label>
+            <select name="property_type" id="full_property_type">
+              <option value="" data-es="Selecciona..." data-en="Select...">Selecciona...</option>
+              <option value="Casa" data-es="Casa" data-en="House">Casa</option>
+              <option value="Apartamento" data-es="Apartamento" data-en="Apartment">Apartamento</option>
+              <option value="Finca" data-es="Finca" data-en="Farm">Finca</option>
+              <option value="Lote" data-es="Lote" data-en="Lot">Lote</option>
+              <option value="Local comercial" data-es="Local comercial" data-en="Commercial space">Local comercial</option>
+            </select>
+          </div>
+
+          <!-- REQUIRED FIELDS YOU REQUESTED -->
+          <div><label data-es="Área construida (m²) *" data-en="Built area (m²) *">Área construida (m²) *</label>
+            <input type="number" name="area_m2" required placeholder="250"></div>
+
+          <div><label data-es="Área lote (m²) *" data-en="Lot area (m²) *">Área lote (m²) *</label>
+            <input type="number" name="lot_size" required placeholder="1000"></div>
+
+          <div><label data-es="Habitaciones *" data-en="Bedrooms *">Habitaciones *</label>
+            <input type="number" name="bedrooms" required placeholder="3"></div>
+
+          <div><label data-es="Baños *" data-en="Bathrooms *">Baños *</label>
+            <input type="number" name="bathrooms" required placeholder="2"></div>
+
+          <div><label data-es="Parqueaderos / Garaje *" data-en="Parking / Garage *">Parqueaderos / Garaje *</label>
+            <input type="number" name="parking" required placeholder="2"></div>
+
+          <div><label data-es="Número de cuartos (rooms) *" data-en="Number of rooms *">Número de cuartos (rooms) *</label>
+            <input type="number" name="rooms" required placeholder="5"></div>
+
+          <div><label data-es="Precio esperado" data-en="Expected sale price">Precio esperado</label>
+            <input type="number" name="asking_price" placeholder="500000000"></div>
+
+          <!-- OWNER FINANCING (luxury style kept minimal here) -->
+          <div class="full-width" style="margin:1.2rem 0;">
+            <label style="display:flex;align-items:flex-start;cursor:pointer;">
+              <input type="checkbox" name="open_to_financing" id="open_to_financing" style="width:24px;height:24px;margin-right:12px;">
+              <span data-es="Estoy abierto a considerar financiación directa con el comprador" data-en="I am open to considering direct owner financing with the buyer">
+                Estoy abierto a considerar financiación directa con el comprador
+              </span>
+            </label>
+
+            <div id="financing-terms" style="display:none;margin-top:.8rem;">
+              <label data-es="Condiciones de financiación (plazo, cuota inicial, tasa)" data-en="Financing terms (term, down payment, rate)">
+                Condiciones de financiación (plazo, cuota inicial, tasa)
+              </label>
+              <input type="text" name="financing_terms" placeholder="Ej. 60 meses, 20% inicial, tasa fija...">
+            </div>
+          </div>
+
+          <!-- ADDITIONAL PROFESSIONAL QUESTIONS (optional) -->
+          <h3 style="margin-top:1.6rem;" data-es="Detalle adicional de la propiedad" data-en="Additional property details">Detalle adicional de la propiedad</h3>
+
+          <div>
+            <label data-es="Año de construcción" data-en="Year built">Año de construcción</label>
+            <input type="number" name="year_built" placeholder="2010">
+          </div>
+
+          <div>
+            <label data-es="Estrato" data-en="Socioeconomic level">Estrato</label>
+            <input type="number" name="estrato" placeholder="4">
+          </div>
+
+          <div>
+            <label data-es="Estado general de la propiedad" data-en="General condition of the property">Estado general de la propiedad</label>
+            <select name="condition">
+              <option value="" data-es="Selecciona..." data-en="Select...">Selecciona...</option>
+              <option value="Excelente" data-es="Excelente" data-en="Excellent">Excelente</option>
+              <option value="Bueno" data-es="Bueno" data-en="Good">Bueno</option>
+              <option value="Requiere mejoras" data-es="Requiere mejoras" data-en="Needs improvements">Requiere mejoras</option>
+            </select>
+          </div>
+
+          <div>
+            <label data-es="¿La propiedad está amoblada?" data-en="Is the property furnished?">¿La propiedad está amoblada?</label>
+            <select name="furnished">
+              <option value="" data-es="Selecciona..." data-en="Select...">Selecciona...</option>
+              <option value="si" data-es="Sí" data-en="Yes">Sí</option>
+              <option value="no" data-es="No" data-en="No">No</option>
+            </select>
+          </div>
+
+          <div>
+            <label data-es="¿Tiene administración / HOA?" data-en="Has HOA / admin fees?">¿Tiene administración / HOA?</label>
+            <select name="hoa">
+              <option value="" data-es="Selecciona..." data-en="Select...">Selecciona...</option>
+              <option value="si" data-es="Sí" data-en="Yes">Sí</option>
+              <option value="no" data-es="No" data-en="No">No</option>
+            </select>
+          </div>
+
+          <div>
+            <label data-es="Valor administración (si aplica)" data-en="HOA fee (if applies)">Valor administración (si aplica)</label>
+            <input type="text" name="hoa_amount" placeholder="Ej. $120.000">
+          </div>
+
+          <div>
+            <label data-es="¿Hay inquilinos?" data-en="Is there a tenant?">¿Hay inquilinos?</label>
+            <select name="tenant_present">
+              <option value="" data-es="Selecciona..." data-en="Select...">Selecciona...</option>
+              <option value="si" data-es="Sí" data-en="Yes">Sí</option>
+              <option value="no" data-es="No" data-en="No">No</option>
+            </select>
+          </div>
+
+          <div>
+            <label data-es="Fecha disponible para entrega" data-en="Available move-out date">Fecha disponible para entrega</label>
+            <input type="date" name="available_date">
+          </div>
+
+          <!-- MAP PICKER -->
+          <div class="full-width" style="margin-top:1rem;">
+            <label data-es="Haz clic en el mapa para seleccionar ubicación exacta" data-en="Click on the map to select exact location">Haz clic en el mapa para seleccionar ubicación exacta</label>
+            <div id="map" style="height:420px;margin:1rem 0;border-radius:12px;"></div>
             <input type="hidden" name="latitude" id="lat">
             <input type="hidden" name="longitude" id="lng">
             <input type="hidden" name="google_maps_link" id="maps-link">
@@ -298,104 +442,215 @@
             <a id="open-map" href="#" target="_blank" style="display:none;color:#1d4ed8;">→ Abrir en Google Maps</a></div>
           </div>
 
-
           <!-- PHOTOS -->
-          <div class="full-width">
-            <label>Sube fotos de tu propiedad (máx. 5)</label>
-            <div class="photo-upload">
+          <div class="full-width" style="margin-top:1rem;">
+            <label data-es="Sube fotos de tu propiedad (máx. 10)" data-en="Upload photos of your property (max 10)">Sube fotos de tu propiedad (máx. 10)</label>
+            <div class="photo-upload" id="photoDrop">
               <input type="file" name="photos" id="photos" accept="image/*" multiple style="display:none;">
-              <p><strong>Clic o arrastra aquí</strong><br><small>Máximo 5 fotos</small></p>
+              <p><strong data-es="Clic o arrastra aquí" data-en="Click or drag here">Clic o arrastra aquí</strong><br><small data-es="Máximo 10 fotos" data-en="Up to 10 photos">Máximo 10 fotos</small></p>
               <div class="photo-preview" id="preview"></div>
             </div>
           </div>
 
-          <div class="full-width"><label>Mensaje adicional</label><textarea name="message" placeholder="Urgencia, condiciones especiales..."></textarea></div>
+          <!-- ADDITIONAL MESSAGE -->
+          <div class="full-width" style="margin-top:1rem;">
+            <label data-es="Mensaje adicional" data-en="Additional message">Mensaje adicional</label>
+            <textarea name="message" placeholder="Urgencia, condiciones especiales..."></textarea>
+          </div>
 
-          <div class="full-width">
-            <button type="submit" style="background:#000;color:#FFD700;padding:1.8rem;font-size:1.8rem;border:none;border-radius:20px;">
+          <!-- SUBMIT -->
+          <div class="full-width" style="margin-top:1.6rem;text-align:center;">
+            <button type="submit" class="btn" style="padding:1.1rem 2.4rem;font-size:1.05rem;" data-es="Enviar Solicitud de Representación Exclusiva" data-en="Send Exclusive Representation Request">
               Enviar Solicitud de Representación Exclusiva
             </button>
           </div>
+
         </form>
-      </div>
+      </section>
     </main>
   </div>
 
   <!-- SCRIPTS -->
-  <script src="app.js" defer></script>
   <script>
-    // Language toggle
-    document.querySelectorAll(".lang-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const lang = btn.dataset.lang;
-        document.documentElement.lang = lang;
-        document.querySelectorAll("[data-es],[data-en]").forEach(el => {
-          el.textContent = lang === "es" ? el.dataset.es : el.dataset.en;
-        });
-        document.querySelectorAll(".lang-btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
-      });
-    });
-
-    // Show/hide form when checkbox changes
-    const checkbox = document.getElementById('accept-checkbox');
-    const formSection = document.getElementById('form-section');
-    const continueBtn = document.getElementById('continue-btn');
-
-    checkbox.addEventListener('change', function() {
-      if (this.checked) {
-        formSection.style.display = 'block';
-        continueBtn.style.display = 'none';
-        formSection.scrollIntoView({behavior: 'smooth'});
-      } else {
-        formSection.style.display = 'none';
-        continueBtn.style.display = 'block';
-      }
-    });
-
-    // Photo preview
-    const input = document.getElementById('photos');
-    const preview = document.getElementById('preview');
-    const uploadBox = document.querySelector('.photo-upload');
-    uploadBox.addEventListener('click', () => input.click());
-    ['dragover','dragenter'].forEach(e => uploadBox.addEventListener(e, ev => {ev.preventDefault(); uploadBox.style.borderColor='#1d4ed8';}));
-    ['dragleave','drop'].forEach(e => uploadBox.addEventListener(e, ev => {ev.preventDefault(); uploadBox.style.borderColor='#ccc';}));
-    uploadBox.addEventListener('drop', e => { input.files = e.dataTransfer.files; handleFiles(e.dataTransfer.files); });
-    input.addEventListener('change', () => handleFiles(input.files));
-    function handleFiles(files) {
-      preview.innerHTML = '';
-      for (let i = 0; i < Math.min(files.length, 5); i++) {
-        if (files[i].type.startsWith('image/')) {
-          const img = document.createElement('img');
-          img.src = URL.createObjectURL(files[i]);
-          img.style.height='130px'; img.style.margin='6px'; img.style.borderRadius='10px';
-          preview.appendChild(img);
+    /* ---------- Language switching (applies literal translations) ---------- */
+    function applyLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-es][data-en]').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (!text) return;
+        // For elements that are not inputs/selects, swap text content.
+        if (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA' && el.tagName !== 'SELECT') {
+          // If element has no child elements, replace textContent
+          if (el.children.length === 0) el.textContent = text;
+          else {
+            // preserve nested tags: replace first text node
+            const first = el.firstChild;
+            if (first && first.nodeType === Node.TEXT_NODE) first.nodeValue = text;
+            else el.textContent = text;
+          }
+        } else {
+          // for select/options and inputs we rely on data attributes already on option tags when present
+          // placeholders for inputs were left as-is to avoid overwriting localized placeholders unexpectedly
         }
-      }
-      if (files.length > 5) preview.innerHTML += `<small style="color:red;">Solo las primeras 5 fotos se enviarán.</small>`;
+      });
+
+      // update option texts
+      document.querySelectorAll('option[data-es][data-en]').forEach(opt => {
+        const t = opt.getAttribute('data-' + lang);
+        if (t) opt.textContent = t;
+      });
     }
 
-    // MAP – 100% WORKING
-    window.initSellMap = function() {
-      const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 6.1935, lng: -75.3832 },
-        zoom: 10,
+    document.querySelectorAll('.lang-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const lang = btn.dataset.lang;
+        applyLanguage(lang);
+        document.querySelectorAll('.lang-btn').forEach(b=> b.setAttribute('aria-pressed', b.dataset.lang===lang));
       });
-      let marker = null;
-      map.addListener("click", e => {
-        const lat = e.latLng.lat();
-        const lng = e.latLng.lng();
-        if (marker) marker.setPosition(e.latLng);
-        else marker = new google.maps.Marker({ position: e.latLng, map });
-        document.getElementById("lat").value = lat.toFixed(6);
-        document.getElementById("lng").value = lng.toFixed(6);
-        const url = `https://www.google.com/maps?q=${lat},${lng}&z=18`;
-        document.getElementById("maps-link").value = url;
-        document.getElementById("coords").textContent = `Guardado: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-        document.getElementById("open-map").href = url;
-        document.getElementById("open-map").style.display = "inline";
+    });
+
+    // initialize Spanish
+    (function(){ applyLanguage('es'); })();
+
+
+    /* ---------- Step flow logic ---------- */
+    const card = document.getElementById('exclusive-card');
+    const step2 = document.getElementById('step-2');
+    const preContinue = document.getElementById('pre-continue');
+    const step3 = document.getElementById('step-3');
+    const acceptCheckbox = document.getElementById('accept-checkbox');
+    const acceptContinue = document.getElementById('accept-continue');
+    const contractFull = document.getElementById('contract-full');
+    const step4 = document.getElementById('step-4');
+
+    card.addEventListener('click', ()=> {
+      step2.classList.add('active'); step2.setAttribute('aria-hidden','false');
+      card.setAttribute('aria-pressed','true');
+      step2.scrollIntoView({behavior:'smooth'});
+    });
+    card.addEventListener('keypress', (e)=> { if (e.key === 'Enter' || e.key === ' ') card.click(); });
+
+    function checkPreQuestions() {
+      const type = document.getElementById('pre_property_type').value;
+      const price = document.getElementById('pre_price_range').value;
+      const ready = document.getElementById('pre_ready').value;
+      const city = document.getElementById('pre_city').value.trim();
+      const contact = document.getElementById('pre_contact').value;
+      preContinue.disabled = !(type && price && ready && city && contact);
+    }
+
+    ['change','input'].forEach(ev => {
+      document.getElementById('pre_property_type').addEventListener(ev, checkPreQuestions);
+      document.getElementById('pre_price_range').addEventListener(ev, checkPreQuestions);
+      document.getElementById('pre_ready').addEventListener(ev, checkPreQuestions);
+      document.getElementById('pre_city').addEventListener(ev, checkPreQuestions);
+      document.getElementById('pre_contact').addEventListener(ev, checkPreQuestions);
+    });
+
+    preContinue.addEventListener('click', ()=> {
+      // show contract + acceptance (Step 3) and reveal full contract area
+      step3.classList.add('active'); step3.setAttribute('aria-hidden','false');
+      contractFull.classList.add('active'); contractFull.setAttribute('aria-hidden','false');
+      // copy pre-answers into full form
+      const fullType = document.getElementById('full_property_type');
+      if (fullType) fullType.value = document.getElementById('pre_property_type').value || '';
+      step3.scrollIntoView({behavior:'smooth'});
+    });
+
+    acceptCheckbox.addEventListener('change', ()=> {
+      acceptContinue.disabled = !acceptCheckbox.checked;
+    });
+
+    acceptContinue.addEventListener('click', ()=> {
+      if (!acceptCheckbox.checked) return;
+      step4.classList.add('active'); step4.setAttribute('aria-hidden','false');
+      step4.scrollIntoView({behavior:'smooth'});
+    });
+
+
+    /* ---------- Photo upload (drag & drop) ---------- */
+    (function(){
+      const input = document.getElementById('photos');
+      const drop = document.getElementById('photoDrop');
+      const preview = document.getElementById('preview');
+      const MAX = 10;
+
+      if (!drop) return;
+      drop.addEventListener('click', ()=> input.click());
+      drop.addEventListener('dragover', e=> { e.preventDefault(); drop.style.opacity=.95; });
+      drop.addEventListener('dragleave', e=> { e.preventDefault(); drop.style.opacity=1; });
+      drop.addEventListener('drop', e=> {
+        e.preventDefault(); drop.style.opacity=1;
+        if (e.dataTransfer && e.dataTransfer.files) {
+          input.files = e.dataTransfer.files;
+          updatePreview(input.files);
+        }
       });
-    };
+
+      input.addEventListener('change', ()=> updatePreview(input.files));
+
+      function updatePreview(files) {
+        preview.innerHTML = '';
+        Array.from(files || []).slice(0,MAX).forEach(file=>{
+          if (!file.type.startsWith('image/')) return;
+          const img = document.createElement('img');
+          img.alt = file.name;
+          img.src = URL.createObjectURL(file);
+          preview.appendChild(img);
+        });
+        if ((files || []).length > MAX) preview.innerHTML += `<small style="color:red;">Solo las primeras ${MAX} fotos se enviarán.</small>`;
+      }
+    })();
+
+
+    /* ---------- Google Maps picker ---------- */
+    function initSellMap() {
+      try {
+        const latInput = document.getElementById('lat');
+        const lngInput = document.getElementById('lng');
+        const linkInput = document.getElementById('maps-link');
+        const coordsEl = document.getElementById('coords');
+        const openMap = document.getElementById('open-map');
+        const mapEl = document.getElementById('map');
+
+        const defaultCenter = { lat: 6.1935, lng: -75.3832 };
+        const map = new google.maps.Map(mapEl, { center: defaultCenter, zoom: 11, streetViewControl:false, mapTypeControl:false });
+
+        let marker = null;
+        map.addListener('click', (e)=> {
+          const pos = e.latLng;
+          if (marker) marker.setPosition(pos);
+          else marker = new google.maps.Marker({ position: pos, map });
+          const lat = pos.lat().toFixed(6);
+          const lng = pos.lng().toFixed(6);
+          if (latInput) latInput.value = lat;
+          if (lngInput) lngInput.value = lng;
+          if (linkInput) linkInput.value = `https://www.google.com/maps?q=${lat},${lng}&z=18`;
+          if (coordsEl) coordsEl.textContent = `Guardado: ${parseFloat(lat).toFixed(5)}, ${parseFloat(lng).toFixed(5)}`;
+          if (openMap) { openMap.href = linkInput.value; openMap.style.display = 'inline'; }
+        });
+
+        // restore marker if inputs have values (in case of back-navigation)
+        if (document.getElementById('lat') && document.getElementById('lng') && document.getElementById('lat').value && document.getElementById('lng').value) {
+          const p = { lat: parseFloat(document.getElementById('lat').value), lng: parseFloat(document.getElementById('lng').value) };
+          new google.maps.Marker({ position: p, map });
+          map.setCenter(p);
+          map.setZoom(15);
+        }
+      } catch(e) {
+        console.error('initSellMap error', e);
+      }
+    }
+    window.initSellMap = initSellMap;
+
+
+    /* ---------- Financing toggle show/hide terms ---------- */
+    const openFin = document.getElementById('open_to_financing');
+    if (openFin) openFin.addEventListener('change', function(){ const block=document.getElementById('financing-terms'); if (block) block.style.display = this.checked ? 'block' : 'none'; });
+
   </script>
+
+  <!-- GOOGLE MAPS -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
 </body>
 </html>

@@ -170,13 +170,18 @@
       document.getElementById('form-container').scrollIntoView({behavior: 'smooth'});
     });
 
-    // Close modal → form stays hidden
-    document.querySelector('#wompi-modal button[onclick]').addEventListener('click', () => {
-      document.getElementById('wompi-modal').style.display = 'none';
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') document.getElementById('wompi-modal').style.display = 'none';
-    });
+   // Close modal with ESC key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('wompi-modal').style.display = 'none';
+  }
+});
+
+// Close modal when clicking the X button
+document.getElementById('close-wompi').addEventListener('click', () => {
+  document.getElementById('wompi-modal').style.display = 'none';
+});
+
 
     // Photo preview
     const input = document.getElementById('photos');

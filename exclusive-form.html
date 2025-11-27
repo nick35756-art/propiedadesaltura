@@ -197,9 +197,38 @@
           <a href="/docs/exclusive-listing-propiedades-altura.pdf" target="_blank">Contract in English (PDF)</a>
         </p>
 
-        <button type="button" id="continue-btn">
-          Continuar → Completar Datos de la Propiedad
-        </button>
+       <button type="button" id="continue-btn" style="
+  background:#000;
+  color:#FFD700;
+  font-family:'Playfair Display', serif;
+  font-size:1.6rem;
+  font-weight:700;
+  padding:1.4rem 2.2rem;
+  border:none;
+  border-radius:18px;
+  cursor:pointer;
+  width:100%;
+  text-align:center;
+  letter-spacing:0.5px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.45);
+  transition:all 0.25s ease;
+">
+  Continuar → Completar Datos de la Propiedad
+</button>
+
+<script>
+  // Optional: hover effect for luxury feeling
+  const btn = document.getElementById('continue-btn');
+  btn.addEventListener('mouseover', () => {
+    btn.style.transform = "translateY(-3px)";
+    btn.style.boxShadow = "0 15px 40px rgba(0,0,0,0.65)";
+  });
+  btn.addEventListener('mouseout', () => {
+    btn.style.transform = "translateY(0)";
+    btn.style.boxShadow = "0 10px 30px rgba(0,0,0,0.45)";
+  });
+</script>
+
       </div>
 
       <!-- COMPLETE FORM – ONLY APPEARS AFTER ACCEPTING -->

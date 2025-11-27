@@ -99,23 +99,52 @@
     </form>
   </div>
 
-  <!-- WOMPI MODAL – REQUIRED FOR PAID LISTING -->
-  <div id="wompi-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;">
-    <div style="background:white;padding:3rem 2.5rem;border-radius:24px;max-width:480px;width:92%;position:relative;box-shadow:0 30px 60px rgba(0,0,0,0.4);">
-      <button onclick="document.getElementById('wompi-modal').style.display='none'" style="position:absolute;top:12px;right:18px;font-size:3rem;background:none;border:none;cursor:pointer;">×</button>
-      <h3 style="text-align:center;margin:0 0 2rem;font-size:1.9rem;">Pagar $30.000 COP<br><small>Publicación destacada · 30 días</small></h3>
+ <!-- WOMPI MODAL – FULLY FIXED & WORKING -->
+<div id="wompi-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:white;padding:3rem 2.5rem;border-radius:24px;max-width:480px;width:92%;position:relative;box-shadow:0 30px 60px rgba(0,0,0,0.4);">
+    <button type="button" id="close-wompi" style="position:absolute;top:12px;right:18px;font-size:3rem;background:none;border:none;cursor:pointer;line-height:1;">×</button>
+    <h3 style="text-align:center;margin:0 0 2rem;font-size:1.9rem;">Pagar $30.000 COP<br><small style="font-weight:400;">Publicación destacada · 30 días</small></h3>
 
-      <button data-wompi-public-key="pub_prod_yox45S7KpBV92AtlTeTXMHgYMB2m6XRp"
-              data-amount="30000"
-              data-currency="COP"
-              data-reference-prefix="LISTING-"
-              data-description="Publicación destacada 30 días - Propiedades Altura"
-              data-redirect-url="https://propiedadesaltura.com/gracias-pago.html"
-              class="wompi-pay-button">
-        Pagar con Wompi $30.000 COP
-      </button>
-    </div>
+    <!-- WOMPI WIDGET SCRIPT (was missing — this is REQUIRED) -->
+    <script src="https://checkout.wompi.co/widget.js"></script>
+
+    <!-- REAL WOMPI BUTTON (production key) -->
+    <button 
+      data-wompi-public-key="pub_prod_yox45S7KpBV92AtlTeTXMHgYMB2m6XRp"
+      data-amount="30000"
+      data-currency="COP"
+      data-reference-prefix="LISTING-"
+      data-description="Publicación destacada 30 días - Propiedades Altura"
+      data-redirect-url="https://propiedadesaltura.com/gracias-pago.html"
+      class="wompi-pay-button"
+      style="background:#10b981;color:white;padding:1.8rem;font-size:1.7rem;border:none;border-radius:16px;width:100%;font-weight:700;">
+      Pagar con Wompi $30.000 COP
+    </button>
   </div>
+</div>
+
+<!-- CRITICAL SCRIPT THAT WAS MISSING -->
+<script>
+  // Open modal
+  document.getElementById('paid-listing-trigger').addEventListener('click', () => {
+    document.getElementById('wompi-modal').style.display = 'flex';
+  });
+
+  // Close modal (fixed)
+  document.getElementById('close-wompi').addEventListener('click', () => {
+    document.getElementById('wompi-modal').style.display = 'none';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('wompi-modal').style.display = 'none';
+  });
+
+  // THIS LINE MAKES THE FORM APPEAR AFTER PAYMENT
+  window.addEventListener('wompi-success', () => {
+    document.getElementById('wompi-modal').style.display = 'none';
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-container').scrollIntoView({behavior: 'smooth'});
+  });
+</script>
 
   <script>
     document.querySelectorAll(".lang-btn").forEach(btn => {

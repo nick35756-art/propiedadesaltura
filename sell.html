@@ -229,54 +229,6 @@ document.getElementById('close-wompi').addEventListener('click', () => {
   </script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
   <script>
-// Simple language switcher – works perfectly with your current HTML
-const langData = {
-  es: {
-    tagline: "ORIENTE ANTIOQUEÑO",
-    h1: "Vende tu propiedad",
-    subtitle: "Selecciona cómo quieres publicar tu propiedad",
-    exclusive: "Representación<br>Exclusiva<br><span style='font-size:1.4rem;'>Comisión 3% al vender · Gratis</span>",
-    paid: "Publicar Yo Mismo<br><strong>$30.000 COP · 30 días</strong>",
-    modalTitle: "Pagar $30.000 COP",
-    modalDesc: "Publicación destacada · 30 días",
-    payButton: "Pagar con Wompi $30.000 COP"
-  },
-  en: {
-    tagline: "EASTERN ANTIOQUIA",
-    h1: "Sell your property",
-    subtitle: "Choose how you want to list your property",
-    exclusive: "Exclusive<br>Representation<br><span style='font-size:1.4rem;'>3% commission when sold · Free</span>",
-    paid: "List It Myself<br><strong>$30.000 COP · 30 days</strong>",
-    modalTitle: "Pay $30.000 COP",
-    modalDesc: "Featured listing · 30 days",
-    payButton: "Pay with Wompi $30.000 COP"
-  }
-};
 
-document.querySelectorAll('.lang-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const lang = btn.dataset.lang;
-    
-    // Cambiar botón activo
-    document.querySelectorAll('.lang-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
-    btn.setAttribute('aria-pressed', 'true');
-    
-    // Aplicar traducciones
-    document.querySelector('.tagline').textContent = langData[lang].tagline;
-    document.querySelector('h1').textContent = langData[lang].h1;
-    document.querySelector('main > p').textContent = langData[lang].subtitle;
-    document.querySelector('.exclusive-btn').innerHTML = langData[lang].exclusive;
-    document.querySelector('#paid-listing-trigger').innerHTML = langData[lang].paid;
-    
-    // Si el modal está visible, traducirlo también
-    const modal = document.getElementById('wompi-modal');
-    if (modal.style.display === 'flex') {
-      modal.querySelector('h2').textContent = langData[lang].modalTitle;
-      modal.querySelector('p').textContent = langData[lang].modalDesc;
-      modal.querySelector('#pay-button').textContent = langData[lang].payButton;
-    }
-  });
-});
-</script>
 </body>
 </html>

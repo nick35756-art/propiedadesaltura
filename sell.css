@@ -157,3 +157,14 @@ button[type="submit"]:hover {
   background:var(--accent);
   border-color:var(--accent);
 }
+/* FIX: Make Wompi modal always clickable and above all overlays */
+#wompi-modal {
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+  position: fixed !important;
+}
+
+/* TEMP FIX: Prevent hidden overlays from blocking clicks */
+body * {
+  pointer-events: auto !important;
+}

@@ -68,26 +68,27 @@
 </div>
 
 <div id="wompi-container" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:99999; align-items:center; justify-content:center;">
-  <div style="background:white; padding:4rem 3rem; border-radius:20px; max-width:500px; width:95%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+  <div style="background:white; padding:5rem 3rem; border-radius:20px; max-width:500px; width:95%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
     <h3 style="margin-bottom:1.5rem; font-size:2rem;">Pagar $30.000 COP</h3>
-    <p style="color:#666; margin-bottom:2.5rem; font-size:1.1rem;">Publicación destacada · 30 días</p>
+    <p style="color:#666; margin-bottom:3rem; font-size:1.1rem;">Publicación destacada · 30 días</p>
 
-    <!-- THIS IS THE MAGIC LINE THAT MAKES THE BLUE BUTTON BIGGER -->
-  <div style="min-height:120px; display:flex; justify-content:center; align-items:center; margin:2rem 0;">
-    <script
-      src="https://checkout.wompi.co/widget.js"
-      data-render="button"
-      data-public-key="pub_test_6KTcCmxE3u8QYLIlid6IpqGdx545iDnB"
-      data-currency="COP"
-      data-amount-in-cents="3000000"
-      data-reference="TEMP"
-      data-signature:integrity="TEMP"
-      data-redirect-url="https://propiedadesaltura.com/sell.html?paid=1"
-      style="all:revert; transform:scale(1.35); transform-origin:center;">
-    </script>
-  </div>
+    <!-- THE FIX: extra wrapper with padding + explicit min-height -->
+    <div style="min-height:120px; display:flex; justify-content:center; align-items:center; margin:2rem 0;">
+      <script
+        src="https://checkout.wompi.co/widget.js"
+        data-render="button"
+        data-public-key="pub_test_6KTcCmxE3u8QYLIlid6IpqGdx545iDnB"
+        data-currency="COP"
+        data-amount-in-cents="3000000"
+        data-reference="TEMP"
+        data-signature:integrity="TEMP"
+        data-redirect-url="https://propiedadesaltura.com/sell.html?paid=1"
+        style="all:revert; transform:scale(1.35); transform-origin:center;">
+      </script>
+    </div>
+
     <button type="button" onclick="document.getElementById('wompi-container').style.display='none'"
-            style="margin-top:3rem; padding:1rem 2.5rem; background:#f1f5f9; border:none; border-radius:16px; cursor:pointer;">
+            style="margin-top:2rem; padding:1rem 2.5rem; background:#f1f5f9; border:none; border-radius:16px; cursor:pointer; font-size:1.1rem;">
       Cerrar
     </button>
   </div>

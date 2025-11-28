@@ -151,91 +151,116 @@ document.querySelectorAll(".lang-btn").forEach(btn => {
 
 
 /* -----------------------------
-   WOMPI MODAL BEHAVIOR (FIXED)
+   WOMPI MODAL BEHAVIOR
 ------------------------------*/
 
-// open modal when clicking your button
 document.getElementById('paid-listing-trigger').addEventListener('click', () => {
   document.getElementById('wompi-modal').style.display = 'flex';
 });
 
-// close modal (X button)
 document.getElementById('close-wompi').addEventListener('click', () => {
   document.getElementById('wompi-modal').style.display = 'none';
 });
 
-// close modal by clicking outside the white box
 document.getElementById('wompi-modal').addEventListener('click', e => {
   if (e.target === document.getElementById('wompi-modal')) {
     document.getElementById('wompi-modal').style.display = 'none';
   }
 });
 
-// close modal with ESC key
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     document.getElementById('wompi-modal').style.display = 'none';
   }
 });
 
-/* -----------------------------
-   AFTER PAYMENT SUCCESS
-------------------------------*/
 window.addEventListener('wompi-success', () => {
   document.getElementById('wompi-modal').style.display = 'none';
   document.getElementById('form-container').style.display = 'block';
   document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
 });
+
+
+/* -----------------------------
+   PHOTO PREVIEW
+------------------------------*/
+
+const input = document.getElementById('photos');
+const preview = document.getElementById('preview');
+const uploadBox = document.querySelector('.photo-upload');
+
+uploadBox.addEventListener('click', () => input.click());
+
+['dragover','dragenter'].forEach(e =>
+  uploadBox.addEventListener(e, ev => {
+    ev.preventDefault();
+    uploadBox.style.borderColor='#1d4ed8';
+  })
+);
+
+['dragleave','drop'].forEach(e =>
+  uploadBox.addEventListener(e, ev => {
+    ev.preventDefault();
+    uploadBox.style.borderColor='#ccc';
+  })
+);
+
+uploadBox.addEventListener('drop', e => {
+  input.files = e.dataTransfer.files;
+  handleFiles(e.dataTransfer.files);
+});
+
+input.addEventListener('change', () => handleFiles(input.files));
+
+function handleFiles(files) {
+  preview.innerHTML = '';
+  for (let i = 0; i < Math.min(files.length, 5); i++) {
+    if (files[i].type.startsWith('image/')) {
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(files[i]);
+      img.style.height='130px';
+      img.style.margin='6px';
+      img.style.borderRadius='10px';
+      preview.appendChild(img);
+    }
+  }
+  if (files.length > 5) preview.innerHTML += `<small style="color:red;">Solo las primeras 5 fotos se enviarán.</small>`;
+}
+
+
+/* -----------------------------
+   GOOGLE MAP PICKER
+------------------------------*/
+
+window.initSellMap = function() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 6.1935, lng: -75.3832 },
+    zoom: 10,
+  });
+
+  let marker = null;
+
+  map.addListener("click", e => {
+    const lat = e.latLng.lat();
+    const lng = e.latLng.lng();
+
+    if (marker) marker.setPosition(e.latLng);
+    else marker = new google.maps.Marker({ position: e.latLng, map });
+
+    document.getElementById("lat").value = lat.toFixed(6);
+    document.getElementById("lng").value = lng.toFixed(6);
+
+    const url = `https://www.google.com/maps?q=${lat},${lng}&z=18`;
+
+    document.getElementById("maps-link").value = url;
+    document.getElementById("coords").textContent = `Guardado: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+    document.getElementById("open-map").href = url;
+    document.getElementById("open-map").style.display = "inline";
+  });
+};
 </script>
 
-
-
-    // Photo preview
-    const input = document.getElementById('photos');
-    const preview = document.getElementById('preview');
-    const uploadBox = document.querySelector('.photo-upload');
-    uploadBox.addEventListener('click', () => input.click());
-    ['dragover','dragenter'].forEach(e => uploadBox.addEventListener(e, ev => {ev.preventDefault(); uploadBox.style.borderColor='#1d4ed8';}));
-    ['dragleave','drop'].forEach(e => uploadBox.addEventListener(e, ev => {ev.preventDefault(); uploadBox.style.borderColor='#ccc';}));
-    uploadBox.addEventListener('drop', e => { input.files = e.dataTransfer.files; handleFiles(e.dataTransfer.files); });
-    input.addEventListener('change', () => handleFiles(input.files));
-    function handleFiles(files) {
-      preview.innerHTML = '';
-      for (let i = 0; i < Math.min(files.length, 5); i++) {
-        if (files[i].type.startsWith('image/')) {
-          const img = document.createElement('img');
-          img.src = URL.createObjectURL(files[i]);
-          img.style.height='130px'; img.style.margin='6px'; img.style.borderRadius='10px';
-          preview.appendChild(img);
-        }
-      }
-      if (files.length > 5) preview.innerHTML += `<small style="color:red;">Solo las primeras 5 fotos se enviarán.</small>`;
-    }
-
-    // Map – 100% working
-    window.initSellMap = function() {
-      const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 6.1935, lng: -75.3832 },
-        zoom: 10,
-      });
-      let marker = null;
-      map.addListener("click", e => {
-        const lat = e.latLng.lat();
-        const lng = e.latLng.lng();
-        if (marker) marker.setPosition(e.latLng);
-        else marker = new google.maps.Marker({ position: e.latLng, map });
-        document.getElementById("lat").value = lat.toFixed(6);
-        document.getElementById("lng").value = lng.toFixed(6);
-        const url = `https://www.google.com/maps?q=${lat},${lng}&z=18`;
-        document.getElementById("maps-link").value = url;
-        document.getElementById("coords").textContent = `Guardado: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-        document.getElementById("open-map").href = url;
-        document.getElementById("open-map").style.display = "inline";
-      });
-    };
-  </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
-  <script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
 
 </body>
 </html>

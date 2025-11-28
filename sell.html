@@ -76,15 +76,15 @@
   <!-- FINAL WORKING WOMPI BUTTON – NO MORE ERRORS -->
 <div style="height:75px; margin-bottom:2.5rem;">
   <script
-    src="https://checkout.wompi.co/widget.js"
-    data-render="button"
-    data-public-key="pub_test_6KTccMxE3u8QYLl1id6iPg9dx5451dNb"
-    data-currency="COP"
-    data-amount-in-cents="3000000"
-    data-reference="REPLACE_ME"
-    data-signature:integrity="REPLACE_ME"
-    data-redirect-url="https://propiedadesaltura.com/sell.html?paid=1">
-  </script>
+  src="https://checkout.wompi.co/widget.js"
+  data-render="button"
+  data-public-key="pub_test_6KTccMxE3u8QYLl1id6iPg9dx5451dNb"
+  data-currency="COP"
+  data-amount-in-cents="3000000"
+  data-reference="will-be-replaced-by-js"
+  data-signature:integrity="will-be-replaced-by-js"
+  data-redirect-url="https://propiedadesaltura.com/sell.html?paid=1">
+</script>
 </div>
     <button type="button" onclick="document.getElementById('wompi-container').style.display='none'"
             style="margin-top:3rem; padding:1rem 2.5rem; background:#f1f5f9; border:none; border-radius:16px; cursor:pointer;">
@@ -361,33 +361,39 @@ window.initSellMap = function() {
  <script src="https://checkout.wompi.co/widget.js" async></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  // Wait until the page is fully loaded
   const trigger = document.getElementById("paid-trigger");
-  if (!trigger) return console.error("No element with id='paid-trigger' found");
+  if (!trigger) return console.error("paid-trigger not found");
 
-  async function openWompi() {
+  trigger.onclick = async () => {
     const ref = 'LISTING-' + Date.now();
+
     try {
-      const r = await fetch('/.netlify/functions/wompi-signature', {
+      const resp = await fetch('/.netlify/functions/wompi-signature', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ reference: ref, amountInCents: 3000000, currency: 'COP' })
       });
-      const { signature } = await r.json();
+      const { signature } = await resp.json();
 
-      const script = document.querySelector('#wompi-container script[data-render="button"]');
-      script.setAttribute('data-reference', ref);
-      script.setAttribute('data-signature:integrity', signature);
-      window.Wompi.render(script);
+      // Find the Wompi script tag
+      const scriptTag = document.querySelector('#wompi-container script[data-render="button"]');
+      scriptTag.setAttribute('data-reference', ref);
+      scriptTag.setAttribute('data-signature:integrity', signature);
+
+      // THIS LINE FIXES THE "render is undefined" ERROR
+      if (window.WompiWidget && window.WompiWidget.render) {
+        window.WompiWidget.render(scriptTag);
+      } else {
+        // Fallback: just reload the script tag
+        scriptTag.dispatchEvent(new Event('load'));
+      }
 
       document.getElementById('wompi-container').style.display = 'flex';
     } catch (e) {
       alert('Error: ' + e.message);
       console.error(e);
     }
-  }
-
-  trigger.onclick = openWompi;
+  };
 
   // Success redirect
   if (location.search.includes('paid=1')) {

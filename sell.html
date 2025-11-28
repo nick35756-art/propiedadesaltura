@@ -84,7 +84,39 @@
       <div><label>Área construida (m²)</label><input type="number" name="area_m2" placeholder="250"></div>
       <div><label>Área lote (m²)</label><input type="number" name="lot_size" placeholder="1000"></div>
       <div><label>Precio esperado</label><input type="number" name="asking_price" placeholder="500000000"></div>
+<div><label>Tipo de propiedad</label>
+            <select name="property_type">
+              <option>Casa</option><option>Apartamento</option><option>Finca</option><option>Lote</option><option>Local comercial</option><option>Bodega</option>
+            </select>
+          </div>
+          <div><label>Área construida (m²)</label><input type="number" name="area_m2" placeholder="250"></div>
+          <div><label>Área lote (m²)</label><input type="number" name="lot_size" placeholder="1000"></div>
+          <div><label>Habitaciones</label><input type="number" name="bedrooms" placeholder="3"></div>
+          <div><label>Baños</label><input type="number" name="bathrooms" placeholder="2"></div>
+          <div><label>Parqueaderos</label><input type="number" name="parking" placeholder="2"></div>
+          <div><label>Cuartos adicionales / Rooms</label><input type="number" name="extra_rooms" placeholder="1"></div>
+          <div><label>Precio esperado de venta</label><input type="number" name="asking_price" placeholder="500000000"></div>
+          <!-- OWNER FINANCING QUESTION -->
+<div class="full-width" style="margin:2rem 0;">
+  <label style="font-size:1.25rem;display:flex;align-items:flex-start;cursor:pointer;">
+    <input type="checkbox" name="owner_financing" id="owner-financing-checkbox"
+           style="width:26px;height:26px;margin-right:16px;margin-top:6px;flex-shrink:0;">
+    <span style="color:#000;line-height:1.5;">
+      ¿Estás dispuesto(a) a ofrecer <strong>financiación directa</strong> al comprador?<br>
+      <small style="color:#16a34a;font-weight:600;">
+        (Esto puede aumentar el número de ofertas y mejorar el precio final)
+      </small>
+    </span>
+  </label>
 
+  <!-- OPTIONAL: visible only if checkbox is checked -->
+  <div id="financing-details" style="display:none;margin-top:1rem;padding:1rem;border-left:4px solid #16a34a;background:#f0fdf4;border-radius:8px;">
+    <label>Monto mínimo de cuota inicial *</label>
+    <input type="number" name="down_payment_min" placeholder="Ej. 30,000,000">
+
+    <label style="display:block;margin-top:1rem;">Plazo máximo (meses) *</label>
+    <input type="number" name="max_months" placeholder="Ej. 36">
+  </div>
       <div class="full-width">
         <label>Sube fotos (máx. 5)</label>
         <div class="photo-upload">

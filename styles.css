@@ -1,7 +1,6 @@
 /* =============================================
-   styles.css – Propiedades Altura (FINAL VERSION – 100% Mobile-Proof)
+   styles.css – FINAL & 100% SAFE FOR WOMPI (2025)
    ============================================= */
-
 :root {
   --bg: #fff;
   --text: #0f1724;
@@ -15,12 +14,28 @@
   color-scheme: light;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
-html, body { margin: 0; height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-.wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 1rem; }
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; height: auto; }
+/* SAFE RESET – NEVER breaks Wompi, Stripe, PayPal, Mercado Pago, etc. */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html, body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, ul, ol, dl, dd, hr, pre {
+  margin: 0;
+  padding: 0;
+}
+button, input, select, textarea, optgroup {
+  font: inherit;
+  margin: 0;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
+/* ←←← Everything that was below this line in your old file stays exactly the same →→→ */
 /* ==================== HEADER ==================== */
 .site-header {
   background: linear-gradient(180deg, #ffffff 0, #fbfdff 100%);

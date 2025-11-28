@@ -6,7 +6,7 @@ exports.handler = async (event, context) => {
   }
 
   const { reference, amountInCents, currency } = JSON.parse(event.body);
-  const integritySecret = 'YOUR_INTEGRITY_SECRET_HERE';  // From Wompi Dashboard > Settings > Developers > Integrity Secret
+  const integritySecret = 'prod_integrity_P4Vgb8efwHXdy5aYfie40oZdjCcfUVmd';  // From Wompi Dashboard > Settings > Developers > Integrity Secret
 
   // Generate signature: SHA256(reference + amountInCents + currency + secret)
   const concat = `${reference}${amountInCents}${currency}${integritySecret}`;

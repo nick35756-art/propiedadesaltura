@@ -45,11 +45,13 @@
           <span style="font-size:1.4rem;">Comisión 3% al vender · Gratis</span>
         </a>
 
-        <button class="paid-btn wompi-pay-button"
-  data-wompi-public-key="pub_prod_apuPhJcja0Q0kJ1S31uXry3M2zGz8ZC0"
+        <!-- NEW PAID BUTTON – WORKS INSTANTLY (no modal, no extra JS) -->
+<button class="paid-btn wompi-pay-button"
+  data-public-key="pub_prod_apuPhJcja0Q0kJ1S31uXry3M2zGz8ZC0"
   data-currency="COP"
   data-amount-in-cents="3000000"
-  data-reference="selflist_<?php echo time(); ?>">
+  data-reference="selflist_"
+  id="wompi-paid-button">
   Publicar Yo Mismo<br>
   <strong>$30.000 COP · 30 días</strong>
 </button>

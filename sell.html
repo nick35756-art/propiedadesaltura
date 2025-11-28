@@ -358,37 +358,44 @@ window.initSellMap = function() {
 </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
+ 
  <script src="https://checkout.wompi.co/widget.js" async></script>
 <script>
-async function openWompi() {
-  const ref = 'LISTING-' + Date.now();
-  try {
-    const r = await fetch('/.netlify/functions/wompi-signature', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({reference:ref, amountInCents:3000000, currency:'COP'})
-    });
-    const {signature} = await r.json();
+document.addEventListener('DOMContentLoaded', function () {
 
-    const script = document.querySelector('#wompi-container script[data-render="button"]');
-    script.setAttribute('data-reference', ref);
-    script.setAttribute('data-signature:integrity', signature);
-    if(window.Wompi) window.Wompi.render(script);
+  async function openWompi() {
+    const ref = 'LISTING-' + Date.now();
+    try {
+      const r = await fetch('/.netlify/functions/wompi-signature', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reference: ref, amountInCents: 3000000, currency: 'COP' })
+      });
+      const { signature } = await r.json();
 
-    document.getElementById('wompi-container').style.display = 'flex';
-  } catch(e) {
-    alert('Error cargando pago. Abre la consola (F12) y dime qué dice.');
-    console.error(e);
+      const script = document.querySelector('#wompi-container script[data-render="button"]');
+      script.setAttribute('data-reference', ref);
+      script.setAttribute('data-signature:integrity', signature);
+      if (window.Wompi) window.Wompi.render(script);
+
+      document.getElementById('wompi-container').style.display = 'flex';
+    } catch (e) {
+      console.error(e);
+      alert('Error: ' + e.message);
+    }
   }
-}
 
-document.getElementById('paid-trigger').onclick = openWompi;
+  // This now works even if the element is a <div>
+  const trigger = document.getElementById('paid-trigger');
+  if (trigger) trigger.onclick = openWompi;
 
-if (location.search.includes('paid=1')) {
-  document.getElementById('form-container').style.display='block';
-  document.getElementById('form-container').scrollIntoView({behavior:'smooth'});
-  history.replaceState({},"",location.pathname);
-}
+  // Success redirect
+  if (location.search.includes('paid=1')) {
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-container').scrollIntoView({behavior:'smooth'});
+    history.replaceState({}, '', location.pathname);
+  }
+});
 </script>
 </body>
 </html>

@@ -194,46 +194,41 @@ document.querySelectorAll(".lang-btn").forEach(btn => {
 });
 
 
-/* -----------------------------
-   WOMPI MODAL - WITH BYPASS
-------------------------------*/
-
-// Open modal
-document.getElementById('paid-listing-trigger').addEventListener('click', () => {
+<script>
+// OPEN modal
+document.getElementById('paid-listing-trigger')?.addEventListener('click', () => {
   document.getElementById('wompi-modal').style.display = 'flex';
 });
 
-// Close modal with X → BYPASS PAYMENT
+// CLOSE with X button
 document.getElementById('close-wompi').addEventListener('click', () => {
   document.getElementById('wompi-modal').style.display = 'none';
-  document.getElementById('form-container').style.display = 'block';
-  document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
 });
 
-// Close modal by clicking outside → BYPASS PAYMENT
+// CLOSE by clicking outside white box
 document.getElementById('wompi-modal').addEventListener('click', e => {
-  if (e.target === document.getElementById('wompi-modal')) {
+  if (e.target.id === 'wompi-modal') {
     document.getElementById('wompi-modal').style.display = 'none';
-    document.getElementById('form-container').style.display = 'block';
-    document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
   }
 });
 
-// Close modal with ESC → BYPASS PAYMENT
+// CLOSE with ESC
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     document.getElementById('wompi-modal').style.display = 'none';
-    document.getElementById('form-container').style.display = 'block';
-    document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
   }
 });
 
-// Payment successful → Show form
+// AFTER SUCCESSFUL PAYMENT → show form
 window.addEventListener('wompi-success', () => {
   document.getElementById('wompi-modal').style.display = 'none';
   document.getElementById('form-container').style.display = 'block';
-  document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('form-container').scrollIntoView({behavior:'smooth'});
 });
+</script>
+
+<!-- WOMPI SCRIPT (required) -->
+<script src="https://checkout.wompi.co/widget.js"></script>
 
 
 /* -----------------------------

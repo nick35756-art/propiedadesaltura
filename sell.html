@@ -67,27 +67,28 @@
   <strong style="font-size:1.7rem;">$30.000 COP · 30 días</strong>
 </div>
 
-<div id="wompi-container" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:99999; display:flex; align-items:center; justify-content:center;">
-  <div style="background:white; padding:4rem 3rem; border-radius:20px; max-width:500px; width:95%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
-    <h3 style="margin-bottom:1.5rem; font-size:2rem;">Pagar $30.000 COP</h3>
-    <p style="color:#666; margin-bottom:2.5rem; font-size:1.1rem;">Publicación destacada · 30 días</p>
+<div id="wompi-container" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:99999; display:flex; align-items:center; justify-content:center;">
+  <div style="background:white; padding:5rem 3rem; border-radius:24px; max-width:520px; width:95%; text-align:center; box-shadow:0 30px 90px rgba(0,0,0,0.5);">
+    <h2 style="margin:0 0 1rem; font-size:2.4rem;">Pagar $30.000 COP</h2>
+    <p style="color:#666; margin-bottom:3rem;">Publicación destacada · 30 días</p>
 
-    <!-- THIS IS THE MAGIC LINE THAT MAKES THE BLUE BUTTON BIGGER -->
-  <!-- FINAL WORKING WOMPI BUTTON – NO MORE ERRORS -->
-<div style="height:75px; margin-bottom:2.5rem;">
-  <script
-  src="https://checkout.wompi.co/widget.js"
-  data-render="button"
-  data-public-key="pub_test_6KTccMxE3u8QYLl1id6iPg9dx5451dNb"
-  data-currency="COP"
-  data-amount-in-cents="3000000"
-  data-reference="will-be-replaced-by-js"
-  data-signature:integrity="will-be-replaced-by-js"
-  data-redirect-url="https://propiedadesaltura.com/sell.html?paid=1">
-</script>
-</div>
-    <button type="button" onclick="document.getElementById('wompi-container').style.display='none'"
-            style="margin-top:3rem; padding:1rem 2.5rem; background:#f1f5f9; border:none; border-radius:16px; cursor:pointer;">
+    <!-- WRAPPER FOR BIG BLUE BUTTON -->
+    <div style="height:78px; margin-bottom:2rem;">
+      <script
+        src="https://checkout.wompi.co/widget.js"
+        data-render="button"
+        data-public-key="pub_test_6KTccMxE3u8QYLl1id6iPg9dx5451dNb"
+        data-currency="COP"
+        data-amount-in-cents="3000000"
+        data-reference="js-will-replace"
+        data-signature:integrity="js-will-replace"
+        data-redirect-url="https://propiedadesaltura.com/sell.html?paid=1">
+      </script>
+    </div>
+
+    <button type="button"
+            onclick="document.getElementById('wompi-container').style.display='none'"
+            style="padding:1rem 3rem; background:#f1f5f9; border:none; border-radius:16px; cursor:pointer;">
       Cerrar
     </button>
   </div>
@@ -358,48 +359,41 @@ window.initSellMap = function() {
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
  
- <script src="https://checkout.wompi.co/widget.js" async></script>
+<script src="https://checkout.wompi.co/widget.js" async></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const trigger = document.getElementById("paid-trigger");
-  if (!trigger) return console.error("paid-trigger not found");
-
-  trigger.onclick = async () => {
+  document.getElementById("paid-trigger").onclick = async () => {
     const ref = 'LISTING-' + Date.now();
 
-    try {
-      const resp = await fetch('/.netlify/functions/wompi-signature', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ reference: ref, amountInCents: 3000000, currency: 'COP' })
-      });
-      const { signature } = await resp.json();
+    const resp = await fetch('/.netlify/functions/wompi-signature', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reference: ref, amountInCents: 3000000, currency: 'COP' })
+    });
+    const { signature } = await resp.json();
 
-      // Find the Wompi script tag
-      const scriptTag = document.querySelector('#wompi-container script[data-render="button"]');
-      scriptTag.setAttribute('data-reference', ref);
-      scriptTag.setAttribute('data-signature:integrity', signature);
+    // Create the button ONLY AFTER we have the signature
+    const placeholder = document.getElementById('wompi-button-placeholder');
+    placeholder.innerHTML = `
+      <script
+        src="https://checkout.wompi.co/widget.js"
+        data-render="button"
+        data-public-key="pub_test_6KTccMxE3u8QYLl1id6iPg9dx5451dNb"
+        data-currency="COP"
+        data-amount-in-cents="3000000"
+        data-reference="${ref}"
+        data-signature:integrity="${signature}"
+        data-redirect-url="https://propiedadesaltura.com/sell.html?paid=1">
+      </script>
+    `;
 
-      // THIS LINE FIXES THE "render is undefined" ERROR
-      if (window.WompiWidget && window.WompiWidget.render) {
-        window.WompiWidget.render(scriptTag);
-      } else {
-        // Fallback: just reload the script tag
-        scriptTag.dispatchEvent(new Event('load'));
-      }
-
-      document.getElementById('wompi-container').style.display = 'flex';
-    } catch (e) {
-      alert('Error: ' + e.message);
-      console.error(e);
-    }
+    document.getElementById('wompi-container').style.display = 'flex';
   };
 
-  // Success redirect
   if (location.search.includes('paid=1')) {
     document.getElementById('form-container').style.display = 'block';
     document.getElementById('form-container').scrollIntoView({behavior:'smooth'});
-    history.replaceState({}, '', location.pathname);
+    history.replaceState({},"",location.pathname);
   }
 });
 </script>

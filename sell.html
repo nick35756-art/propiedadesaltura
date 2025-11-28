@@ -328,5 +328,19 @@ window.initSellMap = function() {
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
  <!-- Wompi -->
   <script src="https://checkout.wompi.co/widget.js"></script>
+<script>
+  // Auto-add unique reference when someone clicks the button
+  document.querySelector('[data-wompi="checkout"]').addEventListener('click', function () {
+    const ref = 'LISTING-' + Date.now();
+    this.setAttribute('data-reference', ref);
+  });
+
+  // After payment → show the form automatically
+  if (window.location.search.includes('paid=1')) {
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-container').scrollIntoView({behavior:'smooth'});
+    history.replaceState({}, '', window.location.pathname); // clean URL
+  }
+</script>
 </body>
 </html>

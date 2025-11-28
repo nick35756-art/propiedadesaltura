@@ -213,3 +213,12 @@ main,
   padding-bottom: 8rem !important;
   margin-bottom: 4rem !important;
 }
+
+/* NEVER cut off anything at the bottom ever again */
+#form-container,
+main,
+.page {
+  margin-bottom: 16rem !important;
+  padding-bottom: 8rem !important;
+  min-height: auto !important;
+}

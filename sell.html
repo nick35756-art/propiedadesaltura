@@ -395,29 +395,20 @@ async function openWompi() {
     });
     const {signature} = await r.json();
 
-    // Now we use the FULL checkout instead of the tiny button
-    const checkout = new WidgetCheckout({
-      currency: 'COP',
-      amountInCents: 3000000,
-      reference: ref,
-      publicKey: 'pub_prod_yox45S7KpBV92AtlTeTXMHgYMB2m6XRp',
-      signature: { integrity: signature },
-      redirectUrl: 'https://propiedadesaltura.com/sell.html?paid=1'
-    });
-
-    // Attach click to our beautiful custom button
-    document.getElementById('wompi-custom-button').onclick = () => checkout.open();
+    const script = document.querySelector('#wompi-container script[data-render="button"]');
+    script.setAttribute('data-reference', ref);
+    script.setAttribute('data-signature:integrity', signature);
+    if(window.Wompi) window.Wompi.render(script);
 
     document.getElementById('wompi-container').style.display = 'flex';
   } catch(e) {
-    alert('Error loading payment — open console (F12) and tell me what it says.
+    alert('Error cargando pago. Abre la consola (F12) y dime qué dice.');
     console.error(e);
   }
 }
 
 document.getElementById('paid-trigger').onclick = openWompi;
 
-// Show form after payment
 if (location.search.includes('paid=1')) {
   document.getElementById('form-container').style.display='block';
   document.getElementById('form-container').scrollIntoView({behavior:'smooth'});

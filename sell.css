@@ -156,3 +156,10 @@ button[type="submit"]:hover {
   background:var(--accent);
   border-color:var(--accent);
 }
+/* MAKE SURE THE BUTTON IS CLICKABLE – NEVER REMOVE */
+#paid-trigger,
+.paid-btn,
+button {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}

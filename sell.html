@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vende tu propiedad - Propiedades Altura</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sell.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+
+  <style>
+    .choose-buttons{display:flex;flex-wrap:wrap;gap:3.5rem;justify-content:center;margin:6rem 0;}
+    .exclusive-btn{background:#000;color:#FFD700;padding:3.2rem 4.5rem;border-radius:28px;font-family:'Playfair Display',serif;font-weight:700;font-size:2.4rem;text-decoration:none;border:7px solid #FFD700;box-shadow:0 25px 50px rgba(0,0,0,0.5);transition:transform .3s;}
+    .exclusive-btn:hover{transform:translateY(-10px);}
+    .paid-btn{background:none;color:#000;padding:3.2rem 4.5rem;border-radius:28px;font-weight:700;font-size:2.4rem;border:none;cursor:pointer;transition:transform .3s;}
+    .paid-btn:hover{transform:translateY(-10px);opacity:0.9;}
+    .wompi-pay-button{background:#10b981;color:white;padding:1.8rem;font-size:1.7rem;border:none;border-radius:16px;width:100%;font-weight:700;cursor:pointer;}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header" role="banner">
+      <div class="wrap header-inner">
+        <a class="logo" href="index.html">
+          <svg class="logo-icon" viewBox="0 0 64 64"><path d="M4 56 L32 8 L60 56 Z" fill="currentColor"/></svg>
+          <span class="brand">Propiedades Altura</span>
+        </a>
+        <nav class="header-nav">
+          <a class="cta mobile-main-cta" href="index.html#properties">Ver Propiedades</a>
+        </nav>
+      </div>
+      <p class="tagline" data-es="ORIENTE ANTIOQUEÑO" data-en="EASTERN ANTIOQUIA">ORIENTE ANTIOQUEÑO</p>
+    </header>
+
+    <main style="max-width:960px;margin:4rem auto 8rem;padding:0 1rem;text-align:center;">
+      <h1>Vende tu propiedad</h1>
+      <p style="font-size:1.4rem;color:#555;margin:2.5rem auto;max-width:720px;">
+        Selecciona cómo quieres publicar tu propiedad
+      </p>
+
+      <div class="choose-buttons">
+        <a href="exclusive-form.html" class="exclusive-btn">
+          Representación<br>Exclusiva<br>
+          <span style="font-size:1.4rem;">Comisión 3% al vender · Gratis</span>
+        </a>
+
+<!-- PAID BUTTON – WHITE TEXT ON BLUE, EXACTLY LIKE YOUR HOMEPAGE -->
+<div id="paid-trigger"
+     style="
+       background: #1d4ed8;
+       color: white;
+       padding: 2.8rem 4.8rem;
+       border-radius: 9999px;
+       font-weight: 700;
+       font-size: 1.55rem;
+       cursor: pointer;
+       display: inline-block;
+       box-shadow: 0 10px 30px rgba(29,78,216,0.35);
+       transition: all 0.3s ease;
+       text-align: center;
+       line-height: 1.4;
+     "
+     onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 20px 40px rgba(29,78,216,0.5)'"
+     onmouseout="this.style.transform=''; this.style.boxShadow='0 10px 30px rgba(29,78,216,0.35)'"
+     onclick="document.getElementById('wompi-container').style.display='flex'">
+  Publicar Yo Mismo<br>
+  <strong style="font-size:1.7rem;">$30.000 COP · 30 días</strong>
+</div>
+
+        
+        <div id="wompi-container" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:99999; align-items:center; justify-content:center;">
+  <div style="background:white; padding:5rem 3rem; border-radius:20px; max-width:500px; width:95%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+    <h3 style="margin-bottom:1.5rem; font-size:2rem;">Pagar $30.000 COP</h3>
+    <p style="color:#666; margin-bottom:3rem; font-size:1.1rem;">Publicación destacada · 30 días</p>
+
+    <div style="min-height:120px; display:flex; justify-content:center; align-items:center;">
+      <script
+        src="https://checkout.wompi.co/widget.js"
+        data-render="button"
+        data-public-key="pub_test_6KTcCmxE3u8QYLIlid6IpqGdx545iDnB"
+        data-currency="COP"
+        data-amount-in-cents="3000000"
+        data-reference="LISTING-TEST-001"
+        data-signature:integrity="77ef7cb0810a2ded75ba03c9bca1b9bf0715af4899c6ea25c8f4984010ce8f8b"
+        data-redirect-url="https://propiedadesaltura.com/sell.html?paid=1"
+        style="all:revert; transform:scale(1.35); transform-origin:center;">
+      </script>
+    </div>
+
+    <button type="button" onclick="document.getElementById('wompi-container').style.display='none'"
+            style="margin-top:2rem; padding:1rem 2.5rem; background:#f1f5f9; border:none; border-radius:16px; cursor:pointer;">
+      Cerrar
+    </button>
+  </div>
+</div>
+</div>
+      
+  <!-- HIDDEN FORM – ONLY AFTER PAYMENT -->
+  <div id="form-container" style="display:none;max-width:960px;margin:0 auto 6rem;padding:0 1rem;">
+    <form class="form-grid" name="sell" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+      <input type="hidden" name="listing_type" value="paid-self">
+      <div><label>Nombre completo *</label><input type="text" name="name" required placeholder="John Doe"></div>
+      <div><label>Email *</label><input type="email" name="_replyto" required placeholder="john@example.com"></div>
+      <div><label>Teléfono / WhatsApp *</label><input type="tel" name="phone" required placeholder="+57 300 123 4567"></div>
+      <div><label>Ciudad / Municipio</label><input type="text" name="city" placeholder="Guarne, Rionegro..."></div>
+
+      <div class="full-width">
+        <label>Haz clic en el mapa para seleccionar ubicación</label>
+        <div id="map" style="height:420px;margin:1rem 0;border-radius:16px;"></div>
+        <input type="hidden" name="latitude" id="lat">
+        <input type="hidden" name="longitude" id="lng">
+        <input type="hidden" name="google_maps_link" id="maps-link">
+        <div><small id="coords" style="color:#1d4ed8;font-weight:600;"></small><br>
+        <a id="open-map" href="#" target="_blank" style="display:none;color:#1d4ed8;">→ Abrir en Google Maps</a></div>
+      </div>
+
+      <div><label>Tipo de propiedad</label>
+        <select name="property_type"><option>Casa</option><option>Apartamento</option><option>Finca</option><option>Lote</option><option>Local</option><option>Bodega</option></select>
+      </div>
+      <div><label>Área construida (m²)</label><input type="number" name="area_m2" placeholder="250"></div>
+      <div><label>Área lote (m²)</label><input type="number" name="lot_size" placeholder="1000"></div>
+      <div><label>Precio esperado</label><input type="number" name="asking_price" placeholder="500000000"></div>
+<div><label>Tipo de propiedad</label>
+            <select name="property_type">
+              <option>Casa</option><option>Apartamento</option><option>Finca</option><option>Lote</option><option>Local comercial</option><option>Bodega</option>
+            </select>
+          </div>
+          <div><label>Área construida (m²)</label><input type="number" name="area_m2" placeholder="250"></div>
+          <div><label>Área lote (m²)</label><input type="number" name="lot_size" placeholder="1000"></div>
+          <div><label>Habitaciones</label><input type="number" name="bedrooms" placeholder="3"></div>
+          <div><label>Baños</label><input type="number" name="bathrooms" placeholder="2"></div>
+          <div><label>Parqueaderos</label><input type="number" name="parking" placeholder="2"></div>
+          <div><label>Cuartos adicionales / Rooms</label><input type="number" name="extra_rooms" placeholder="1"></div>
+          <div><label>Precio esperado de venta</label><input type="number" name="asking_price" placeholder="500000000"></div>
+          <!-- OWNER FINANCING QUESTION -->
+<div class="full-width" style="margin:2rem 0;">
+  <label style="font-size:1.25rem;display:flex;align-items:flex-start;cursor:pointer;">
+    <input type="checkbox" name="owner_financing" id="owner-financing-checkbox"
+           style="width:26px;height:26px;margin-right:16px;margin-top:6px;flex-shrink:0;">
+    <span style="color:#000;line-height:1.5;">
+      ¿Estás dispuesto(a) a ofrecer <strong>financiación directa</strong> al comprador?<br>
+      <small style="color:#16a34a;font-weight:600;">
+        (Esto puede aumentar el número de ofertas y mejorar el precio final)
+      </small>
+    </span>
+  </label>
+
+  <!-- OPTIONAL: visible only if checkbox is checked -->
+  <div id="financing-details" style="display:none;margin-top:1rem;padding:1rem;border-left:4px solid #16a34a;background:#f0fdf4;border-radius:8px;">
+    <label>Monto mínimo de cuota inicial *</label>
+    <input type="number" name="down_payment_min" placeholder="Ej. 30,000,000">
+
+    <label style="display:block;margin-top:1rem;">Plazo máximo (meses) *</label>
+    <input type="number" name="max_months" placeholder="Ej. 36">
+  </div>
+      <div class="full-width">
+        <label>Sube fotos (máx. 5)</label>
+        <div class="photo-upload">
+          <input type="file" name="photos" id="photos" accept="image/*" multiple style="display:none;">
+          <p><strong>Clic o arrastra aquí</strong><br><small>Máximo 5 fotos</small></p>
+          <div class="photo-preview" id="preview"></div>
+        </div>
+      </div>
+
+      <div class="full-width"><label>Mensaje adicional</label><textarea name="message"></textarea></div>
+      <div class="full-width"><button type="submit">Enviar Información</button></div>
+    </form>
+  </div>
+</div>
+
+<!-- WOMPI MODAL -->
+<div id="wompi-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:white;padding:3rem 2.5rem;border-radius:24px;max-width:480px;width:92%;position:relative;box-shadow:0 30px 60px rgba(0,0,0,0.4);">
+
+    <!-- Close button -->
+    <button type="button" id="close-wompi"
+      style="
+        position:absolute;
+        top:12px;
+        right:18px;
+        font-size:3rem;
+        background:none;
+        border:none;
+        cursor:pointer;
+        line-height:1;
+      ">×</button>
+
+    <h3 style="text-align:center;margin:0 0 2rem;font-size:1.9rem;">
+      Pagar 30.000 COP<br>
+      <small style="font-weight:400;">Publicación destacada · 30 días</small>
+    </h3>
+
+    <!-- REAL WOMPI BUTTON -->
+    <button 
+      data-wompi-public-key="pub_prod_yox45S7KpBV92AtlTeTXMHgYMB2m6XRp"
+      data-amount="30000"
+      data-currency="COP"
+      data-reference-prefix="LISTING-"
+      data-description="Publicación destacada 30 días - Propiedades Altura"
+      data-redirect-url="https://propiedadesaltura.com/gracias-pago.html"
+      class="wompi-pay-button"
+      style="
+        background:#10b981;
+        color:white;
+        padding:1.8rem;
+        font-size:1.7rem;
+        border:none;
+        border-radius:16px;
+        width:100%;
+        font-weight:700;
+        cursor:pointer;
+      ">
+      Pagar con Wompi · 30.000 COP
+    </button>
+
+  </div>
+</div>
+
+
+<script>
+/* -----------------------------
+   LANGUAGE TOGGLE (unchanged)
+------------------------------*/
+document.querySelectorAll(".lang-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const lang = btn.dataset.lang;
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll("[data-es],[data-en]").forEach(el => {
+      if (el.dataset[lang]) el.textContent = el.dataset[lang];
+    });
+
+    document.querySelectorAll(".lang-btn")
+      .forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  });
+});
+
+
+/* -----------------------------
+   WOMPI MODAL - WITH BYPASS
+------------------------------*/
+
+// Open modal
+document.getElementById('paid-listing-trigger').addEventListener('click', () => {
+  document.getElementById('wompi-modal').style.display = 'flex';
+});
+
+// Close modal with X → BYPASS PAYMENT
+document.getElementById('close-wompi').addEventListener('click', () => {
+  document.getElementById('wompi-modal').style.display = 'none';
+  document.getElementById('form-container').style.display = 'block';
+  document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Close modal by clicking outside → BYPASS PAYMENT
+document.getElementById('wompi-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('wompi-modal')) {
+    document.getElementById('wompi-modal').style.display = 'none';
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+// Close modal with ESC → BYPASS PAYMENT
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('wompi-modal').style.display = 'none';
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+// Payment successful → Show form
+window.addEventListener('wompi-success', () => {
+  document.getElementById('wompi-modal').style.display = 'none';
+  document.getElementById('form-container').style.display = 'block';
+  document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
+});
+
+
+/* -----------------------------
+   PHOTO PREVIEW
+------------------------------*/
+
+const input = document.getElementById('photos');
+const preview = document.getElementById('preview');
+const uploadBox = document.querySelector('.photo-upload');
+
+uploadBox.addEventListener('click', () => input.click());
+
+['dragover','dragenter'].forEach(e =>
+  uploadBox.addEventListener(e, ev => {
+    ev.preventDefault();
+    uploadBox.style.borderColor='#1d4ed8';
+  })
+);
+
+['dragleave','drop'].forEach(e =>
+  uploadBox.addEventListener(e, ev => {
+    ev.preventDefault();
+    uploadBox.style.borderColor='#ccc';
+  })
+);
+
+uploadBox.addEventListener('drop', e => {
+  input.files = e.dataTransfer.files;
+  handleFiles(e.dataTransfer.files);
+});
+
+input.addEventListener('change', () => handleFiles(input.files));
+
+function handleFiles(files) {
+  preview.innerHTML = '';
+  for (let i = 0; i < Math.min(files.length, 5); i++) {
+    if (files[i].type.startsWith('image/')) {
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(files[i]);
+      img.style.height='130px';
+      img.style.margin='6px';
+      img.style.borderRadius='10px';
+      preview.appendChild(img);
+    }
+  }
+  if (files.length > 5) preview.innerHTML += `<small style="color:red;">Solo las primeras 5 fotos se enviarán.</small>`;
+}
+
+
+/* -----------------------------
+   GOOGLE MAP PICKER
+------------------------------*/
+
+window.initSellMap = function() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 6.1935, lng: -75.3832 },
+    zoom: 10,
+  });
+
+  let marker = null;
+
+  map.addListener("click", e => {
+    const lat = e.latLng.lat();
+    const lng = e.latLng.lng();
+
+    if (marker) marker.setPosition(e.latLng);
+    else marker = new google.maps.Marker({ position: e.latLng, map });
+
+    document.getElementById("lat").value = lat.toFixed(6);
+    document.getElementById("lng").value = lng.toFixed(6);
+
+    const url = `https://www.google.com/maps?q=${lat},${lng}&z=18`;
+
+    document.getElementById("maps-link").value = url;
+    document.getElementById("coords").textContent = `Guardado: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+    document.getElementById("open-map").href = url;
+    document.getElementById("open-map").style.display = "inline";
+  });
+};
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
+ 
+  
+  <!-- Wompi Widget (only once) -->
+<script src="https://checkout.wompi.co/widget.js" async></script>
+
+<!-- Simple script to open the modal + handle successful payment redirect -->
+<script>
+  // 1. Open the modal when clicking the blue button
+  document.getElementById('paid-trigger').onclick = function() {
+    document.getElementById('wompi-container').style.display = 'flex';
+  };
+
+  // 2. Close modal when clicking the "Cerrar" button
+  document.querySelector('#wompi-container button').onclick = function() {
+    document.getElementById('wompi-container').style.display = 'none';
+  };
+
+  // 3. If user comes back with ?paid=1 → show the form directly (successful payment)
+  if (location.search.includes('paid=1')) {
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
+    // Clean the URL so it doesn't stay ?paid=1 forever
+    history.replaceState({}, '', location.pathname);
+  }
+</script>
+</body>
+</html>

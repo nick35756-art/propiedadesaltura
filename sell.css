@@ -9,7 +9,6 @@
   --radius:14px;
 }
 
-* { box-sizing:border-box; margin:0; padding:0; }
 body { font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:var(--bg); color:#0f1724; line-height:1.5; }
 
 main { max-width:var(--max-width); margin:0 auto; padding:2rem 1rem; }

@@ -222,3 +222,30 @@ main,
   padding-bottom: 8rem !important;
   min-height: auto !important;
 }
+
+/* === FIX 1: Big blue Wompi button no longer cut off === */
+#wompi-container script[data-render="button"] {
+  display: block !important;
+  height: 130px !important;        /* gives space for the scaled button */
+  margin: 2rem auto !important;
+  padding-bottom: 20px !important;
+}
+
+/* === FIX 2: Wompi checkout iframe never cut off again === */
+iframe[src*="checkout.wompi.co"],
+iframe[src*="sandbox.wompi.co"] {
+  min-height: 720px !important;    /* tall enough for the whole payment screen */
+  height: 100vh !important;
+  max-height: none !important;
+  width: 100% !important;
+  border: none !important;
+  position: relative !important;
+  z-index: 999999 !important;
+  overflow: visible !important;
+}
+
+/* Make sure the modal itself has enough room */
+#wompi-container {
+  padding: 2rem !important;
+  overflow: visible !important;
+}

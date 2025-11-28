@@ -361,45 +361,32 @@ window.initSellMap = function() {
 <script>
 async function openWompi() {
   const ref = 'LISTING-' + Date.now();
-
   try {
-    const response = await fetch('/.netlify/functions/wompi-signature', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ reference: ref, amountInCents: 3000000, currency: 'COP' })
+    const r = await fetch('/.netlify/functions/wompi-signature', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({reference:ref, amountInCents:3000000, currency:'COP'})
     });
+    const {signature} = await r.json();
 
-    const { signature } = await response.json();
+    const script = document.querySelector('#wompi-container script[data-render="button"]');
+    script.setAttribute('data-reference', ref);
+    script.setAttribute('data-signature:integrity', signature);
+    if(window.Wompi) window.Wompi.render(script);
 
-    const checkout = new WidgetCheckout({
-      currency: 'COP',
-      amountInCents: 3000000,
-      reference: ref,
-      publicKey: 'pub_prod_yox45S7KpBV92AtlTeTXMHgYMB2m6XRp',
-      signature: { integrity: signature },
-      redirectUrl: 'https://propiedadesaltura.com/sell.html?paid=1'
-    });
-
-    // Attach to the beautiful blue button inside the modal
-    document.getElementById('wompi-custom-button').onclick = () => checkout.open();
-
-    // Show the modal
     document.getElementById('wompi-container').style.display = 'flex';
-
-  } catch (error) {
-    console.error(error);
-    alert('Error cargando el pago. Revisa la consola (F12) e infórmame.');
+  } catch(e) {
+    alert('Error cargando pago. Abre la consola (F12) y dime qué dice.');
+    console.error(e);
   }
 }
 
-// Open modal when clicking the big blue “Publicar Yo Mismo” button
 document.getElementById('paid-trigger').onclick = openWompi;
 
-// After successful payment → show the form
 if (location.search.includes('paid=1')) {
-  document.getElementById('form-container').style.display = 'block';
-  document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
-  history.replaceState({}, '', location.pathname);
+  document.getElementById('form-container').style.display='block';
+  document.getElementById('form-container').scrollIntoView({behavior:'smooth'});
+  history.replaceState({},"",location.pathname);
 }
 </script>
 </body>

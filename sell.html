@@ -361,7 +361,10 @@ window.initSellMap = function() {
  
  <script src="https://checkout.wompi.co/widget.js" async></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", () => {
+  // Wait until the page is fully loaded
+  const trigger = document.getElementById("paid-trigger");
+  if (!trigger) return console.error("No element with id='paid-trigger' found");
 
   async function openWompi() {
     const ref = 'LISTING-' + Date.now();
@@ -376,18 +379,16 @@ document.addEventListener('DOMContentLoaded', function () {
       const script = document.querySelector('#wompi-container script[data-render="button"]');
       script.setAttribute('data-reference', ref);
       script.setAttribute('data-signature:integrity', signature);
-      if (window.Wompi) window.Wompi.render(script);
+      window.Wompi.render(script);
 
       document.getElementById('wompi-container').style.display = 'flex';
     } catch (e) {
-      console.error(e);
       alert('Error: ' + e.message);
+      console.error(e);
     }
   }
 
-  // This now works even if the element is a <div>
-  const trigger = document.getElementById('paid-trigger');
-  if (trigger) trigger.onclick = openWompi;
+  trigger.onclick = openWompi;
 
   // Success redirect
   if (location.search.includes('paid=1')) {

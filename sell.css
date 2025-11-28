@@ -11,7 +11,12 @@
 
 body { font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:var(--bg); color:#0f1724; line-height:1.5; }
 
-main { max-width:var(--max-width); margin:0 auto; padding:2rem 1rem; }
+main {
+  max-width: var(--max-width);
+  margin: 0 auto 8rem;   /* ← THIS IS THE KEY: 8rem bottom margin */
+  padding: 2rem 1rem 6rem; /* ← extra bottom padding just in case */
+  text-align: center;
+}
 
 h1 {
   font-size: clamp(2rem,5vw,2.6rem);
@@ -199,4 +204,12 @@ iframe[src*="checkout.wompi.co"] {
 /* Extra safety for the modal itself */
 #wompi-container {
   overflow: visible !important;
+}
+
+/* FINAL SAFETY – NEVER cut off anything at the bottom again */
+main,
+#form-container,
+#wompi-container {
+  padding-bottom: 8rem !important;
+  margin-bottom: 4rem !important;
 }

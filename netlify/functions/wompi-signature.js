@@ -6,12 +6,11 @@ exports.handler = async (event, context) => {
   }
 
   const { reference, amountInCents, currency } = JSON.parse(event.body);
-  const integritySecret = 'test_integrity_MwApPTzFs1oiqhDasUSYl1VI1EkpEmmj
-';  // From Wompi Dashboard > Settings > Developers > Integrity Secret
+  const integritySecret = 'test_integrity_MwApPTzFs1oiqhDasUSYl1VI1EkpEmmj';  // Your test secret
 
-  // Generate signature: SHA256(reference + amountInCents + currency + secret)
-  const concat = `${reference}${amountInCents}${currency}${integritySecret}`;
-  const signature = crypto.createHmac('sha256', integritySecret).update(concat).digest('hex');
+  // OFFICIAL Wompi concat: reference + amountInCents + currency + secret (NO spaces or pipes!)
+  const concatString = reference + amountInCents + currency + integritySecret;
+  const signature = crypto.createHmac('sha256', integritySecret).update(concatString).digest('hex');
 
   return {
     statusCode: 200,

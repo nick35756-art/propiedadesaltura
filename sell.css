@@ -249,3 +249,24 @@ iframe[src*="sandbox.wompi.co"] {
   padding: 2rem !important;
   overflow: visible !important;
 }
+
+/* FINAL FIX – Wompi checkout page never cut off again */
+#wompi-container,
+#wompi-container > div {
+  height: 100vh !important;
+  height: 100dvh !important;   /* for mobile Safari */
+  max-height: none !important;
+  padding: 0 !important;
+}
+
+/* Force Wompi's iframe to be tall enough for the entire payment form */
+iframe[src*="checkout.wompi.co"],
+iframe[src*="sandbox.wompi.co"] {
+  min-height: 780px !important;   /* this is the magic number */
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-height: none !important;
+  width: 100% !important;
+  border: none !important;
+  display: block !important;
+}

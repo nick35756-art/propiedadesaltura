@@ -151,29 +151,40 @@ document.querySelectorAll(".lang-btn").forEach(btn => {
 
 
 /* -----------------------------
-   WOMPI MODAL BEHAVIOR
+   WOMPI MODAL - WITH BYPASS
 ------------------------------*/
 
+// Open modal
 document.getElementById('paid-listing-trigger').addEventListener('click', () => {
   document.getElementById('wompi-modal').style.display = 'flex';
 });
 
+// Close modal with X → BYPASS PAYMENT
 document.getElementById('close-wompi').addEventListener('click', () => {
   document.getElementById('wompi-modal').style.display = 'none';
+  document.getElementById('form-container').style.display = 'block';
+  document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
 });
 
+// Close modal by clicking outside → BYPASS PAYMENT
 document.getElementById('wompi-modal').addEventListener('click', e => {
   if (e.target === document.getElementById('wompi-modal')) {
     document.getElementById('wompi-modal').style.display = 'none';
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
   }
 });
 
+// Close modal with ESC → BYPASS PAYMENT
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     document.getElementById('wompi-modal').style.display = 'none';
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
   }
 });
 
+// Payment successful → Show form
 window.addEventListener('wompi-success', () => {
   document.getElementById('wompi-modal').style.display = 'none';
   document.getElementById('form-container').style.display = 'block';

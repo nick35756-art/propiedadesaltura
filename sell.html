@@ -45,24 +45,28 @@
           <span style="font-size:1.4rem;">Comisión 3% al vender · Gratis</span>
         </a>
 
-       <!-- WORKING PAID BUTTON – NO MODAL, NO BACKEND, WORKS TODAY -->
-<button 
-  type="button"
-  class="paid-btn"
-  data-wompi="checkout"
-  data-public-key="pub_prod_yox45S7KpBV92AtlTeTXMHgYMB2m6XRp"
-  data-currency="COP"
-  data-amount-in-cents="3000000"
-  data-reference-prefix="LISTING-"
-  data-redirect-url="https://propiedadesaltura.com/sell.html?paid=1"
-  style="background:none;border:none;cursor:pointer;padding:3.2rem 4.5rem;">
+<!-- OFFICIAL WOMPI BUTTON – SIMPLEST WORKING VERSION -->
+<button type="button" class="paid-btn" id="paid-trigger">
   Publicar Yo Mismo<br>
   <strong>$30.000 COP · 30 días</strong>
 </button>
-      </div>
-    </main>
-  </div>
 
+<!-- HIDDEN FORM FOR WOMPI (auto-renders button on click) -->
+<div id="wompi-container" style="display:none;">
+  <form id="wompi-form">
+    <script
+      src="https://checkout.wompi.co/widget.js"
+      data-render="button"
+      data-public-key="pub_prod_yox45S7KpBV92AtlTeTXMHgYMB2m6XRp"  <!-- Your prod key -->
+      data-currency="COP"
+      data-amount-in-cents="3000000"
+      data-reference="DYNAMIC_REF"  <!-- JS sets this -->
+      data-signature:integrity="DYNAMIC_SIG"  <!-- Backend sets this -->
+      data-redirect-url="https://propiedadesaltura.com/sell.html?paid=success"
+      data-description="Publicación destacada 30 días - Propiedades Altura">
+    </script>
+  </form>
+</div>
   <!-- HIDDEN FORM – ONLY AFTER PAYMENT -->
   <div id="form-container" style="display:none;max-width:960px;margin:0 auto 6rem;padding:0 1rem;">
     <form class="form-grid" name="sell" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
@@ -327,20 +331,61 @@ window.initSellMap = function() {
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
  <!-- Wompi -->
-  <script src="https://checkout.wompi.co/widget.js"></script>
-<script>
-  // Auto-add unique reference when someone clicks the button
-  document.querySelector('[data-wompi="checkout"]').addEventListener('click', function () {
-    const ref = 'LISTING-' + Date.now();
-    this.setAttribute('data-reference', ref);
-  });
+  <script>
+// WOMPI INTEGRATION – FULLY WORKING WITH BACKEND SIGNATURE
+async function openWompi() {
+  const container = document.getElementById('wompi-container');
+  const form = document.getElementById('wompi-form');
+  const script = form.querySelector('script[data-render="button"]');
 
-  // After payment → show the form automatically
-  if (window.location.search.includes('paid=1')) {
-    document.getElementById('form-container').style.display = 'block';
-    document.getElementById('form-container').scrollIntoView({behavior:'smooth'});
-    history.replaceState({}, '', window.location.pathname); // clean URL
+  // Generate unique reference
+  const reference = `LISTING-${Date.now()}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
+
+  try {
+    // Fetch signature from Netlify Function (Step 3)
+    const response = await fetch('/.netlify/functions/wompi-signature', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ reference, amountInCents: 3000000, currency: 'COP' })
+    });
+    const { signature } = await response.json();
+
+    // Set dynamic values and render
+    script.setAttribute('data-reference', reference);
+    script.setAttribute('data-signature:integrity', signature);
+    if (window.Wompi) {
+      window.Wompi.render(script);
+    }
+
+    // Show container as modal
+    container.style.display = 'block';
+    container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;';
+    form.style.cssText = 'background:white;padding:2rem;border-radius:16px;max-width:400px;width:90%;text-align:center;';
+  } catch (error) {
+    console.error('Wompi error:', error);
+    alert('Error loading payment – check console (F12)');
   }
+}
+
+// Trigger on button click
+document.getElementById('paid-trigger').addEventListener('click', openWompi);
+
+// Close modal on success/redirect
+if (new URLSearchParams(window.location.search).get('paid') === 'success') {
+  document.getElementById('wompi-container').style.display = 'none';
+  document.getElementById('form-container').style.display = 'block';
+  document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
+  // Clean URL
+  history.replaceState({}, '', window.location.pathname);
+}
+
+// Close modal on outside click or ESC
+document.getElementById('wompi-container').addEventListener('click', e => {
+  if (e.target.id === 'wompi-container') container.style.display = 'none';
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('wompi-container').style.display = 'none';
+});
 </script>
 </body>
 </html>

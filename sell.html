@@ -67,13 +67,12 @@
   <strong style="font-size:1.7rem;">$30.000 COP · 30 días</strong>
 </div>
 
-<!-- WOMPI CONTAINER – GUARANTEED TO WORK -->
 <div id="wompi-container" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:99999; display:flex; align-items:center; justify-content:center;">
-  <div style="background:white; padding:12rem 3rem; border-radius:20px; max-width:440px; width:92%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
-    <h3 style="margin-bottom:1.5rem;">Pagar $30.000 COP</h3>
-    <small style="color:#666; display:block; margin-bottom:2rem;">Publicación destacada · 30 días</small>
+  <div style="background:white; padding:4rem 3rem; border-radius:20px; max-width:500px; width:95%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+    <h3 style="margin-bottom:1.5rem; font-size:2rem;">Pagar $30.000 COP</h3>
+    <p style="color:#666; margin-bottom:2.5rem; font-size:1.1rem;">Publicación destacada · 30 días</p>
 
-    <!-- THIS IS THE ONLY SCRIPT TAG WOMPI NEEDS -->
+    <!-- THIS IS THE MAGIC LINE THAT MAKES THE BLUE BUTTON BIGGER -->
     <script
       src="https://checkout.wompi.co/widget.js"
       data-render="button"
@@ -83,11 +82,11 @@
       data-reference="TEMP"
       data-signature:integrity="TEMP"
       data-redirect-url="https://propiedadesaltura.com/sell.html?paid=1"
-      style="all:revert; pointer-events:auto;">
+      style="all:revert; transform:scale(1.35); transform-origin:center;">
     </script>
 
-    <button type="button" onclick="document.getElementById('wompi-container').style.display='none'" 
-            style="margin-top:2rem; padding:0.8rem 1.5rem; background:#ccc; border:none; border-radius:12px; cursor:pointer;">
+    <button type="button" onclick="document.getElementById('wompi-container').style.display='none'"
+            style="margin-top:3rem; padding:1rem 2.5rem; background:#f1f5f9; border:none; border-radius:16px; cursor:pointer;">
       Cerrar
     </button>
   </div>

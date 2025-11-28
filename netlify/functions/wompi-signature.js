@@ -1,17 +1,32 @@
+// netlify/functions/wompi-signature.js
+const crypto = require('crypto');
+
 exports.handler = async (event) => {
-  const { reference, amountInCents, currency } = JSON.parse(event.body);
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method not allowed' };
+  }
 
-  const integritySecret = 'test_integrity_MwApPTzFs1oiqhDasUSYl1VI1EkpEmmj';
+  try {
+    const { reference, amountInCents, currency } = JSON.parse(event.body);
 
-  const stringToSign = reference + amountInCents + currency + integritySecret;
+    // YOUR TEST INTEGRITY SECRET (keep this exact)
+    const integritySecret = 'test_integrity_MwApPTzFs1oiqhDasUSYl1VI1EkpEmmj';
 
-  const signature = require('crypto')
-    .createHmac('sha256', integritySecret)
-    .update(stringToSign)
-    .digest('hex');
+    // THIS IS THE ONLY CORRECT STRING FORMAT (with pipes)
+    const stringToSign = `${reference}|${amountInCents}|${currency}`;
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ signature })
-  };
+    const signature = crypto
+      .createHmac('sha256', integritySecret)
+      .update(stringToSign)
+      .digest('hex');
+
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ signature })
+    };
+  } catch (error) {
+    console.error('Error:', error);
+    return { statusCode: 500, body: JSON.stringify({ error: 'Invalid payload' }) };
+  }
 };

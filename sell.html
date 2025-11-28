@@ -359,37 +359,30 @@ window.initSellMap = function() {
 </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
- <script src="https://checkout.wompi.co/widget.js" async></script>
+ 
+  
+  <!-- Wompi Widget (only once) -->
+<script src="https://checkout.wompi.co/widget.js" async></script>
+
+<!-- Simple script to open the modal + handle successful payment redirect -->
 <script>
-async function openWompi() {
-  const ref = 'LISTING-' + Date.now();
-  try {
-    const r = await fetch('/.netlify/functions/wompi-signature', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({reference:ref, amountInCents:3000000, currency:'COP'})
-    });
-    const {signature} = await r.json();
-
-    const script = document.querySelector('#wompi-container script[data-render="button"]');
-    script.setAttribute('data-reference', ref);
-    script.setAttribute('data-signature:integrity', signature);
-    if(window.Wompi) window.Wompi.render(script);
-
+  // 1. Open the modal when clicking the blue button
+  document.getElementById('paid-trigger').onclick = function() {
     document.getElementById('wompi-container').style.display = 'flex';
-  } catch(e) {
-    alert('Error cargando pago. Abre la consola (F12) y dime qué dice.');
-    console.error(e);
+  };
+
+  // 2. Close modal when clicking the "Cerrar" button
+  document.querySelector('#wompi-container button').onclick = function() {
+    document.getElementById('wompi-container').style.display = 'none';
+  };
+
+  // 3. If user comes back with ?paid=1 → show the form directly (successful payment)
+  if (location.search.includes('paid=1')) {
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
+    // Clean the URL so it doesn't stay ?paid=1 forever
+    history.replaceState({}, '', location.pathname);
   }
-}
-
-document.getElementById('paid-trigger').onclick = openWompi;
-
-if (location.search.includes('paid=1')) {
-  document.getElementById('form-container').style.display='block';
-  document.getElementById('form-container').scrollIntoView({behavior:'smooth'});
-  history.replaceState({},"",location.pathname);
-}
 </script>
 </body>
 </html>

@@ -131,64 +131,63 @@
 </div>
 
 
-<!-- CRITICAL SCRIPT THAT WAS MISSING -->
 <script>
-  // Open modal
-  document.getElementById('paid-listing-trigger').addEventListener('click', () => {
-    document.getElementById('wompi-modal').style.display = 'flex';
-  });
+/* -----------------------------
+   LANGUAGE TOGGLE (unchanged)
+------------------------------*/
+document.querySelectorAll(".lang-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const lang = btn.dataset.lang;
+    document.documentElement.lang = lang;
 
-  // Close modal (fixed)
-  document.getElementById('close-wompi').addEventListener('click', () => {
+    document.querySelectorAll("[data-es],[data-en]").forEach(el => {
+      if (el.dataset[lang]) el.textContent = el.dataset[lang];
+    });
+
+    document.querySelectorAll(".lang-btn")
+      .forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  });
+});
+
+
+/* -----------------------------
+   WOMPI MODAL BEHAVIOR (FIXED)
+------------------------------*/
+
+// open modal when clicking your button
+document.getElementById('paid-listing-trigger').addEventListener('click', () => {
+  document.getElementById('wompi-modal').style.display = 'flex';
+});
+
+// close modal (X button)
+document.getElementById('close-wompi').addEventListener('click', () => {
+  document.getElementById('wompi-modal').style.display = 'none';
+});
+
+// close modal by clicking outside the white box
+document.getElementById('wompi-modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('wompi-modal')) {
     document.getElementById('wompi-modal').style.display = 'none';
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') document.getElementById('wompi-modal').style.display = 'none';
-  });
+  }
+});
 
-  // THIS LINE MAKES THE FORM APPEAR AFTER PAYMENT
-  window.addEventListener('wompi-success', () => {
-    document.getElementById('wompi-modal').style.display = 'none';
-    document.getElementById('form-container').style.display = 'block';
-    document.getElementById('form-container').scrollIntoView({behavior: 'smooth'});
-  });
-</script>
-
-  <script>
-    document.querySelectorAll(".lang-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const lang = btn.dataset.lang;
-        document.documentElement.lang = lang;
-        document.querySelectorAll("[data-es],[data-en]").forEach(el => {
-          if (el.dataset[lang]) el.textContent = el.dataset[lang];
-        });
-        document.querySelectorAll(".lang-btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
-      });
-    });
-
-    // Click "Publicar Yo Mismo" → open modal
-    document.getElementById('paid-listing-trigger').addEventListener('click', () => {
-      document.getElementById('wompi-modal').style.display = 'flex';
-    });
-
-    // ONLY after successful payment → show form
-    window.addEventListener('wompi-success', () => {
-      document.getElementById('wompi-modal').style.display = 'none';
-      document.getElementById('form-container').style.display = 'block';
-      document.getElementById('form-container').scrollIntoView({behavior: 'smooth'});
-    });
-
-   // Close modal with ESC key
+// close modal with ESC key
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     document.getElementById('wompi-modal').style.display = 'none';
   }
 });
 
-// Close modal when clicking the X button
-document.getElementById('close-wompi').addEventListener('click', () => {
+/* -----------------------------
+   AFTER PAYMENT SUCCESS
+------------------------------*/
+window.addEventListener('wompi-success', () => {
   document.getElementById('wompi-modal').style.display = 'none';
+  document.getElementById('form-container').style.display = 'block';
+  document.getElementById('form-container').scrollIntoView({ behavior: 'smooth' });
 });
+</script>
+
 
 
     // Photo preview

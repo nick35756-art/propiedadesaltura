@@ -143,16 +143,17 @@
 
     <!-- WOMPI BUTTON -->
     <button 
-      data-wompi-public-key="pub_prod_yox45S7KpBV92AtlTeTXMHgYMB2m6XRp"
-      data-amount="30000"
-      data-currency="COP"
-      data-reference-prefix="LISTING-"
-      data-description="Publicación destacada 30 días - Propiedades Altura"
-      data-redirect-url="https://propiedadesaltura.com/gracias-pago.html"
-      class="wompi-pay-button"
-      style="background:#10b981;color:white;padding:1.8rem;font-size:1.7rem;border:none;border-radius:16px;width:100%;font-weight:700;">
-      Pagar con Wompi $30.000 COP
-    </button>
+  data-wompi-public-key="pub_prod_yox45S7KpBV92AtlTeTXMHgYMB2m6XRp"
+  data-wompi-amount-in-cents="3000000"
+  data-wompi-currency="COP"
+  data-wompi-reference="LISTING-<?php echo time(); ?>"
+  data-wompi-signature:integrity="test"
+  data-redirect-url="https://propiedadesaltura.com/gracias-pago.html"
+  class="wompi-pay-button"
+  style="background:#10b981;color:white;padding:1.8rem;font-size:1.7rem;border:none;border-radius:16px;width:100%;font-weight:700;">
+  Pagar con Wompi $30.000 COP
+</button>
+
   </div>
 </div>
 

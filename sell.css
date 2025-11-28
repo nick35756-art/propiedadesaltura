@@ -177,3 +177,26 @@ button {
 iframe[src*="wompi"] {
   height: 70px !important;
 }
+/* ==== FIX: Wompi payment methods were being covered on desktop ==== */
+#wompi-container,
+#wompi-container > div,
+body,
+html {
+  overflow: visible !important;
+}
+
+/* Force Wompi’s iframe to have enough height and never be clipped */
+iframe[src*="checkout.wompi.co"] {
+  min-height: 650px !important;    /* a little taller than mobile version */
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 999999 !important;
+  border: none !important;
+}
+
+/* Extra safety for the modal itself */
+#wompi-container {
+  overflow: visible !important;
+}

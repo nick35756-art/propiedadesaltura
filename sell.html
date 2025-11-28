@@ -331,6 +331,21 @@ window.initSellMap = function() {
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoIGK7pUUxiu0nJSJ79ckIcayGm5O31Zo&callback=initSellMap"></script>
  <!-- Wompi -->
+      <script>
+// THIS LINE IS REQUIRED — LOAD WOMPI WIDGET
+if (!window.WompiWidgetLoaded) {
+  const script = document.createElement('script');
+  script.src = 'https://checkout.wompi.co/widget.js';
+  script.async = true;
+  script.onload = () => { window.WompiWidgetLoaded = true; };
+  document.head.appendChild(script);
+}
+
+/* YOUR FULL CODE BELOW (exactly as you posted) */
+async function openWompi() {
+  const container = document.getElementById('wompi-container');
+  // ... rest of your perfect code ...
+}
   <script>
 // WOMPI INTEGRATION – FULLY WORKING WITH BACKEND SIGNATURE
 async function openWompi() {
